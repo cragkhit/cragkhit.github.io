@@ -60,84 +60,96 @@
             </nav>
         </div>
         <main class="mdl-layout__content">
-
-            <div class="mdl-grid portfolio-max-width">
-            <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                  <div class="mdl-card__media">
-                      <img class="article-image" src=" images/iwsc2017.png" border="0" alt="">
-                  </div>
-                  <div class="mdl-card__title">
-                      <h2 class="mdl-card__title-text">Using Compilation-Decompilation to Enhance Clone Detection</h2>
-                  </div>
-                  <hr />
-                  <div class="mdl-card__supporting-text">
-                    <img width="100px" src="images/iwsc2017_logo.png" border="0" alt="">&nbsp;
-                    <img width="100px" src="images/iwsc_award.jpg" border="0" alt="">
-                    <p><font color="red">Accepted at IWSC 2017 and won the People's Choice Award!</font></p>
-                    <b>C. Ragkhitwetsagul, J. Krinke</b><br/><br/>
-                      We study effects of compilation and decompilation to code clone detection in Java. Compilation/decompilation canonicalise syntactic changes made to source code and can be used as source code normalisation. We used NiCad to detect clones before and after decompilation in three open source software systems, JUnit, JFreeChart, and Tomcat. We filtered and compared the clones in the original and decompiled clone set and found that 1,201 clone pairs (78.7%) are common between the two sets while 326 pairs (21.3\%) are only in one of the sets. A manual investigation identified 325 out of the 326 pairs as true clones. The 252 original-only clone pairs contain a single false positive while the 74 decompiled-only clone pairs are all true positives. Many clones in the original source code that are detected only after decompilation are type-3 clones that are difficult to detect due to added or deleted statements, keywords, package names; flipped if-else statements; or changed loops. We suggest to use decompilation as normalisation to compliment clone detection. By combining clones found before and after decompilation, one can achieve higher recall without losing precision.
-                  </div>
-                  <div class="mdl-card__actions mdl-card--border">
-                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://cragkhit.github.io/crjk-iwsc17//">Visit the project's website</a>
-                  </div>
-              </div>
-             <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                  <div class="mdl-card__media">
-                      <img class="article-image" src=" images/isics_black.jpg" border="0" alt="">
-                  </div>
-                  <div class="mdl-card__title">
-                      <h2 class="mdl-card__title-text">Measuring Code Similarity in Large-scaled Code Corpora</h2>
-                  </div>
-                  <hr />
-                  <div class="mdl-card__supporting-text">
-                    <img src="images/icsme2016.png" border="0" alt="">
-                    <p><font color="red">Accepted at ICSME 2016 Doctoral Symposium!</font></p>
-                    <b>C. Ragkhitwetsagul</b><br/><br/>
-                      There are numerous tools available to measure code similarity in the past decades. These tools are created for specific use cases and come with several parameters which are sensitive to dataset and have to be tuned carefully to obtain the optimal tool’s performance. We have evaluated 30 similarity analysers for source code similarity and found that specialised tools such as clone and plagiarism detectors, with proper parameter tuning, outperform general techniques such as string matching. Unfortunately, although these specialised tools can handle code similarity in a local code base, they fail to locate similar code artefacts from a large-scaled corpora. This challenge is important since the amount of online source code is rising and at the same time being reused oftenly. Hence, we propose a scalable search system specifically designed for source code. Our proposed code search framework based on information retrieval, tokenisation, code normalisation, and variable-length gram. This framework will be able to locate similar code artefacts not only based on textual similarity, but also syntactic and structural similarity. It is also resilient to incomplete code fragments that are normally found on the Internet.
-                  </div>
-                  <div class="mdl-card__actions mdl-card--border">
-                      
-                  </div>
-              </div>
-              <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                  <div class="mdl-card__media">
-                      <img class="article-image" src=" images/cloplag.jpg" border="0" alt="">
-                  </div>
-                  <div class="mdl-card__title">
-                      <h2 class="mdl-card__title-text">Similarity of Source Code in the Presence of Pervasive Modifications</h2>
-                  </div>
-                  <hr />
-                  <div class="mdl-card__supporting-text">
-                    <img src="images/scam.png" border="0" alt="">
-                    <p><font color="red">Accepted at SCAM 2016!</font></p>
-                    <b>C. Ragkhitwetsagul, J. Krinke, <br />D. Clark</b><br/><br/>
-                      Source code analysis to detect code cloning, code plagiarism, and code reuse suffers from the problem of pervasive code modifications, i.e. transformations that may have a global effect. We compare 30 similarity detection techniques and tools against pervasive code modifications. We evaluate the tools using two experimental scenarios for Java source code. These are (1) pervasive modifications created with tools for source code and bytecode obfuscation and (2) source code normalisation through compilation and decompilation using different decompilers. Our experimental results show that highly specialised source code similarity detection techniques and tools can perform better than more general, textual similarity measures. Our study strongly validates the use of compilation/decompilation as a normalisation technique. Its use reduced false classifications to zero for six of the tools. This broad, thorough study is the largest in existence and potentially an invaluable guide for future users of similarity detection in source code.<br /><br /><br /><br /><br /><br />
-                  </div>
-                  <div class="mdl-card__actions mdl-card--border">
-                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://crest.cs.ucl.ac.uk/resources/cloplag/">Visit the project's website</a>
-                  </div>
-              </div>
-            </div>
-
             <div class="mdl-grid portfolio-max-width">
               <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                  <div class="mdl-card__media">
-                      <img class="article-image" src=" images/clones.jpg" border="0" alt="">
-                  </div>
-                  <div class="mdl-card__title">
-                      <h2 class="mdl-card__title-text">Searching for Configurations in Clone Evalution: A Replication Study</h2>
-                  </div>
-                  <hr />
-                  <div class="mdl-card__supporting-text">
-                    <img src="images/ssbse2016.png" border="0" alt="">
-                    <p><font color="red">Accepted at SSBSE 2016!</font></p>
-                    <b>C. Ragkhitwetsagul, M. Paixao, <br/>M. Adham, S. Busari, J. Krinke and J.H. Drake</b><br/><br/>
-                    Clone detection is the process of finding duplicated code within a software code base in an automated manner. It is useful in several areas of software development such as code quality analysis, bug detection, and program understanding. We replicate a study of a genetic- algorithm based framework that optimises parameters for clone agree- ment (EvaClone). We apply the framework to 14 releases of Mockito, a Java mocking framework. We observe that the optimised parameters outperform the tools’ default parameters in term of clone agreement by 19.91% to 66.43%. However, the framework gives undesirable results in term of clone quality. EvoClone either maximises or minimises a number of clones in order to achieve the highest agreement resulting in more false positives or false negatives introduced consequently.<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                  </div>
-                  <div class="mdl-card__actions mdl-card--border">
-                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://cragkhit.github.io/ssbsechallenge2016/">Visit the project's website</a>
-                  </div>
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/emse.png" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">A Comparison of Code Similarity Analysers</h2>
+                    </div>
+                    <hr />
+                    <div class="mdl-card__supporting-text">
+                      <p><font color="red">Empirical Software Engineering Journal</font></p>
+                      <b>C. Ragkhitwetsagul, J. Krinke, D. Clark</b><br/><br/>
+                        We evaluate 30 code similarity detection techniques and tools using five experimental scenarios for Java source code. These are (1) pervasively modified code, created with tools for source code and bytecode obfuscation, and boiler-plate code, (2) source code normalisation through compilation and decompilation using different decompilers, (3) reuse of optimal configurations over different data sets, (4) tool evaluation using ranked-based measures, and (5) local + global code modifications. Our experimental results show that in the presence of pervasive modifications, some of the general textual similarity measures can offer similar performance to specialised code similarity tools, while in the presence of boiler-plate code, highly specialised source code similarity detection techniques and tools outperform textual similarity measures. Our study strongly validates the use of compilation/decompilation as a normalisation technique. Its use reduced false classifications to zero for three of the tools. Moreover, we demonstrate that optimal configurations are very sensitive to a specific data set. After directly applying optimal configurations derived from one data set to another, the tools perform poorly on the new data set. The code similarity analysers are thoroughly evaluated not only based on several well-known pair-based and query-based error measures but also on each specific type of pervasive code modification. This broad, thorough study is the largest in existence and potentially an invaluable guide for future users of similarity detection in source code.
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://crest.cs.ucl.ac.uk/resources/cloplag/">Visit the project's website</a>
+                    </div>
               </div>
+              <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/iwsc2017.png" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Using Compilation-Decompilation to Enhance Clone Detection</h2>
+                    </div>
+                    <hr />
+                    <div class="mdl-card__supporting-text">
+                      <img width="100px" src="images/iwsc2017_logo.png" border="0" alt="">&nbsp;
+                      <img width="100px" src="images/iwsc_award.jpg" border="0" alt="">
+                      <p><font color="red">Accepted at IWSC 2017 and won the People's Choice Award!</font></p>
+                      <b>C. Ragkhitwetsagul, J. Krinke</b><br/><br/>
+                        We study effects of compilation and decompilation to code clone detection in Java. Compilation/decompilation canonicalise syntactic changes made to source code and can be used as source code normalisation. We used NiCad to detect clones before and after decompilation in three open source software systems, JUnit, JFreeChart, and Tomcat. We filtered and compared the clones in the original and decompiled clone set and found that 1,201 clone pairs (78.7%) are common between the two sets while 326 pairs (21.3\%) are only in one of the sets. A manual investigation identified 325 out of the 326 pairs as true clones. The 252 original-only clone pairs contain a single false positive while the 74 decompiled-only clone pairs are all true positives. Many clones in the original source code that are detected only after decompilation are type-3 clones that are difficult to detect due to added or deleted statements, keywords, package names; flipped if-else statements; or changed loops. We suggest to use decompilation as normalisation to compliment clone detection. By combining clones found before and after decompilation, one can achieve higher recall without losing precision.
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://cragkhit.github.io/crjk-iwsc17//">Visit the project's website</a>
+                    </div>
+               </div>
+               <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/isics_black.jpg" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Measuring Code Similarity in Large-scaled Code Corpora</h2>
+                    </div>
+                    <hr />
+                    <div class="mdl-card__supporting-text">
+                      <img src="images/icsme2016.png" border="0" alt="">
+                      <p><font color="red">Accepted at ICSME 2016 Doctoral Symposium!</font></p>
+                      <b>C. Ragkhitwetsagul</b><br/><br/>
+                        There are numerous tools available to measure code similarity in the past decades. These tools are created for specific use cases and come with several parameters which are sensitive to dataset and have to be tuned carefully to obtain the optimal tool’s performance. We have evaluated 30 similarity analysers for source code similarity and found that specialised tools such as clone and plagiarism detectors, with proper parameter tuning, outperform general techniques such as string matching. Unfortunately, although these specialised tools can handle code similarity in a local code base, they fail to locate similar code artefacts from a large-scaled corpora. This challenge is important since the amount of online source code is rising and at the same time being reused oftenly. Hence, we propose a scalable search system specifically designed for source code. Our proposed code search framework based on information retrieval, tokenisation, code normalisation, and variable-length gram. This framework will be able to locate similar code artefacts not only based on textual similarity, but also syntactic and structural similarity. It is also resilient to incomplete code fragments that are normally found on the Internet.
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/cloplag.jpg" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Similarity of Source Code in the Presence of Pervasive Modifications</h2>
+                    </div>
+                    <hr />
+                    <div class="mdl-card__supporting-text">
+                      <img src="images/scam.png" border="0" alt="">
+                      <p><font color="red">Accepted at SCAM 2016!</font></p>
+                      <b>C. Ragkhitwetsagul, J. Krinke, <br />D. Clark</b><br/><br/>
+                        Source code analysis to detect code cloning, code plagiarism, and code reuse suffers from the problem of pervasive code modifications, i.e. transformations that may have a global effect. We compare 30 similarity detection techniques and tools against pervasive code modifications. We evaluate the tools using two experimental scenarios for Java source code. These are (1) pervasive modifications created with tools for source code and bytecode obfuscation and (2) source code normalisation through compilation and decompilation using different decompilers. Our experimental results show that highly specialised source code similarity detection techniques and tools can perform better than more general, textual similarity measures. Our study strongly validates the use of compilation/decompilation as a normalisation technique. Its use reduced false classifications to zero for six of the tools. This broad, thorough study is the largest in existence and potentially an invaluable guide for future users of similarity detection in source code.<br /><br /><br /><br /><br /><br />
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://crest.cs.ucl.ac.uk/resources/cloplag/">Visit the project's website</a>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/clones.jpg" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Searching for Configurations in Clone Evalution: A Replication Study</h2>
+                    </div>
+                    <hr />
+                    <div class="mdl-card__supporting-text">
+                      <img src="images/ssbse2016.png" border="0" alt="">
+                      <p><font color="red">Accepted at SSBSE 2016!</font></p>
+                      <b>C. Ragkhitwetsagul, M. Paixao, <br/>M. Adham, S. Busari, J. Krinke and J.H. Drake</b><br/><br/>
+                      Clone detection is the process of finding duplicated code within a software code base in an automated manner. It is useful in several areas of software development such as code quality analysis, bug detection, and program understanding. We replicate a study of a genetic- algorithm based framework that optimises parameters for clone agree- ment (EvaClone). We apply the framework to 14 releases of Mockito, a Java mocking framework. We observe that the optimised parameters outperform the tools’ default parameters in term of clone agreement by 19.91% to 66.43%. However, the framework gives undesirable results in term of clone quality. EvoClone either maximises or minimises a number of clones in order to achieve the highest agreement resulting in more false positives or false negatives introduced consequently.<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://cragkhit.github.io/ssbsechallenge2016/">Visit the project's website</a>
+                    </div>
+                </div>
                 <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
                         <img class="article-image" src=" images/honeydew.png" border="0" alt="">
@@ -154,7 +166,6 @@
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/Honeydew-final-report-Chaiyong.pdf">View the full report</a>
                     </div>
                 </div>
-
                 <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
                         <img class="article-image" src=" images/foxbeacon.png" border="0" alt="">
