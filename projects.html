@@ -1,0 +1,226 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A portfolio template that uses Material Design Lite.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Chaiyong Ragkhitwetsagul @ UCL</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+            <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">I have not failed. I've just found 10,000 ways that won't work. - Thomas A. Edison</span>
+                </span>
+            </div>
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <a class="mdl-navigation__link" href="index.html">Home</a>
+                    <a class="mdl-navigation__link" href="research.html">Research</a>
+                    <a class="mdl-navigation__link" href="teaching.html">Teaching</a>
+                    <a class="mdl-navigation__link is-active" href="projects.html">Projects</a>
+                    <a class="mdl-navigation__link" href="links.html">Links</a>
+                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+              <a class="mdl-navigation__link" href="index.html">Home</a>
+              <a class="mdl-navigation__link" href="research.html">Research</a>
+              <a class="mdl-navigation__link" href="teaching.html">Teaching</a>
+              <a class="mdl-navigation__link is-active" href="projects.html">Projects</a>
+              <a class="mdl-navigation__link" href="links.html">Links</a>
+              <a class="mdl-navigation__link" href="contact.html">Contact</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+
+            <div class="mdl-grid portfolio-max-width">
+            <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                  <div class="mdl-card__media">
+                      <img class="article-image" src=" images/iwsc2017.png" border="0" alt="">
+                  </div>
+                  <div class="mdl-card__title">
+                      <h2 class="mdl-card__title-text">Using Compilation-Decompilation to Enhance Clone Detection</h2>
+                  </div>
+                  <hr />
+                  <div class="mdl-card__supporting-text">
+                    <img width="100px" src="images/iwsc2017_logo.png" border="0" alt="">&nbsp;
+                    <img width="100px" src="images/iwsc_award.jpg" border="0" alt="">
+                    <p><font color="red">Accepted at IWSC 2017 and won the People's Choice Award!</font></p>
+                    <b>C. Ragkhitwetsagul, J. Krinke</b><br/><br/>
+                      We study effects of compilation and decompilation to code clone detection in Java. Compilation/decompilation canonicalise syntactic changes made to source code and can be used as source code normalisation. We used NiCad to detect clones before and after decompilation in three open source software systems, JUnit, JFreeChart, and Tomcat. We filtered and compared the clones in the original and decompiled clone set and found that 1,201 clone pairs (78.7%) are common between the two sets while 326 pairs (21.3\%) are only in one of the sets. A manual investigation identified 325 out of the 326 pairs as true clones. The 252 original-only clone pairs contain a single false positive while the 74 decompiled-only clone pairs are all true positives. Many clones in the original source code that are detected only after decompilation are type-3 clones that are difficult to detect due to added or deleted statements, keywords, package names; flipped if-else statements; or changed loops. We suggest to use decompilation as normalisation to compliment clone detection. By combining clones found before and after decompilation, one can achieve higher recall without losing precision.
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://cragkhit.github.io/crjk-iwsc17//">Visit the project's website</a>
+                  </div>
+              </div>
+             <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                  <div class="mdl-card__media">
+                      <img class="article-image" src=" images/isics_black.jpg" border="0" alt="">
+                  </div>
+                  <div class="mdl-card__title">
+                      <h2 class="mdl-card__title-text">Measuring Code Similarity in Large-scaled Code Corpora</h2>
+                  </div>
+                  <hr />
+                  <div class="mdl-card__supporting-text">
+                    <img src="images/icsme2016.png" border="0" alt="">
+                    <p><font color="red">Accepted at ICSME 2016 Doctoral Symposium!</font></p>
+                    <b>C. Ragkhitwetsagul</b><br/><br/>
+                      There are numerous tools available to measure code similarity in the past decades. These tools are created for specific use cases and come with several parameters which are sensitive to dataset and have to be tuned carefully to obtain the optimal tool’s performance. We have evaluated 30 similarity analysers for source code similarity and found that specialised tools such as clone and plagiarism detectors, with proper parameter tuning, outperform general techniques such as string matching. Unfortunately, although these specialised tools can handle code similarity in a local code base, they fail to locate similar code artefacts from a large-scaled corpora. This challenge is important since the amount of online source code is rising and at the same time being reused oftenly. Hence, we propose a scalable search system specifically designed for source code. Our proposed code search framework based on information retrieval, tokenisation, code normalisation, and variable-length gram. This framework will be able to locate similar code artefacts not only based on textual similarity, but also syntactic and structural similarity. It is also resilient to incomplete code fragments that are normally found on the Internet.
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                      
+                  </div>
+              </div>
+              <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                  <div class="mdl-card__media">
+                      <img class="article-image" src=" images/cloplag.jpg" border="0" alt="">
+                  </div>
+                  <div class="mdl-card__title">
+                      <h2 class="mdl-card__title-text">Similarity of Source Code in the Presence of Pervasive Modifications</h2>
+                  </div>
+                  <hr />
+                  <div class="mdl-card__supporting-text">
+                    <img src="images/scam.png" border="0" alt="">
+                    <p><font color="red">Accepted at SCAM 2016!</font></p>
+                    <b>C. Ragkhitwetsagul, J. Krinke, <br />D. Clark</b><br/><br/>
+                      Source code analysis to detect code cloning, code plagiarism, and code reuse suffers from the problem of pervasive code modifications, i.e. transformations that may have a global effect. We compare 30 similarity detection techniques and tools against pervasive code modifications. We evaluate the tools using two experimental scenarios for Java source code. These are (1) pervasive modifications created with tools for source code and bytecode obfuscation and (2) source code normalisation through compilation and decompilation using different decompilers. Our experimental results show that highly specialised source code similarity detection techniques and tools can perform better than more general, textual similarity measures. Our study strongly validates the use of compilation/decompilation as a normalisation technique. Its use reduced false classifications to zero for six of the tools. This broad, thorough study is the largest in existence and potentially an invaluable guide for future users of similarity detection in source code.<br /><br /><br /><br /><br /><br />
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://crest.cs.ucl.ac.uk/resources/cloplag/">Visit the project's website</a>
+                  </div>
+              </div>
+            </div>
+
+            <div class="mdl-grid portfolio-max-width">
+              <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                  <div class="mdl-card__media">
+                      <img class="article-image" src=" images/clones.jpg" border="0" alt="">
+                  </div>
+                  <div class="mdl-card__title">
+                      <h2 class="mdl-card__title-text">Searching for Configurations in Clone Evalution: A Replication Study</h2>
+                  </div>
+                  <hr />
+                  <div class="mdl-card__supporting-text">
+                    <img src="images/ssbse2016.png" border="0" alt="">
+                    <p><font color="red">Accepted at SSBSE 2016!</font></p>
+                    <b>C. Ragkhitwetsagul, M. Paixao, <br/>M. Adham, S. Busari, J. Krinke and J.H. Drake</b><br/><br/>
+                    Clone detection is the process of finding duplicated code within a software code base in an automated manner. It is useful in several areas of software development such as code quality analysis, bug detection, and program understanding. We replicate a study of a genetic- algorithm based framework that optimises parameters for clone agree- ment (EvaClone). We apply the framework to 14 releases of Mockito, a Java mocking framework. We observe that the optimised parameters outperform the tools’ default parameters in term of clone agreement by 19.91% to 66.43%. However, the framework gives undesirable results in term of clone quality. EvoClone either maximises or minimises a number of clones in order to achieve the highest agreement resulting in more false positives or false negatives introduced consequently.<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                  </div>
+                  <div class="mdl-card__actions mdl-card--border">
+                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://cragkhit.github.io/ssbsechallenge2016/">Visit the project's website</a>
+                  </div>
+              </div>
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/honeydew.png" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Honedew: Predicting meeting date using machine learning algorithm</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                      <i>Project from master degree</i><br />
+                      <b>C. Ragkhitwetsagul</b><br/><br />
+                      Today  scheduling  a  meeting  via  email  becomes  widely  used.  However,  creating  a meeting in a user’s calendar can be tedious. Honeydew is an intelligent agent, which uses machine-learning  algorithms  to  extract  all  required  information  from  a  meeting  email. Then it creates suggestions for the user. The user can verify the suggestions, and proceed to place the meeting in his calendar. The agent can dramatically reduce user’s workload of  extracting  all  information  from  emails  and  put  them  in  his  calendar  application.  The agent  also  automatically  improves  its  performances  by  learning  from  suggestions  that  is corrected by human users. This paper discusses an algorithm used for predicting meetings date from content in emails. It also includes the evaluation results of the system.<br /><br /><br /><br /><br />
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/Honeydew-final-report-Chaiyong.pdf">View the full report</a>
+                    </div>
+                </div>
+
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/foxbeacon.png" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">FoxBeacon: Web Bug Detector Implementing P3P Compact Policy for Mozilla Firefox</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                      <i>Project from master degree</i><br />
+                        <b>C. Ragkhitwetsagul</b><br/><br />
+                        This paper describes the design, implementation, and evaluation of a web bug detector called “FoxBeacon.” This detector is originally designed to be an extension of Mozilla Firefox. After being installed, FoxBeacon embeds itself into the Firefox browser and acts as a proxy. It reads every incoming web page and trying to find hidden web bugs. FoxBeacon treats each image as a web bug according to the pre-defined rules. In addition, FoxBeacon also includes the compact policy, one component of Platform of Privacy Policy (P3P), to incorporate and provide more information to its users. This paper also covers the evaluation of FoxBeacon functionalities and its results. The ultimate goal of this project is to optimize between least disruption to the browser’s users and the most effective way in order to make the users aware of the hidden web bugs. In addition, reducing the number of false negatives and false positive is also another important goal.
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/FoxBeacon_final_paper.pdf">View the full report</a>
+                    </div>
+                </div>
+
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/galinkage.png" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Evaluating Genetic Algorithm for selection of similarity functions for record linkage</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                      <i>Project from master degree</i><br />
+                      <b>F. Shaikh and C. Ragkhitwetsagul</b><br/><br />
+                        Machine learning algorithms have been successfully employed in solving the record linkage problem. Machine learning casts the record linkage problem as a classification problem by training a classifier that classifies 2 records as duplicates or unique. Irrespective of the machine learning algorithm used, the initial step in training a classifier involves selecting a set of similarity functions to be applied to each attribute to get a similarity measure. Usually this is done manually with input from a domain expert. We evaluate an approach in which the optimal combination of similarity function for a given type of input data records is searched using Genetic Algorithms.<br /><br /><br /><br /><br /><br /><br /><br />
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/Genetic_algorithm_final_report_chaiyong_faraz.pdf">View the full report</a>
+                    </div>
+                </div>
+
+                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
+                        <img class="article-image" src=" images/hercules.png" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Hercules File System:<br />A Scalable Fault Tolerant Distributed File System </h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                      <i>Project from master degree</i><br/>
+                      <b>F. Shaikh, C. Ragkhitwetsagul, <br />A.R. Pathan</b><br/><br />
+                      We introduce the design of the Hercules File System (HFS), a distributed file  system  with  scalable  MDS  cluster  and  scalable and  fault-tolerant  DS  cluster.  The Hercules File System allows Metadata and Data Servers to be dynamically added to the MDS cluster even after the initial setup time while the system is up and running without disrupting the normal operations carried out by the file system. The file system is also fault-tolerant and can serve clients in the events of failures of the DS and MDS. A Health Monitor is also designed which is a GUI tool that monitors the state of the servers of the File  System  and  also  gives  the  run-time  visualization  of  operations  requested  by  the clients.
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/Hercules%20FS%20Project%20Report.pdf">View the full report</a>
+                    </div>
+                </div>
+
+            </div>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">Chaiyong's Personal Website</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Privacy & Terms</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+</body>
+
+</html>

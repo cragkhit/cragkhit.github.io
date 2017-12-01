@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html>
+<header>
+<title>Similarity of Source Code in the Presence of Pervasive Modifications</title>
+</header>
+<body style="font-family: Arial, sans-serif;font-size:14px;">
+
+<h1>Similarity of Source Code in the Presence of Pervasive Modifications</h1>
+<h3><a href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/index.html">Chaiyong Ragkhitwetsagul</a>, <a href="http://www0.cs.ucl.ac.uk/staff/j.krinke/index.html">Jens Krinke</a>, <a href="http://www0.cs.ucl.ac.uk/staff/D.Clark/">David Clark</a><br/><a href="http://crest.cs.ucl.ac.uk">CREST centre</a>, Department of Computer Science, University College London</h3>
+
+<h2>Abstract</h2>
+<p>We informally define pervasive code modifications as transformations that may have a global effect but which do not use strong obfuscation. This class of transformations captures those found in code cloning, code plagiarism, and software evolution. We compare 27 similarity detection techniques and tools using five experimental scenarios for Java source code. These are (1) pervasive modifications created with two tools for source code and bytecode obfuscation, (2) source code normalisation through compilation and decompilation using two different decompilers, (3) sets of semantically identical but independently developed code fragments, (4) reused boiler-plate code, and (5) a novel comparison technique that avoids the use of similarity thresholds. Experimental results show that highly specialised source code similarity detection techniques and tools can perform better than more general, textual similarity measures. Our study strongly validates the use of compilation/decompilation as a normalisation technique as its use reduced false classifications to zero for five of the tools. This broad, thorough study is the largest in existence and potentially an invaluable guide for future users of similarity detection.</p>
+
+<h2>Contents</h2>
+<ol>
+<li><a href="#exp_framework">The Experimental Framework</a></li>
+<li><a href="#tools">Tools and Techniques</a></li>
+<li><a href="#sc1">Scenario 1: Pervasive Modifications (data set)</a></li>
+<li><a href="#sc2">Scenario 2: Decompilation (data set)</a></li>
+<li><a href="#sc3">Scenario 3: Simions (data set)</a></li>
+<li><a href="#sc4">Scenario 4: Reused Boiler-Plate Code (data set)</a></li>
+<li><a href="#sc5">Scenario 5: Threshold-Free Classification</a></li>
+<li><a href="#results">Results</a></li>
+</ol>
+
+<h2 id="exp_framework">The Experimental Framework</h2>
+<p>The general framework of our study as shown below consists of 5 main steps. In Step 1, we collect test data consisting of Java source code files. Next, the source files are transformed by applying pervasive modifications at source and bytecode level. In the third step, all original and transformed source files are normalised. A simple form of normalisation is pretty printing the source files which is used in similarity or clone detection. We also use decompilation. In Step 4, the similarity detection tools are executed pairwise against the set of all normalised files, producing similarity reports for every pair. In the last step, the similarity reports are analysed.</p>
+<div><img style="width: 600px" src="images/tc_overview.png" /></div>
+
+<h2 id="tools">Tools and Techniques</h2>
+<p>Several tools and techniques were used in this study. These fall into three categories: obfuscators, decompilers, and detectors. The tool set included source and bytecode obfuscators, and two decompilers. The detectors cover a wide range of similarity measurement techniques and methods including plagiarism and clone detection, compression distance, string matching, and information retrieval. All tools are open source in order to expedite the repeatability of our experiments.</p>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:5px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;}
+.tg .tg-36xf{font-weight:bold;background-color:#bbdaff}
+.tg .tg-eyl8{font-weight:bold;background-color:#ecf4ff}
+.tg .tg-5y5n{background-color:#ecf4ff}
+</style>
+<h3>Obfuscators, Decompilers</h3>
+<table class="tg">
+  <tr><th class="tg-36xf">Type</th><th class="tg-36xf">Tool</th><th class="tg-36xf">Link</th></tr>
+  <tr><td class="tg-031e">Source code obfuscator</td><td class="tg-031e">Artifice</td><td><a href="https://www.tu-braunschweig.de/isf/research/artifice/index.html;jsessionid=TRIFORK358371093149">Download</a></td></tr>
+  <tr><td class="tg-031e">Bytecode obfuscator</td><td class="tg-031e">ProGuard</td><td><a href="http://proguard.sourceforge.net">Download</a></td></tr>
+  <tr><td rowspan="2" class="tg-031e">Decompiler</td><td class="tg-031e">Krakatau</td><td><a href="https://github.com/Storyyeller/Krakatau">Download</a></td></tr>
+  <tr><td class="tg-031e">Procyon</td><td><a href="https://bitbucket.org/mstrobel/procyon/wiki/Java%20Decompiler">Download</a></td></tr>
+</table>
+
+<h3>Similarity Detection Tools</h3>
+<table class="tg">
+<tr><th class="tg-36xf">Tool/technique</th><th class="tg-36xf">Similarity calculation</th><th class="tg-36xf">Link</th></tr>
+<tr><td class="tg-eyl8" colspan="3">Clone detectors<br></td></tr>
+<tr><td class="tg-031e">ccfx</td><td class="tg-031e">tokens and suffix tree matching</td><td><a href="http://www.ccfinder.net/">Download</a></td></tr>
+<tr><td class="tg-031e">deckard</td><td class="tg-031e">characteristic vectors of AST optimised by LSH iclones tokens and generalised suffix tree</td><td><a href="https://github.com/skyhover/Deckard">Download</a></td></tr>
+<tr><td class="tg-031e">nicad</td><td class="tg-031e">TXL and string comparison (LCS)</td><td><a href="http://www.txl.ca/nicaddownload.html">Download</a></td></tr>
+<tr><td class="tg-031e">simian</td><td class="tg-031e">line-based string comparison</td><td><a href="http://www.harukizaemon.com/simian/">Download</a></td></tr>
+<tr><td class="tg-eyl8" colspan="3">Plagiarism detectors<br></td></tr>
+<tr><td>jplag-java</td><td>tokens, Karp Rabin matching, Greedy String Tiling </td><td rowspan="2"><a href="https://jplag.ipd.kit.edu/">Download</a></td></td></tr>
+<tr><td>jplag-text</td><td>tokens, Karp Rabin matching, Greedy String Tiling </td></tr>
+<tr><td>plaggie</td><td>N/A (not disclosed)</td><td><a href="https://www.cs.hut.fi/Software/Plaggie/">Download</a></td></tr>
+<tr><td>sherlock</td><td>digital signatures</td><td><a href="http://sydney.edu.au/engineering/it/~scilect/sherlock/">Download</a></td></tr>
+<tr><td>simjava</td><td>tokens and string alignment</td><td rowspan="2"><a href="http://dickgrune.com/Programs/similarity_tester/">Download</a></td></tr>
+<tr><td>simtext</td><td>tokens and string alignment</td></tr>
+<tr>
+    <td class="tg-eyl8" colspan="3">Compression<br></td>
+    <tr><td>7zncd</td><td>NCD with 7z</td><td /></tr>
+<tr><td>bzip2ncd</td><td>NCD with bzip2</td><td /></tr>
+<tr><td>gzipncd</td><td>NCD with gzip</td><td /></tr>
+<tr><td>icd</td><td><img style="width: 200px" src="images/eq4.png" /></td><td /></tr>
+<tr><td>ncd</td><td>ncd tool with bzlib &amp; zlib</td><td><a href="http://complearn.org/ncd.html">Download</a></td></tr>
+<td class="tg-eyl8" colspan="3">Others</td></tr>
+<tr><td>bsdiff</td><td><img style="width: 300px" src="images/eq5.png" /></td><td /></tr>
+<tr><td>diff</td><td><img style="width: 300px" src="images/eq5.png" /></td><td /></tr>
+<tr><td>py-difflib</td><td>Gestalt pattern matching</td><td><a href="https://docs.python.org/2/library/difflib.html">Download</a></td></tr>
+<tr><td>py-fuzzywuzzy</td><td>fuzzy string matching</td><td><a href="https://github.com/seatgeek/fuzzywuzzy">Download</a></td></tr>
+<tr><td>py-jellyfish</td><td>approximate and phonetic matching of strings py-ngram fuzzy search based using n-gram</td><td><a href="https://github.com/jamesturk/jellyfish">Download</a></td></tr>
+<tr><td>py-sklearn</td><td>cosine similarity from machine learning library</td><td><a href="http://scikit-learn.org/stable/">Download</a></td></tr>
+  </tr>
+</table>
+
+<h2 id="sc1">Scenario 1: Pervasive Modifications</h2>
+<p>
+The data set in this scenario is created to simulate pervasive modifications made to source code by using source and bytecode obfuscators: Artifice, and ProGuard. The total number of pervasively modified source code files is 50. The process of code transformations is displayed below.<br />
+</p>
+<div><img style="width:600px" src="images/tc1_data_prep.png" /></div>
+<h4>Data set: <a href="files/generated.zip">generated</a></h4>
+
+<h2 id="sc2">Scenario 2: Decompilation</h2>
+In this scenario, the data set is based on the same set of 50 source code files generated in Scenario 1. However, we added normalisation through decompilation to the post-processing (step 3 in the framework) by compiling all the transformed files using javac and decompiling them using either Krakatau or Procyon.
+<h4>Data set: <a href="files/generated*.zip">generated*</a></h4>
+
+<h2 id="sc3">Scenario 3: Simions</h2>
+In this scenario, we used a data set of semantically identical but independently developed Java files (Juergens et al., 2011), called simions, in our study. "Simions are behaviourally similar code fragments where behavioural similarity is defined w.r.t. input/output behaviour" (Juergens et al., 2011). This data set has been used to evaluate how clone detectors perform in detecting Type IV clones, i.e. fragments with the same behaviour but different implementations. The simions data set contains 109 independently developed Java functions for email address validation - one file contains one implementation.
+<p>
+<span style="font-weight:bold">Data set:</span> we used the data set originally created for the study by Juergens et al. (<a href="http://doi.org/10.1109/CSMR.2010.33">Juergens, E., Deissenboeck, F., & Hummel, B. (2011). Code similarities beyond copy & paste. Proceedings of the European Conference on Software Maintenance and Reengineering, CSMR, 78–87.</a>)</p>
+
+<h2 id="sc4">Scenario 4: Reused Boiler-Plate Code</h2>
+In this scenario, we want to analyse the tools' performance against a data set that contains files in which fragments of (boiler-plate) code are reused with or without modifications applied. We choose the training set of <a href="http://users.dsic.upv.es/grupos/nle/soco/">SOCO (SOurce COde re-use) data set</a> that has been provided in a competition for discovering monolingual re-used source code amongst a given set of programs. The files in the SOCO data set are adapted from the study by Arwin et al. (2006). We found that many of them share the same or very similar boiler-plate code fragments which perform the same task. Some of the boiler-plate fragments have been modified to adapt them to the environment in which the fragment is re-used.
+<p>
+<span style="font-weight:bold">Data set:</span> the SOCO data set can be obtained from the competition website (<a href="http://users.dsic.upv.es/grupos/nle/soco/">http://users.dsic.upv.es/grupos/nle/soco/</a>).
+<span style="font-weight:bold"><br />Fixed answer key:</span> the answer key for SOCO java training data set containing 97 pairs of reused code <a href="files/soco_train_clones_fixed.txt">download</a>
+</p>
+
+<h2 id="sc5">Scenario 5: Threshold-Free Classification</h2>
+<p>We try to avoid this problem of threshold sensitivity completely by proposing a new method to measure tool performance without thresholds. To achieve the goal, we create the "threshold-free classification (TFC)" measurement which shows how well the tool retrieves relevant results with high confidence. To achieve this, we sort the retrieved pairs by measured similarity and consider only the top n pairs with highest similarities, where n is the number of pairs in the ground truth. In the ideal case, all of them are true positives. If a tool mistakenly reports a non-similar pair in the top n pairs, it is considered a false positive. Those pairs from the top n that are also in the ground truth are true positives, all others are false positives. From the number of true and false positives and the number of all pairs, we can compute true and false negatives, giving precision, recall and F-scores.</p>
+<!--<div>
+<img style="width: 400px" src="images/tfc.png" />
+</div>-->
+
+<h2 id="results">Results</h2>
+<h3>RQ1: Performance Comparison</h3>
+<p>
+The table below shows the performance of all the tools and their optimal configurations. Using the F-score, ccfx is the winner with the highest value of 0.90945674.
+</p>
+<table class="tg">
+ <tr>
+  <td class="tg-36xf">Tools</td>
+  <td class="tg-36xf">Settings</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >T</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >TP</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >FP</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >TN</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >FN</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >FP+FN</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >Accuracy</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >Precision</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >Recall</td>
+  <td class="tg-36xf" align="right" width=95 style='width:40pt' >F-score</td>
+ </tr>
+ <tr>
+  <td class="tg-5y5n">ccfx</td>
+  <td class="tg-5y5n">b=20,21,24,t=1..7<br />b=22,23,t=7</td>
+  <td class="tg-5y5n" align="right">4</td>
+  <td class="tg-5y5n" align="right">452</td>
+  <td class="tg-5y5n" align="right">42</td>
+  <td class="tg-5y5n" align="right">1958</td>
+  <td class="tg-5y5n" align="right">48</td>
+  <td class="tg-5y5n" align="right">90</td>
+  <td class="tg-5y5n" align="right">0.9640</td>
+  <td class="tg-5y5n" align="right">0.9150</td>
+  <td class="tg-5y5n" align="right">0.9040</td>
+  <td class="tg-5y5n" align="right">0.9095</td>
+ </tr>
+ <tr>
+  <td class="tg-5y5n">simjava</td>
+  <td class="tg-5y5n">r=22</td>
+  <td class="tg-5y5n" align="right">5</td>
+  <td class="tg-5y5n" align="right">456</td>
+  <td class="tg-5y5n" align="right">64</td>
+  <td class="tg-5y5n" align="right">1936</td>
+  <td class="tg-5y5n" align="right">44</td>
+  <td class="tg-5y5n" align="right">108</td>
+  <td class="tg-5y5n" align="right">0.9568</td>
+  <td class="tg-5y5n" align="right">0.8769</td>
+  <td class="tg-5y5n" align="right">0.9120</td>
+  <td class="tg-5y5n" align="right">0.8941</td>
+ </tr>
+ <tr>
+  <td class="tg-5y5n">jplag-text</td>
+  <td class="tg-5y5n">t=8</td>
+  <td class="tg-5y5n" align="right">2</td>
+  <td class="tg-5y5n" align="right">448</td>
+  <td class="tg-5y5n" align="right">96</td>
+  <td class="tg-5y5n" align="right">1904</td>
+  <td class="tg-5y5n" align="right">52</td>
+  <td class="tg-5y5n" align="right">148</td>
+  <td class="tg-5y5n" align="right">0.9408</td>
+  <td class="tg-5y5n" align="right">0.8235</td>
+  <td class="tg-5y5n" align="right">0.8960</td>
+  <td class="tg-5y5n" align="right">0.8582</td>
+ </tr>
+ <tr>
+  <td class="tg-5y5n">py-difflib</td>
+  <td class="tg-5y5n">SM_noautojunk</td>
+  <td class="tg-5y5n" align="right">35</td>
+  <td class="tg-5y5n" align="right">397</td>
+  <td class="tg-5y5n" align="right">49</td>
+  <td class="tg-5y5n" align="right">1951</td>
+  <td class="tg-5y5n" align="right">103</td>
+  <td class="tg-5y5n" align="right">152</td>
+  <td class="tg-5y5n" align="right">0.9392</td>
+  <td class="tg-5y5n" align="right">0.8901</td>
+  <td class="tg-5y5n" align="right">0.7940</td>
+  <td class="tg-5y5n" align="right">0.8393</td>
+ </tr>
+ <tr>
+  <td class="tg-5y5n">7zncd-BZip2</td>
+  <td class="tg-5y5n">mx=1,3,5</td>
+  <td class="tg-5y5n" align="right">39</td>
+  <td class="tg-5y5n" align="right">386</td>
+  <td class="tg-5y5n" align="right">44</td>
+  <td class="tg-5y5n" align="right">1956</td>
+  <td class="tg-5y5n" align="right">114</td>
+  <td class="tg-5y5n" align="right">158</td>
+  <td class="tg-5y5n" align="right">0.9368</td>
+  <td class="tg-5y5n" align="right">0.8977</td>
+  <td class="tg-5y5n" align="right">0.7720</td>
+  <td class="tg-5y5n" align="right">0.8301</td>
+ </tr>
+ <tr>
+  <td class="tg-5y5n">ncd-bzlib</td>
+  <td class="tg-5y5n">N/A</td>
+  <td class="tg-5y5n" align="right">31</td>
+  <td class="tg-5y5n" align="right">400</td>
+  <td class="tg-5y5n" align="right">66</td>
+  <td class="tg-5y5n" align="right">1934</td>
+  <td class="tg-5y5n" align="right">100</td>
+  <td class="tg-5y5n" align="right">166</td>
+  <td class="tg-5y5n" align="right">0.9336</td>
+  <td class="tg-5y5n" align="right">0.8584</td>
+  <td class="tg-5y5n" align="right">0.8000</td>
+  <td class="tg-5y5n" align="right">0.8282</td>
+ </tr>
+ <tr>
+  <td class="tg-5y5n">jplag-java</td>
+  <td class="tg-5y5n">t=3</td>
+  <td class="tg-5y5n" align="right">43</td>
+  <td class="tg-5y5n" align="right">432</td>
+  <td class="tg-5y5n" align="right">142</td>
+  <td class="tg-5y5n" align="right">1858</td>
+  <td class="tg-5y5n" align="right">68</td>
+  <td class="tg-5y5n" align="right">210</td>
+  <td class="tg-5y5n" align="right">0.9160</td>
+  <td class="tg-5y5n" align="right">0.7526</td>
+  <td class="tg-5y5n" align="right">0.8640</td>
+  <td class="tg-5y5n" align="right">0.8045</td>
+ </tr>
+ <tr>
+  <td class="tg-5y5n">py-sklearn.cosine_similarity</td>
+  <td class="tg-5y5n">N/A</td>
+  <td class="tg-5y5n" align="right">33</td>
+  <td class="tg-5y5n" align="right">402</td>
+  <td class="tg-5y5n" align="right">280</td>
+  <td class="tg-5y5n" align="right">1720</td>
+  <td class="tg-5y5n" align="right">98</td>
+  <td class="tg-5y5n" align="right">378</td>
+  <td class="tg-5y5n" align="right">0.8488</td>
+  <td class="tg-5y5n" align="right">0.5894</td>
+  <td class="tg-5y5n" align="right">0.8040</td>
+  <td class="tg-5y5n" align="right">0.6802</td>
+ </tr>
+ <tr>
+  <td>7zncd-default</td>
+  <td>N/A</td>
+  <td align="right">32</td>
+  <td align="right">415</td>
+  <td align="right">116</td>
+  <td align="right">1884</td>
+  <td align="right">85</td>
+  <td align="right">201</td>
+  <td align="right">0.9196</td>
+  <td align="right">0.7815</td>
+  <td align="right">0.8300</td>
+  <td align="right">0.8050</td>
+ </tr>
+ <!--
+ <tr>
+  <td>7zncd-Deflate</td>
+  <td>mx=9</td>
+  <td align="right">30</td>
+  <td align="right">416</td>
+  <td align="right">104</td>
+  <td align="right">1896</td>
+  <td align="right">84</td>
+  <td align="right">188</td>
+  <td align="right">0.9248</td>
+  <td align="right">0.8000</td>
+  <td align="right">0.8320</td>
+  <td align="right">0.8157</td>
+ </tr>
+ <tr>
+  <td>7zncd-Deflate64</td>
+  <td>mx=9</td>
+  <td align="right">30</td>
+  <td align="right">414</td>
+  <td align="right">103</td>
+  <td align="right">1897</td>
+  <td align="right">86</td>
+  <td align="right">189</td>
+  <td align="right">0.9244</td>
+  <td align="right">0.8008</td>
+  <td align="right">0.8280</td>
+  <td align="right">0.8142</td>
+ </tr>
+ -->
+ <tr>
+  <td>7zncd-LZMA</td>
+  <td>mx=7,9</td>
+  <td align="right">33</td>
+  <td align="right">417</td>
+  <td align="right">105</td>
+  <td align="right">1895</td>
+  <td align="right">83</td>
+  <td align="right">188</td>
+  <td align="right">0.9248</td>
+  <td align="right">0.7989</td>
+  <td align="right">0.8340</td>
+  <td align="right">0.8160</td>
+ </tr>
+ <tr>
+  <td>7zncd-LZMA2</td>
+  <td>mx=7,9</td>
+  <td align="right">34</td>
+  <td align="right">398</td>
+  <td align="right">74</td>
+  <td align="right">1926</td>
+  <td align="right">102</td>
+  <td align="right">176</td>
+  <td align="right">0.9296</td>
+  <td align="right">0.8432</td>
+  <td align="right">0.7960</td>
+  <td align="right">0.8189</td>
+ </tr>
+ <tr>
+  <td>7zncd-PPMd</td>
+  <td>mx=9</td>
+  <td align="right">35</td>
+  <td align="right">412</td>
+  <td align="right">108</td>
+  <td align="right">1892</td>
+  <td align="right">88</td>
+  <td align="right">196</td>
+  <td align="right">0.9216</td>
+  <td align="right">0.7923</td>
+  <td align="right">0.8240</td>
+  <td align="right">0.8078</td>
+ </tr>
+ <tr>
+  <td>bsdiff</td>
+  <td>N/A</td>
+  <td align="right">71</td>
+  <td align="right">231</td>
+  <td align="right">66</td>
+  <td align="right">1934</td>
+  <td align="right">269</td>
+  <td align="right">335</td>
+  <td align="right">0.8660</td>
+  <td align="right">0.7778</td>
+  <td align="right">0.4620</td>
+  <td align="right">0.5797</td>
+ </tr>
+ <tr>
+  <td>bzip2ncd</td>
+  <td>C=1..9</td>
+  <td align="right">30</td>
+  <td align="right">420</td>
+  <td align="right">102</td>
+  <td align="right">1898</td>
+  <td align="right">80</td>
+  <td align="right">182</td>
+  <td align="right">0.9272</td>
+  <td align="right">0.8046</td>
+  <td align="right">0.8400</td>
+  <td align="right">0.8219</td>
+ </tr>
+ <tr>
+  <td>deckard</td>
+  <td>MINTOKEN=30,STRIDE=2,<br />SIMILARITY=0.95</td>
+  <td align="right">5</td>
+  <td align="right">410</td>
+  <td align="right">44</td>
+  <td align="right">1956</td>
+  <td align="right">90</td>
+  <td align="right">134</td>
+  <td align="right">0.9464</td>
+  <td align="right">0.9030</td>
+  <td align="right">0.8200</td>
+  <td align="right">0.8595</td>
+ </tr>
+ <tr>
+  <td>diff</td>
+  <td>N/A</td>
+  <td align="right">7</td>
+  <td align="right">397</td>
+  <td align="right">238</td>
+  <td align="right">1762</td>
+  <td align="right">103</td>
+  <td align="right">341</td>
+  <td align="right">0.8636</td>
+  <td align="right">0.6252</td>
+  <td align="right">0.7940</td>
+  <td align="right">0.6996</td>
+ </tr>
+ <tr>
+  <td>gzipncd</td>
+  <td>C=9</td>
+  <td align="right">25</td>
+  <td align="right">384</td>
+  <td align="right">58</td>
+  <td align="right">1942</td>
+  <td align="right">116</td>
+  <td align="right">174</td>
+  <td align="right">0.9304</td>
+  <td align="right">0.8688</td>
+  <td align="right">0.7680</td>
+  <td align="right">0.8153</td>
+ </tr>
+ <tr>
+  <td>iclones</td>
+  <td>minblock=10,minclone=50</td>
+  <td align="right">0</td>
+  <td align="right">216</td>
+  <td align="right">0</td>
+  <td align="right">2000</td>
+  <td align="right">284</td>
+  <td align="right">284</td>
+  <td align="right">0.8864</td>
+  <td align="right">1.0000</td>
+  <td align="right">0.4320</td>
+  <td align="right">0.6033</td>
+ </tr>
+ <tr>
+  <td>icd</td>
+  <td>ma=Deflate,mx=9<br />ma=Deflate64,mx=9</td>
+  <td align="right">37</td>
+  <td align="right">360</td>
+  <td align="right">112</td>
+  <td align="right">1888</td>
+  <td align="right">140</td>
+  <td align="right">252</td>
+  <td align="right">0.8992</td>
+  <td align="right">0.7627</td>
+  <td align="right">0.7200</td>
+  <td align="right">0.7407</td>
+ </tr>
+ <tr>
+  <td>ncd-zlib</td>
+  <td>N/A</td>
+  <td align="right">23</td>
+  <td align="right">391</td>
+  <td align="right">67</td>
+  <td align="right">1933</td>
+  <td align="right">109</td>
+  <td align="right">176</td>
+  <td align="right">0.9296</td>
+  <td align="right">0.8537</td>
+  <td align="right">0.7820</td>
+  <td align="right">0.8163</td>
+ </tr>
+ <tr>
+  <td>nicad</td>
+  <td>abstract=abstractexpressions,<br />threshold=0.1</td>
+  <td align="right">0</td>
+  <td align="right">274</td>
+  <td align="right">0</td>
+  <td align="right">2000</td>
+  <td align="right">226</td>
+  <td align="right">226</td>
+  <td align="right">0.9096</td>
+  <td align="right">1.0000</td>
+  <td align="right">0.5480</td>
+  <td align="right">0.7080</td>
+ </tr>
+ <tr>
+  <td>plaggie</td>
+  <td>M=7</td>
+  <td align="right">18</td>
+  <td align="right">406</td>
+  <td align="right">83</td>
+  <td align="right">1917</td>
+  <td align="right">94</td>
+  <td align="right">177</td>
+  <td align="right">0.9292</td>
+  <td align="right">0.8303</td>
+  <td align="right">0.8120</td>
+  <td align="right">0.8210</td>
+ </tr>
+ <tr>
+  <td>py-fuzzywuzzy</td>
+  <td>token_set_ratio</td>
+  <td align="right">80</td>
+  <td align="right">392</td>
+  <td align="right">68</td>
+  <td align="right">1932</td>
+  <td align="right">108</td>
+  <td align="right">176</td>
+  <td align="right">0.9296</td>
+  <td align="right">0.8522</td>
+  <td align="right">0.7840</td>
+  <td align="right">0.8167</td>
+ </tr>
+ <tr>
+  <td>py-jellyfish</td>
+  <td>jaro_distance</td>
+  <td align="right">76</td>
+  <td align="right">322</td>
+  <td align="right">222</td>
+  <td align="right">1778</td>
+  <td align="right">178</td>
+  <td align="right">400</td>
+  <td align="right">0.8400</td>
+  <td align="right">0.5919</td>
+  <td align="right">0.6440</td>
+  <td align="right">0.6169</td>
+ </tr>
+ <tr>
+  <td>py-ngram.compare</td>
+  <td>N/A</td>
+  <td align="right">43</td>
+  <td align="right">378</td>
+  <td align="right">76</td>
+  <td align="right">1924</td>
+  <td align="right">122</td>
+  <td align="right">198</td>
+  <td align="right">0.9208</td>
+  <td align="right">0.8326</td>
+  <td align="right">0.7560</td>
+  <td align="right">0.7925</td>
+ </tr>
+ <tr>
+  <td>sherlock</td>
+  <td>N=6,Z=3</td>
+  <td align="right">1</td>
+  <td align="right">396</td>
+  <td align="right">60</td>
+  <td align="right">1940</td>
+  <td align="right">104</td>
+  <td align="right">164</td>
+  <td align="right">0.9344</td>
+  <td align="right">0.8684</td>
+  <td align="right">0.7920</td>
+  <td align="right">0.8284</td>
+ </tr>
+ <tr>
+  <td>simian</td>
+  <td>threshold=5,ignoreIdentifiers</td>
+  <td align="right">0</td>
+  <td align="right">388</td>
+  <td align="right">2</td>
+  <td align="right">1998</td>
+  <td align="right">112</td>
+  <td align="right">114</td>
+  <td align="right">0.9544</td>
+  <td align="right">0.9949</td>
+  <td align="right">0.7760</td>
+  <td align="right">0.8719</td>
+ </tr>
+ <tr>
+  <td>simtext</td>
+  <td>r=4</td>
+  <td align="right">17</td>
+  <td align="right">262</td>
+  <td align="right">170</td>
+  <td align="right">1830</td>
+  <td align="right">238</td>
+  <td align="right">408</td>
+  <td align="right">0.8368</td>
+  <td align="right">0.6065</td>
+  <td align="right">0.5240</td>
+  <td align="right">0.5622</td>
+ </tr>
+</table>
+
+<p>
+The ROC curves with their respective AUCs are displayed below. In term of the overall performance across the whole range of T, jplag-java is the best with the highest AUC of 0.9667.
+</p>
+<img width="400px" src="images/tc1_roc.png" />
+
+<h3>RQ2: Optimal Configurations</h3>
+<p>
+The optimal configurations of the tools can be found from the table above. Specifically, we inspected ccfx's configurations and found the tool has its best configuration while b=20 and t=1..7. 
+</p>
+<!--
+<img width="300px" src="images/ccfx_roc1.png" />
+<img width="300px" src="images/ccfx_roc2.png" /> -->
+
+<h3>RQ3: Normalisation by Decompilation</h3>
+
+<table class="tg">
+<tr>
+  <td class="tg-36xf" rowspan="2">Tools</td>
+  <td class="tg-36xf" colspan="2" align="center" >generated</td>
+  <td class="tg-36xf" colspan="3" align="center" >Krakatau</td>
+  <td class="tg-36xf" colspan="3" align="center" >Procyon</td>
+ </tr>
+<tr>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >FP</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >FN</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >FP</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >FN</td>
+  <td class="tg-36xf" align="right" width=87 style='width:40pt' >F-score</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >FP</td>
+  <td class="tg-36xf" align="right" width=87 style='width:30pt' >FN</td>
+  <td class="tg-36xf" align="right" width=87 style='width:40pt' >F-score</td>
+ </tr>
+ <tr>
+  <td>ccfx </td>
+  <td align="right">42 </td>
+  <td align="right">48 </td>
+  <td align="right">0</td>
+  <td align="right">0</td>
+  <td align="right">1.0000 </td>
+  <td align="right">0</td>
+  <td align="right">4</td>
+  <td align="right">0.9960</td>
+ </tr>
+ <tr>
+  <td>deckard </td>
+  <td align="right">44 </td>
+  <td align="right">90 </td>
+  <td align="right">0</td>
+  <td align="right">0</td>
+  <td align="right">1.0000 </td>
+  <td align="right">0</td>
+  <td align="right">1</td>
+  <td align="right">0.9837</td>
+ </tr>
+ <tr>
+  <td>iclones </td>
+  <td align="right">0 </td>
+  <td align="right">284 </td>
+  <td align="right">0 </td>
+  <td align="right">56</td>
+  <td align="right">0.9407 </td>
+  <td align="right">0</td>
+  <td align="right">166</td>
+  <td align="right">0.8010</td>
+ </tr>
+ <tr>
+  <td>nicad </td>
+  <td align="right">0</td>
+  <td align="right">226 </td>
+  <td align="right">40</td>
+
+  <td align="right">24</td>
+  <td align="right">0.9370 </td>
+  <td align="right">0</td>
+  <td align="right">72</td>
+  <td align="right">0.9224</td>
+ </tr>
+ <tr>
+  <td>simian </td>
+  <td align="right">2 </td>
+  <td align="right">112 </td>
+  <td align="right">2</td>
+  <td align="right">0</td>
+  <td align="right">0.9980 </td>
+  <td align="right">14</td>
+  <td align="right">14</td>
+  <td align="right">0.9720</td>
+ </tr>
+ <tr>
+  <td>jplag-java </td>
+  <td align="right">142 </td>
+  <td align="right">68 </td>
+  <td align="right">0</td>
+  <td align="right">0</td>
+  <td align="right">1.0000 </td>
+  <td align="right">24</td>
+  <td align="right">20</td>
+  <td align="right">0.9562</td>
+ </tr>
+ <tr>
+  <td>jplag-text </td>
+  <td align="right">96 </td>
+  <td align="right">52 </td>
+  <td align="right">16</td>
+  <td align="right">0</td>
+  <td align="right">0.9843 </td>
+  <td align="right">28</td>
+  <td align="right">8</td>
+  <td align="right">0.9647</td>
+ </tr>
+ <tr>
+  <td>plaggie </td>
+  <td align="right">83 </td>
+  <td align="right">94</td>
+  <td align="right">0</td>
+  <td align="right">0</td>
+  <td align="right">1.0000 </td>
+  <td align="right">0</td>
+  <td align="right">40</td>
+  <td align="right">0.9583</td>
+ </tr>
+ <tr>
+  <td>sherlock </td>
+  <td align="right">60 </td>
+  <td align="right">104 </td>
+  <td align="right">0</td>
+  <td align="right">0</td>
+  <td align="right">1.0000 </td>
+  <td align="right">16</td>
+  <td align="right">0</td>
+  <td align="right">0.9843</td>
+ </tr>
+ <tr>
+  <td>simjava </td>
+  <td align="right">64</td>
+  <td align="right">44 </td>
+  <td align="right">0</td>
+  <td align="right">0</td>
+  <td align="right">1.0000 </td>
+  <td align="right">8</td>
+  <td align="right">0</td>
+  <td align="right">0.9921</td>
+ </tr>
+ <tr>
+  <td>simtext </td>
+  <td align="right">170 </td>
+  <td align="right">238 </td>
+  <td align="right">0</td>
+  <td align="right">24</td>
+  <td align="right">0.9754 </td>
+  <td align="right">58</td>
+  <td align="right">0</td>
+  <td align="right">0.9452</td>
+ </tr>
+ <tr>
+  <td>7zncd-BZip2</td>
+  <td align="right">44 </td>
+  <td align="right">114 </td>
+  <td align="right">40</td>
+  <td align="right">12 </td>
+  <td align="right">0.9494 </td>
+  <td align="right">106</td>
+  <td align="right">40</td>
+  <td align="right">0.8630</td>
+ </tr>
+ <tr>
+  <td>7zncd-LZMA</td>
+  <td align="right">105 </td>
+  <td align="right">83 </td>
+  <td align="right">47</td>
+  <td align="right">5</td>
+  <td align="right">0.9501</td>
+  <td align="right">56</td>
+  <td align="right">64</td>
+  <td align="right">0.8790</td>
+ </tr>
+ <tr>
+  <td>7zncd-LZMA2</td>
+  <td align="right">74 </td>
+  <td align="right">102 </td>
+  <td align="right">47 </td>
+  <td align="right">4</td>
+  <td align="right">0.9511</td>
+  <td align="right">56</td>
+  <td align="right">63</td>
+  <td align="right">0.8802</td>
+ </tr>
+ <tr>
+  <td>7zncd-PPMd</td>
+  <td align="right">108 </td>
+  <td align="right">88 </td>
+  <td align="right">49</td>
+  <td align="right">2</td>
+  <td align="right">0.9513</td>
+  <td align="right">52 </td>
+  <td align="right">69</td>
+  <td align="right">0.8769</td>
+ </tr>
+ <tr>
+  <td>bzip2ncd </td>
+  <td align="right">102 </td>
+  <td align="right">80 </td>
+  <td align="right">40</td>
+  <td align="right">16</td>
+  <td align="right">0.9453 </td>
+  <td align="right">90</td>
+  <td align="right">40 </td>
+  <td align="right">0.8762</td>
+ </tr>
+ <tr>
+  <td>gzipncd </td>
+  <td align="right">58</td>
+  <td align="right">116 </td>
+  <td align="right">40</td>
+  <td align="right">8</td>
+  <td align="right">0.9535</td>
+  <td align="right">61</td>
+  <td align="right">40</td>
+  <td align="right">0.9011</td>
+ </tr>
+ <tr>
+  <td>icd </td>
+  <td align="right">112 </td>
+  <td align="right">140 </td>
+  <td align="right">39</td>
+  <td align="right">93</td>
+  <td align="right">0.8605</td>
+  <td align="right">60</td>
+  <td align="right">93</td>
+  <td align="right">0.8418</td>
+ </tr>
+ <tr>
+  <td>ncd-bzlib </td>
+  <td align="right">66 </td>
+  <td align="right">100 </td>
+  <td align="right">46</td>
+  <td align="right">14 </td>
+  <td align="right">0.9419</td>
+  <td align="right">88</td>
+  <td align="right">44</td>
+  <td align="right">0.8736</td>
+ </tr>
+ <tr>
+  <td>ncd-zlib </td>
+  <td align="right">67 </td>
+  <td align="right">109 </td>
+  <td align="right">50</td>
+  <td align="right">5</td>
+  <td align="right">0.9474</td>
+  <td align="right">61</td>
+  <td align="right">44</td>
+  <td align="right">0.8968</td>
+ </tr>
+ <tr>
+  <td>bsdiff </td>
+  <td align="right">66</td>
+  <td align="right">269</td>
+  <td align="right">8</td>
+  <td align="right">78</td>
+  <td align="right">0.9075</td>
+  <td align="right">28</td>
+  <td align="right">149</td>
+  <td align="right">0.7986</td>
+ </tr>
+ <tr>
+  <td>diff </td>
+  <td align="right">238</td>
+  <td align="right">103 </td>
+  <td align="right">52</td>
+  <td align="right">65 </td>
+  <td align="right">0.8815</td>
+  <td align="right">27</td>
+  <td align="right">76</td>
+  <td align="right">0.8917</td>
+ </tr>
+ <tr>
+  <td>py-difflib </td>
+  <td align="right">49 </td>
+  <td align="right">103 </td>
+  <td align="right">16 </td>
+  <td align="right">73 </td>
+  <td align="right">0.9056</td>
+  <td align="right">12</td>
+  <td align="right">40</td>
+  <td align="right">0.9465</td>
+ </tr>
+ <tr>
+  <td>py-fuzzywuzzy</td>
+  <td align="right">68</td>
+  <td align="right">108 </td>
+  <td align="right">0</td>
+  <td align="right">28</td>
+  <td align="right">0.9712</td>
+  <td align="right">0</td>
+  <td align="right">36</td>
+  <td align="right">0.9627</td>
+ </tr>
+ <tr>
+  <td>py-jellyfish</td>
+  <td align="right">222</td>
+  <td align="right">178</td>
+  <td align="right">38</td>
+  <td align="right">146</td>
+  <td align="right">0.7937</td>
+  <td align="right">32</td>
+  <td align="right">192</td>
+  <td align="right">0.7333</td>
+ </tr>
+ <tr>
+  <td>py-ngram</td>
+  <td align="right">76</td>
+  <td align="right">122</td>
+  <td align="right">32</td>
+  <td align="right">56 </td>
+  <td align="right">0.9098</td>
+  <td align="right">58</td>
+  <td align="right">64</td>
+  <td align="right">0.8773</td>
+ </tr>
+ <tr>
+  <td>py-sklearn</td>
+  <td align="right">280</td>
+  <td align="right">98 </td>
+  <td align="right">98</td>
+  <td align="right">0</td>
+  <td align="right">0.9107</td>
+  <td align="right">50</td>
+  <td align="right">0</td>
+  <td align="right">0.9524</td>
+ </tr>
+</table>
+
+<h3>RQ4: Reuse of Configurations</h3>
+<p>The table below shows the results after applying the optimal configurations obtained from the first data set (generated) to the other two data sets (simions and SOCO). We can see that the optimal configurations from the first data set cannot be applied directly to the other data sets. Hence we searched for the best configurations of these data sets as also displayed in the table.
+
+<table class="tg">
+<tr>
+	<th class="tg-36xf" rowspan="2">Tool/technique</th>
+	<th class="tg-36xf" colspan="5">C_generated</th>
+	<th class="tg-36xf" colspan="3">C_simions</th>
+	<th class="tg-36xf" colspan="3">C_soco</th>
+</tr>
+<tr>
+	<th class="tg-36xf">Settings</th>
+	<th class="tg-36xf" width=87 style='width:30pt' align="right">T</th>
+	<th class="tg-36xf">F-score</th>
+	<th class="tg-36xf">F-score</th>
+	<th class="tg-36xf">F-score</th>
+	<th class="tg-36xf">Settings</th>
+	<th class="tg-36xf" width=87 style='width:30pt' align="right">T</th>
+	<th class="tg-36xf">F-score</th>
+	<th class="tg-36xf">Settings</th>
+	<th class="tg-36xf" width=87 style='width:30pt' align="right">T</th>
+	<th class="tg-36xf">F-score</th>
+</tr>
+ <tr>
+  <td height=21 width=87 style='height:16.0pt;width:65pt'>ccfx		</td>
+  <td>20-1</td>
+  <td align="right">4</td>
+  <td align="right">0.9095</td>
+  <td align="right">0.0435</td>
+  <td align="right">0.1164</td>
+  <td>16-7	</td>
+  <td align="right">83</td>
+  <td align="right">0.9945</td>
+  <td>45-1..7</td>
+  <td align="right">28</td>
+  <td align="right">0.9403</td>
+ </tr>
+ <tr>
+  <td>simjava	</td>
+  <td>22</td>
+  <td align="right">5</td>
+  <td align="right">0.8941</td>
+  <td align="right">0.0190</td>
+  <td align="right">0.1527</td>
+  <td>10..28</td>
+  <td align="right">96</td>
+  <td align="right">0.9909</td>
+  <td>21</td>
+  <td align="right">46</td>
+  <td align="right">0.9682</td>
+ </tr>
+ <tr>
+  <td>jplag-text	</td>
+  <td>8</td>
+  <td align="right">2</td>
+  <td align="right">0.8484</td>
+  <td align="right">0.0182</td>
+  <td align="right">0.0687</td>
+  <td>1/2/03</td>
+  <td align="right">94</td>
+  <td align="right">0.9863</td>
+  <td>9</td>
+  <td align="right">32</td>
+  <td align="right">0.9691</td>
+ </tr>
+ <tr>
+  <td>py-difflib	</td>
+  <td>noautojunk</td>
+  <td align="right">35</td>
+  <td align="right">0.8370</td>
+  <td align="right">0.0182</td>
+  <td align="right">0.4943</td>
+  <td>noautojunk, <br />nowhitespace_autojunk, <br />
+  nowhitespace_noautojunk</td>
+  <td align="right">98</td>
+  <td align="right">0.9909</td>
+  <td>nowhitespace_noautojunk</td>
+  <td align="right">49</td>
+  <td align="right">0.9560</td>
+ </tr>
+ <tr>
+  <td>7zncd-BZip2</td>
+  <td>1</td>
+  <td align="right">39</td>
+  <td align="right">0.8301</td>
+  <td align="right">0.0183</td>
+  <td align="right">0.3505</td>
+  <td>1/3/05</td>
+  <td align="right">85</td>
+  <td align="right">0.9909</td>
+  <td>1..6</td>
+  <td align="right">65</td>
+  <td align="right">0.8344</td>
+ </tr>
+ <tr>
+  <td>ncd-bzlib	</td>
+  <td>N/A</td>
+  <td align="right">31</td>
+  <td align="right">0.8282</td>
+  <td align="right">0.0182</td>
+  <td align="right">0.2898</td>
+  <td>N/A	</td>
+  <td align="right">87</td>
+  <td align="right">1.0000</td>
+  <td>N/A</td>
+  <td align="right">52</td>
+  <td align="right">0.8816</td>
+ </tr>
+ <tr>
+  <td>jplag-java	</td>
+  <td>3</td>
+  <td align="right">43	</td>
+  <td align="right">0.7873</td>
+  <td align="right">0.0224</td>
+  <td align="right">0.0675</td>
+  <td>2..12	</td>
+  <td align="right">99</td>
+  <td align="right">0.9820</td>
+  <td>9</td>
+  <td align="right">44</td>
+  <td align="right">0.9497</td>
+ </tr>
+ <tr>
+  <td>py-sklearn</td>
+  <td>N/A</td>
+  <td align="right">33</td>
+  <td align="right">0.6005</td>
+  <td align="right">0.0186</td>
+  <td align="right">0.0496</td>
+  <td>N/A	</td>
+  <td align="right">99</td>
+  <td align="right">1.0000</td>
+  <td>N/A</td>
+  <td align="right">70</td>
+  <td align="right">0.8671</td>
+ </tr>
+</table>
+
+<p>The graph visualises the same results of applying the optimal configurations from generated data set to other data sets (in term of F-scores).</p>
+<div style="margin: 20px 20px 20px 0px"><img width="1000px" src="images/rq4_simions_soco_f1.png" /></div>
+
+<h3>RQ5: Threshold-Free Comparison</h3>
+<p>The results after using the TFC to compare the tools' performance are displayed below.</p>
+
+<table class="tg">
+ <col width=87 span=9 style='width:65pt'>
+ <tr height=21 style='height:16.0pt'>
+  <td  class="tg-36xf" height=21 width=87 style='height:16.0pt;width:65pt'>Tool</td>
+  <td  class="tg-36xf" style="width:30px" align="right">FN</td>
+  <td  class="tg-36xf" style="width:35px" align="right">F-score</td>
+  <td  class="tg-36xf" style='width:30px' align="right">FN</td>
+  <td  class="tg-36xf" style='width:35px' align="right">F-score</td>
+  <td  class="tg-36xf" style='width:30px' align="right">FN</td>
+  <td  class="tg-36xf" style='width:35px' align="right">F-score</td>
+  <td  class="tg-36xf" style='width:30px' align="right">FN</td>
+  <td  class="tg-36xf" style='width:35px' align="right">F-score</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 style='height:16.0pt'>7zncd-BZip2 	</td>
+  <td align="right">91</td>
+  <td align="right">0.8180</td>
+  <td align="right">2</td>
+  <td align="right">0.9817</td>
+  <td align="right">67</td>
+  <td align="right">0.8431</td>
+  <td align="right">88</td>
+  <td align="right">0.8057</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 style='height:16.0pt'>ccfx 			</td>
+  <td align="right">48</td>
+  <td align="right">0.9040</td>
+  <td align="right">0</td>
+  <td align="right">1.0000</td>
+  <td align="right">43</td>
+  <td align="right">0.8993</td>
+  <td align="right">28</td>
+  <td align="right">0.9382</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 style='height:16.0pt'>jplag-java 		</td>
+  <td align="right">107</td>
+  <td align="right">0.7860</td>
+  <td align="right">4</td>
+  <td align="right">0.9633</td>
+  <td align="right">54</td>
+  <td align="right">0.8735</td>
+  <td align="right">28</td>
+  <td align="right">0.9382</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 style='height:16.0pt'>jplag-text 		</td>
+  <td align="right">78</td>
+  <td align="right">0.8440</td>
+  <td align="right">0</td>
+  <td align="right">1.0000</td>
+  <td align="right">33</td>
+  <td align="right">0.9227</td>
+  <td align="right">16</td>
+  <td align="right">0.9647</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 style='height:16.0pt'>ncd-bzlib 		</td>
+  <td align="right">90</td>
+  <td align="right">0.8200</td>
+  <td align="right">0</td>
+  <td align="right">1.0000</td>
+  <td align="right">51</td>
+  <td align="right">0.8806</td>
+  <td align="right">68</td>
+  <td align="right">0.8499</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 style='height:16.0pt'>py-difflib 		</td>
+  <td align="right">96</td>
+  <td align="right">0.8080</td>
+  <td align="right">0</td>
+  <td align="right">1.0000</td>
+  <td align="right">28</td>
+  <td align="right">0.9344</td>
+  <td align="right">27</td>
+  <td align="right">0.9404</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 style='height:16.0pt'>py-sklearn 		</td>
+  <td align="right">190</td>
+  <td align="right">0.6200</td>
+  <td align="right">0</td>
+  <td align="right">1.0000</td>
+  <td align="right">48</td>
+  <td align="right">0.8876</td>
+  <td align="right">60</td>
+  <td align="right">0.8675</td>
+ </tr>
+ <tr height=21 style='height:16.0pt'>
+  <td height=21 style='height:16.0pt'>simjava 		</td>
+  <td align="right">58</td>
+  <td align="right">0.8840</td>
+  <td align="right">0</td>
+  <td align="right">1.0000</td>
+  <td align="right">26</td>
+  <td align="right">0.9391</td>
+  <td align="right">17</td>
+  <td align="right">0.9625</td>
+ </tr>
+</table>
+
+<h3>Raw data download</h3>
+Raw data of the results from five scenarios can be downloaded from: <a href="files/results.zip">here</a>.
+
+<hr />
+
+<p>
+Last update: 3 September 2015.
+</p>
+
+</body>
+</html>

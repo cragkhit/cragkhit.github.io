@@ -1,0 +1,238 @@
+<!doctype html>
+<!--
+  Material Design Lite
+  Copyright 2015 Google Inc. All rights reserved.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Chaiyong's Personal Website">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Chaiyong Ragkhitwetsagul @ UCL</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
+            <div class="mdl-layout__header-row portfolio-logo-row">
+                <span class="mdl-layout__title">
+                    <div class="portfolio-logo"></div>
+                    <span class="mdl-layout__title">Be the change that you wish to see in the world. ― Gandhi</span>
+                </span>
+            </div>
+            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
+                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+                    <a class="mdl-navigation__link is-active" href="index.html">Home</a>
+                    <a class="mdl-navigation__link" href="research.html">Research</a>
+                    <a class="mdl-navigation__link" href="teaching.html">Teaching</a>
+                    <a class="mdl-navigation__link" href="projects.html">Projects</a>
+                    <a class="mdl-navigation__link" href="links.html">Links</a>
+                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
+                </nav>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+              <a class="mdl-navigation__link is-active" href="index.html">Home</a>
+              <a class="mdl-navigation__link" href="research.html">Research</a>
+              <a class="mdl-navigation__link" href="teaching.html">Teaching</a>
+              <a class="mdl-navigation__link" href="projects.html">Projects</a>
+              <a class="mdl-navigation__link" href="links.html">Links</a>
+              <a class="mdl-navigation__link" href="contact.html">Contact</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="mdl-grid portfolio-max-width">
+                <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
+                    <div class="mdl-card__media mdl-cell mdl-cell--12-col-tablet">
+                        <img class="article-image" src=" images/display3.jpg" border="0" alt="">
+                    </div>
+                    <div class="mdl-cell mdl-cell--8-col">
+                        <h2 class="mdl-card__title-text">Hi. I'm&nbsp;<b>Chaiyong Ragkhitwetsagul</b>.</h2>
+                        <!--<div class="mdl-card__supporting-text padding-top">
+                            <span>Posted a longgggg time ago</span>
+                            <div id="tt1" class=" icon material-icons portfolio-share-btn">share</div>
+                            <div class="mdl-tooltip" for="tt1">
+                                Share via social media
+                            </div>
+                        </div>-->
+                        <div class="mdl-card__supporting-text no-left-padding">
+                          <p>I'm currently a 3rd year PhD student in <a href="http://crest.cs.ucl.ac.uk/">Centre for Research on Evolution, Search and Testing (CREST)</a> under <a href="http://sse.cs.ucl.ac.uk/">Software Systems Engineering (SSE)</a> group in the <a href="http://www.cs.ucl.ac.uk">Department of Computer Science</a> at <a href="http://www.ucl.ac.uk">University College London.</a> I'm also an assistant instructor at <a href="http://www.ict.mahidol.ac.th">the Faculty of ICT, Mahidol University</a>, my sponsor, which I'll go back to continue working after completing my PhD.</p>
+                          <p>I received a bachelor degree in <a href="http://cpe.ku.ac.th/">Computer Engineering</a> from Kasetsart University, Thailand, and a master degree of <a href="http://mcds.cs.cmu.edu/">MSIT-Very Large Information Systems</a> from Carnegie Mellon University, USA.<br /><br />
+                          I'm currently staying in London, a wonderful city except rains (especially in winter!) ...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
+                    <div class="mdl-cell mdl-cell--8-col">
+                        <h2 class="mdl-card__title-text">Research Areas</h2>
+                        <div class="mdl-card__supporting-text no-left-padding">
+                            <p>
+                            My research interest lies in the area of software engineering but I'm specifically interested on these three topics:
+                            </p>
+                            <h6>Code search</h6>
+                            <p>
+                            My PhD research topic is "<a href="research.html">Code similarity and its applications to Internet-scale code cloning</a>".
+                            I am currently building a code search tool to query for similar source code snippets from Internet-scale datasets
+                            (over 100M SLOC) with high accuracy. I'm also working on an empirical analysis
+                            to compare various state-of-the-arts source code similarity analysers against different types of code modifications.
+                            </p>
+                            <h6>Clone Detection</h6>
+                            <p>
+                            I am particularly interested in clone detection and its related work or applications.
+                            I've tried using search-based techniques with clones such as optimising clone detection tool's parameters
+                            to maximise clone agreemenet among tools
+                            </p>
+                            <h6>Mining of Software Repositories</h6>
+                            <p>I am currenlty studying the effects of cloned code between
+                            Stack Overflow and open source projects in terms of licensing violation and outdated code.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mdl-card__media mdl-cell mdl-cell--12-col-tablet">
+                        <img class="article-image" src=" images/research3.jpg" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="research.html">Visit my research page</a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="projects.html">Visit my projects page</a>
+                    </div>
+                </div>
+
+                <div class="demo-card-event mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-card mdl-card mdl-shadow--4dp portfolio-blog-card-event-bg mdl-color-text--white">
+                    <div class="mdl-card__title mdl-card--expand">
+                        <h4 class="mdl-color-text--white">
+                          Cirriculum Vitae<br>
+                          You can find my CV here:
+                        </h4>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-color-text--white"
+                        href="files/Chaiyong_CV.pdf">
+                          Download
+                        </a>
+                        <div class="mdl-layout-spacer"></div>
+                        <i class="material-icons ">class</i>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp">
+                    <div class="mdl-card__title mdl-card--expand portfolio-blog-card-strip-bg mdl-color-text--white">
+                        <h2 class="mdl-card__title-text">Supervisors</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                      I'm supervised by:<br />
+                      <b>Dr. Jens Krinke and Dr. David Clark</b>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        Links: <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://www0.cs.ucl.ac.uk/staff/J.Krinke">
+                          J. Krinke
+                        </a>
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://www0.cs.ucl.ac.uk/staff/D.Clark">
+                          D. Clark
+                        </a>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-card  mdl-card mdl-shadow--4dp portfolio-blog-card-compact">
+                    <!--<div class="mdl-card__media">
+                        <img class="article-image" src=" images/example-blog07.jpg" border="0" alt="">
+                    </div>-->
+                    <div class="mdl-card__title ">
+                        <h2 class="mdl-card__title-text">Important Deadlines</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                      <table>
+                        <tr><td><a href="https://conf.researchr.org/home/msr-2018">MSR 2018</a></td><td>:&nbsp;</td><td>: 23 Jan 2018</td></tr>
+                        <tr><td><a href="https://conf.researchr.org/home/fse-2018">FSE 2018</a></td><td>:&nbsp;</td><td>: 9 Mar 2018</td></tr>
+                        <tr><td><a href="https://icsme2018.github.io">ICSME 2018</a></td><td>:&nbsp;</td><td>: TBC</td></tr>
+                      </table>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                          Will Be Periodically Updated!
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-card  mdl-card mdl-shadow--4dp">
+                    <div class="mdl-card__title mdl-card--expand portfolio-blog-card-strip-bg2 mdl-color-text--white">
+                        <h2 class="mdl-card__title-text">Latest Updates</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                      <p><img src="images/publication.png" width="30px" />&nbsp;&nbsp;<b>12 Oct 2017</b>:&nbsp;&nbsp;I am invited as the Publicity Chair of <a href="https://iwsc2018.github.io">IWSC'18</a>.</p>
+                      <p><img src="images/publication.png" width="30px" />&nbsp;&nbsp;<b>6 Oct 2017</b>:&nbsp;&nbsp;The paper "A Comparison of Code Similarity Analysers", the extension of our SCAM'16 work, is accepted for publication in Empirical Software Engineering.</p>
+                      <p><img src="images/award.png" width="30px"/>&nbsp;&nbsp;<b>17 May 2017</b>:&nbsp;&nbsp;I passed my Transfer Viva and became a PhD candidate!</p>
+                      <p><img src="images/award.png" width="30px" />&nbsp;&nbsp;<b>21 Feb 2017</b>:&nbsp;&nbsp;My paper won the People's Choice Award (i.e. best presentation) from IWSC'17!</p>
+                      <p><img src="images/publication.png" width="30px" />&nbsp;&nbsp;<b>10 Jan 2017</b>:&nbsp;&nbsp;The paper "Using Compilation/Decompilation to Enhance Clone Detection" is accepted at IWSC 2017.</p>
+                      <p><img src="images/publication.png" width="30px" />&nbsp;&nbsp;<b>25 Oct 2016</b>:&nbsp;&nbsp;My SCAM'16 paper is invited for EMSE journal extension. <!--We are excited to expand the experiment further to another dataset and see if we can reuse the optimal configurations derived from the first dataset we have in the SCAM paper to it.--></p>
+                      <p><img src="images/money.png" width="30px" />&nbsp;&nbsp;<b>12 Sep 2016</b>:&nbsp;&nbsp;I receive NSF Student Travel Support for my trip to SSBSE'16 in the US. Thanks to the organiser!</p>
+                      <p><img src="images/publication.png" width="30px" />&nbsp;&nbsp;<b>29 Jul 2016</b>:&nbsp;&nbsp;My submission of "Similarity of Source Code in the Presence of Pervasive Modifications" to
+                          <a href="http://www.ieee-scam.org/2016/">SCAM 2016</a> is accepted.
+                      <p><img src="images/publication.png" width="30px" />&nbsp;&nbsp;<b>29 Jul 2016</b>:&nbsp;&nbsp;My submission of "Measuring Code Similarity in Large-scaled Code Corpora" to <a href="http://icsme2016.github.io/cfp/doctoral-symposium.html">late pre-doctoral ICSME 2016 Doctoral Symposium</a> is accepeted.</p>
+                      <p><img src="images/money.png" width="30px" />&nbsp;&nbsp;<b>30 Jun 2016</b>:&nbsp;&nbsp;I am awarded a 1-year $20,000-worth cloud computing power from
+                          <a href="https://www.microsoft.com/en-us/research/academic-program/microsoft-azure-for-research/">Microsoft Azure for Research</a>
+                        for my proposal of "ISiCS: Internet-scaled Similar Code Search". </p>
+                      <p><img src="images/publication.png" width="30px" />&nbsp;&nbsp;<b>23 Jun 2016</b>:&nbsp;&nbsp;My paper "Searching for Configurations in Clone Evaluation: A Replication Study"
+                          is accepeted at <a href="http://ssbse.org/2016/ssbse-challenge/">SSBSE'16</a>. I was very excited since this is the first research paper ever in my PhD study. </p>
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="research.html">See more of my research here</a>
+                    </div>
+                </div>
+
+                <!--<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-card mdl-card mdl-shadow--4dp portfolio-blog-card-full-bg  ">
+                    <div class="mdl-card__title mdl-card--expand "></div>
+                    <div class="mdl-card__actions">
+                        <span class="demo-card-image__filename">Pamukkale.jpg</span>
+                    </div>
+                </div>
+                <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp ">
+                    <div class="mdl-card__media">
+                        <a href="#"> <img class="article-image" src=" images/example-blog04.jpg" border="0" alt=""></a>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <small>Excepteur reprehenderit sint exercitation ipsum consequat qui sit id velit elit.</small>
+                    </div>
+                    <div class="mdl-card__supporting-text">
+                        <p>Velit anim eiusmod labore sit amet. Voluptate voluptate irure occaecat deserunt incididunt esse in. Qui ullamco consectetur aute fugiat officia ullamco proident Lorem ad irure. Sint eu ut consectetur ut esse veniam.</p>
+                    </div>
+                </div>-->
+
+            </div>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">Chaiyong's Personal Website</div>
+                </div>
+                <div class="mdl-mini-footer__right-section">
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="http://www.flaticon.com/packs/education-1-12">Icons are designed by Icon Pond from Flaticon</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Privacy & Terms</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+</body>
+
+</html>
