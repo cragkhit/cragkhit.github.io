@@ -63,6 +63,38 @@
             <div class="mdl-grid portfolio-max-width">
               <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
                     <div class="mdl-card__media">
+                        <img class="article-image" src=" images/vincent.png" border="0" alt="">
+                    </div>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Image-based Code Clone Detection</h2>
+                    </div>
+                    <hr />
+                    <div class="mdl-card__supporting-text">
+                      <p><img width="100px" src="images/iwsc2017_logo.png" border="0" alt=""><br />
+                        <font color="red">Int. Workshop on Software Clones 2018</font>
+                      </p>
+                      <b>C. Ragkhitwetsagul, J. Krinke, B. Marnette</b><br/><br/>
+                        We introduce a new code clone detection technique based on image similarity.
+                        The technique captures visual perception of code seen by humans in an IDE by applying syntax
+                        highlighting and images conversion on raw source code text. <br /><br />
+                        We compared two similarity measures,
+                        Jaccard and earth mover’s distance (EMD) for our image-based code clone detection technique.
+                        Jaccard similarity offered better detection performance than EMD. The F1 score of our technique
+                        on detecting Java clones with pervasive code modifications is comparable to five well-known code
+                        clone detectors: CCFinderX, Deckard, iClones, NiCad, and Simian. A Gaussian blur filter is chosen
+                        as a normalisation technique for type-2 and type-3 clones. <br /><br />
+                        We found that blurring code images
+                        before similarity computation resulted in higher precision and recall. The detection performance
+                        after including the blur filter increased by 1 to 6 percent. The manual investigation of clone
+                        pairs in three software systems revealed that our technique, while it missed some of the true
+                        clones, could also detect additional true clone pairs missed by NiCad.
+                    </div>
+                    <div class="mdl-card__actions mdl-card--border">
+                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://crest.cs.ucl.ac.uk/resources/cloplag/">Visit the project's website</a>
+                    </div>
+              </div>
+              <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+                    <div class="mdl-card__media">
                         <img class="article-image" src=" images/emse.png" border="0" alt="">
                     </div>
                     <div class="mdl-card__title">
@@ -72,7 +104,7 @@
                     <div class="mdl-card__supporting-text">
                       <p><font color="red">Empirical Software Engineering Journal</font></p>
                       <b>C. Ragkhitwetsagul, J. Krinke, D. Clark</b><br/><br/>
-                        We evaluate 30 code similarity detection techniques and tools using five experimental scenarios for Java source code. These are (1) pervasively modified code, created with tools for source code and bytecode obfuscation, and boiler-plate code, (2) source code normalisation through compilation and decompilation using different decompilers, (3) reuse of optimal configurations over different data sets, (4) tool evaluation using ranked-based measures, and (5) local + global code modifications. Our experimental results show that in the presence of pervasive modifications, some of the general textual similarity measures can offer similar performance to specialised code similarity tools, while in the presence of boiler-plate code, highly specialised source code similarity detection techniques and tools outperform textual similarity measures. Our study strongly validates the use of compilation/decompilation as a normalisation technique. Its use reduced false classifications to zero for three of the tools. Moreover, we demonstrate that optimal configurations are very sensitive to a specific data set. After directly applying optimal configurations derived from one data set to another, the tools perform poorly on the new data set. The code similarity analysers are thoroughly evaluated not only based on several well-known pair-based and query-based error measures but also on each specific type of pervasive code modification. 
+                        We evaluate 30 code similarity detection techniques and tools using five experimental scenarios for Java source code. These are (1) pervasively modified code, created with tools for source code and bytecode obfuscation, and boiler-plate code, (2) source code normalisation through compilation and decompilation using different decompilers, (3) reuse of optimal configurations over different data sets, (4) tool evaluation using ranked-based measures, and (5) local + global code modifications. Our experimental results show that in the presence of pervasive modifications, some of the general textual similarity measures can offer similar performance to specialised code similarity tools, while in the presence of boiler-plate code, highly specialised source code similarity detection techniques and tools outperform textual similarity measures. Our study strongly validates the use of compilation/decompilation as a normalisation technique. Its use reduced false classifications to zero for three of the tools. Moreover, we demonstrate that optimal configurations are very sensitive to a specific data set. After directly applying optimal configurations derived from one data set to another, the tools perform poorly on the new data set. The code similarity analysers are thoroughly evaluated not only based on several well-known pair-based and query-based error measures but also on each specific type of pervasive code modification.
                     </div>
                     <div class="mdl-card__actions mdl-card--border">
                         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://crest.cs.ucl.ac.uk/resources/cloplag/">Visit the project's website</a>
