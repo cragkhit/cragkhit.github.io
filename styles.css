@@ -104,6 +104,10 @@
   background: url(images/news2.jpg) center / cover;
 }
 
+.portfolio-blog-card-strip-bg3 {
+  background: url(images/coffee.jpeg) center / cover;
+}
+
 .portfolio-blog-card-compact .mdl-card__title {
   padding-bottom: 0;
 }
