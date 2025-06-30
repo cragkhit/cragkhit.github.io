@@ -1,483 +1,465 @@
-<!doctype html>
-<!--
-  Material Design Lite
-  Copyright 2015 Google Inc. All rights reserved.
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
--->
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A portfolio template that uses Material Design Lite.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Chaiyong Ragkhitwetsagul @ MUICT</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139965822-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-139965822-1');
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Chaiyong Ragkhitwetsagul</title>
+    <meta name="description" content="Software engineering projects and tools developed by Chaiyong Ragkhitwetsagul and his research team.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
-            <div class="mdl-layout__header-row portfolio-logo-row">
-                <span class="mdl-layout__title">
-                    <div class="portfolio-logo"></div>
-                    <span class="mdl-layout__title">I have not failed. I've just found 10,000 ways that won't work. &ndash; Thomas A. Edison</span>
-                </span>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Chaiyong Ragkhitwetsagul</a>
             </div>
-            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
-                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link" href="index.html">Home</a>
-                    <a class="mdl-navigation__link" href="research.html">Research</a>
-                    <a class="mdl-navigation__link" href="teaching.html">Teaching</a>
-                    <a class="mdl-navigation__link" href="students.html">Students</a>
-                    <a class="mdl-navigation__link is-active" href="projects.html">Projects</a>
-                    <a class="mdl-navigation__link" href="links.html">Links</a>
-                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
-                </nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="research.html" class="nav-link">Research</a>
+                </li>
+                <li class="nav-item">
+                    <a href="teaching.html" class="nav-link">Teaching</a>
+                </li>
+                <li class="nav-item">
+                    <a href="students.html" class="nav-link">Students</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link active">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="links.html" class="nav-link">Links</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
-        </header>
-        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
-            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-              <a class="mdl-navigation__link" href="index.html">Home</a>
-              <a class="mdl-navigation__link" href="research.html">Research</a>
-              <a class="mdl-navigation__link" href="teaching.html">Teaching</a>
-              <a class="mdl-navigation__link" href="students.html">Students</a>
-              <a class="mdl-navigation__link is-active" href="projects.html">Projects</a>
-              <a class="mdl-navigation__link" href="links.html">Links</a>
-              <a class="mdl-navigation__link" href="contact.html">Contact</a>
-            </nav>
         </div>
-        <main class="mdl-layout__content">
-            <div class="mdl-grid portfolio-max-width">
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src="images/uece.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">MAINTAIN - Intelligent Maintenance of Software Systems</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                    <p><b>Matheus Paixao, Paulo Henrique Maia, Ismayle De Sousa Santos, Jerffeson Teixeira De Souza, Allysson Allex de Paula Araújo, Anderson Uchôa, Thiago Ferreira, Chaiyong Ragkhitwetsagul<br />
-                    <i><font color="red">CNPq/MCTI No 10/2023 - Universal 2023</font></i></b></p>
-                    This research is led by Dr. Matheus Paixao and the team of UECE, Brazil. We plan to adopt the state-of-the-art in machine learning and software engineering to develop a novel approach for software maintenance.
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src="images/mhesri.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Code similarity applications for improving software quality</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                    <p><b>Chaiyong Ragkhitwetsagul, Prof. Peter Haddawy (Mentor)<br />
-                    <i><font color="red">Research Grant for New Scholar (RGNS 2021) - Ministry of Higher Education Science Research and Innovation (MHESRI)</font></i></b></p>
-                    This research project aims to propose a novel approach to improve software by using code similarity techniques and create an automated tool for detecting similar code and giving relevant recommendations. The projects will leverage code similarity in order to tackle several issues that lead to low-quality software. For example, by measuring code similarity, one can locate duplicated pieces of code, i.e., code clones, within a software project or across software projects, and
-                    properly refactor them. This results in lower amount of redundant code in the software, hence easier to maintain. It can also avoid software licensing violations caused by code reuse and can also recommend software developers on how to write code that are well- accepted by the community. We plan to study and adopt suitable machine learning techniques for code similarity computations and will evaluate its effectiveness. Lastly, we plan to also deploy the tool to be used by developers and evaluate its usefulness and its impact in practice.
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src="images/asetsi.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Automated Software Engineering for Thailand Software Industry (ASETSI)
-                        </h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                    <p><b>Chaiyong Ragkhitwetsagul, Jens Krinke, Morakot Choetkiertikul, Thanwadee Sunetnanta, Federica Sarro, ProGaming, Trinity Roots, Zwiz.AI, CourseSquare</b></p>
-                    The software industry has become an integral part of Thailand’s competitiveness and the country’s future development plan (Thailand 4.0 and the 20-year roadmap). The current state-of-the-art in software engineering (i.e., the application of engineering approaches to software development and its artefacts) is automated software engineering (ASE), which is an adoption of automated tools and techniques to help human programmers plan, develop, and maintain software. Nonetheless, ASE is still a relatively new concept in Thailand software industry.<br /><br />
-                    This Thai-UK collaboration aims to improve the quality of software development processes and products in Thailand’s software industry by transferring the knowledge of state-of-the-art automated software engineering (ASE) tools and techniques from the UK experts.<br />
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://muict-seru.github.io/ASETSI/">Visit the project's webiste</a>
-                        </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src="images/achilles_2.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Achilles: Automated Tool for Detecting and Visualizing npm Dependency Vulnerabilities
-                        </h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                      <p>
-                        <b>V. Jarukitpipat, W. Wanprasert, K. Chhun, C. Ragkhitwetsagul, R. G. Kula, T. Sunetnant, M. Choetkiertikul</b>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero research-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Projects</h1>
+                    <p class="hero-subtitle">Software Engineering Tools & Research Projects</p>
+                    <p class="hero-description">
+                        A collection of software engineering tools, research projects, and collaborative initiatives 
+                        focused on code analysis, testing, and software quality improvement.
                     </p>
-                    We propose the Achilles tool which detects and visualizes npm project’s dependency vulnerabilities. 
-                    Achilles assists programmers in comprehending and analyzing potential risks of vulnerabilities of npm 
-                    packages via the dependency graph visualization and analysis report. 
-                    We have performed an evaluation using a user study and found that the graph visualization of Achilles 
-                    helps support developers' decisions on prioritizing vulnerability to fix by providing more 
-                    information about complexity and direct/indirect dependencies compared to the state-of-the-art tools. 
-                    The tool can also detect vulnerabilities currently existing in several most-starred GitHub open source 
-                    projects. 
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://achillestool.com/">Try the tool online here</a>
-                    </div>
                 </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src="images/jarvan.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">JARVAN: An Automatic Checker for Reused Stack Overflow Code Snippets in Java Software Projecs</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                      <p>
-                        <b>P. Poolthong, P. Sirilertworakul, K. Wonwien, C. Ragkhitwetsagul</b>
-                    </p>
-                        JARVAN is an automated checker for reused code snippets from Stack Overflow in Java software projects. 
-                        It helps to analyze code clones from Stack Overflow within GitHub repositories by connecting directly to GitHub.
-                        Additionally, JARVAN can detect software license violation caused by reusing code from Stack Overflow. 
-                        The tool analyzes the given GitHub repository and creates a report of the analysis to a user, 
-                        which includes an analysis of a reused code used in a software project and warnings for possible software license violations. 
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://github.com/MUICT-SERU/SP2020-JARVAN">More about the project</a>
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/teddy.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Teddy: Automatic Recommendation of Pythonic Idiom Usage For Pull-Based Software Projects</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                      <p><img width="100px" src="images/icsme2020_logo.png" border="0" alt="">&nbsp;
-                        <a href="files/icsme2020_teddy_certificate.jpg"><img width="100px" src="images/icsme2020Award.png" border="0" alt=""></a>
-                        <p><b><font color="red">Won the Best Tool Demo Award at ICSME 2020!</font></b></p>
-                      <b>Phan-udom, P., Wattanakul, N., Sakulniwat, T., Ragkhitwetsagul, C., Sunetnanta, T., Choetkiertikul, M., & Kula, R. G.</b></p>
-
-                      Pythonic code is idiomatic code that follows guiding principles and practices within the Python community. 
-                      Offering performance and readability benefits, Pythonic code is claimed to be widely adopted by 
-                      experienced Python developers, but can be a learning curve to novice programmers. 
-                      To aid with Pythonic learning, we create an automated tool, called <b>Teddy</b>, that can help 
-                      checking the Pythonic idiom usage. The tool offers a prevention mode with Just-In-Time 
-                      analysis to recommend the use of Pythonic idiom during code review and a detection mode 
-                      with historical analysis to run a thorough scan of idiomatic and non-idiomatic code.
-                      <br /><br />
-                      In this work, we first describe our tool and an evaluation of its performance. 
-                      Furthermore, we present a case study that demonstrates how to use Teddy in a real-life scenario 
-                      on an Open Source project. An evaluation shows that Teddy has high precision for detecting 
-                      Pythonic idiom and non-Pythonic code. Using interactive visualizations, we demonstrate 
-                      how novice programmers can navigate and identify Pythonic idiom and non-Pythonic code in their projects. 
-                      <br /><br />
-                      Our video demo with the full interactive visualizations is available at <a href="https://youtu.be/vOCQReSvBxA">https://youtu.be/vOCQReSvBxA</a>.
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://muict-seru.github.io/icsme20-teddy-tooldemo/">More about the project</a>
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/siamese.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Siamese: Scalable and Incremental Code Clone Search via Multiple Code Representations</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                      <p>
-                      <b><font color="red">Journal-First Presentation at ICSE 2020</font></b><br />
-                      <b>C. Ragkhitwetsagul, J. Krinke</b></p>
-
-                      This project develops a novel code clone search technique that is accurate,
-                      incremental, and scalable to hundreds of million lines of code.
-                      Our technique in- corporates multiple code representations,
-                      query reduction, and a customised ranking function to improve clone search performance. <br /><br />
-                      We implemented the technique in a clone search tool, called Siamese,
-                      and evaluated its search accuracy and scalability on three established
-                      clone data sets. Siamese offers the highest mean average precision of 95% and 99% on
-                      two clone benchmarks compared to seven state-of-the-art clone detection tools.
-                      Siamese is scalable and can return cloned code snippets within 8 seconds for
-                      a code corpus of 365 million lines of code. Using an index of 130,719 GitHub projects,
-                      we demonstrate that Siamese’s incremental indexing capability dramatically
-                      decreases the index preparation time for large-scale data sets with multiple
-                      releases of software projects. <br /><br />
-                      We successfully applies Siamese to facilitate software development and research with two use cases
-                      including online code clone detection and clone search with automated license analysis.
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://github.com/UCL-CREST/Siamese">Download the tool</a>
-                      <br/>
-                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://www.youtube.com/embed/Bq3F43URr8A">Watch the video</a>
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/online_clones.jpg" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Toxic Code Snippets on Stack Overflow</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                      <p>
-                      <b><font color="red">Journal-First Presentation at ESEC/FSE 2019</font></b><br />
-                      <b>C. Ragkhitwetsagul, J. Krinke, M. Paixao, G. Bianco, R. Oliveto</b></p>
-
-                      Online code clones are code fragments that are copied from software projects or online
-                      sources to Stack Overflow as examples. Due to an absence of a checking mechanism after
-                      the code has been copied to Stack Overflow, they can become toxic code snippets, i.e.,
-                      they suffer from being outdated or violating the original software license.
-                      We study online code clones on Stack Overflow (SO) and their toxicity. <br/ ><br />
-                      Our surveys of 201 high-reputation
-                      Stack Overflow answerers and 87 Stack Oveflow visitors showed that 131 answerers
-                      have ever been notified of outdated code and 26 of them rarely or never
-                      fix the code. 69% of them never check for licensing conflicts between
-                      their copied code snippets and SO’s CC BY-SA 3.0. The visitors experienced several issues from
-                      SO answers: mismatched solutions, outdated solutions, incorrect solutions,
-                      and buggy code. 85% of them are not aware of SO's CC BY-SA 3.0 license,
-                      and 66% never check for license conflicts when reusing code snippets. <br /><br />
-                      Our clone detection found online clone pairs between 72,365 Java code snippets on
-                      Stack Overflow and 111 open source projects in the curated Qualitas corpus.
-                      We analysed 2,289 non-trivial online clone candidates and revealed
-                      strong evidence that 153 clones have been copied from a Qualitas project to Stack
-                      Overflow. We found 100 of them (66%) to be outdated and potentially harmful for reuse.
-                      Furthermore, we found 214 code snippets that could potentially violate the license of
-                      their original software and appear 7,112 times in 2,427 GitHub projects.
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                      <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://ucl-crest.github.io/cloverflow-web/">Visit the project's website</a>
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/vincent.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Image-based Code Clone Detection</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                      <p><img width="100px" src="images/iwsc2017_logo.png" border="0" alt="">&nbsp;
-                      <a href="files/iwsc2018Award.pdf"><img width="100px" src="images/iwsc2018Award.jpg" border="0" alt=""></a>
-                      <p><font color="red">Won the People's Choice Award! at Int. Workshop on Software Clones 2018</font>
-                      </p>
-                      <b>C. Ragkhitwetsagul, J. Krinke, B. Marnette</b><br/><br/>
-                        We introduce a new code clone detection technique based on image similarity.
-                        The technique captures visual perception of code seen by humans in an IDE by applying syntax
-                        highlighting and images conversion on raw source code text. <br /><br />
-                        We compared two similarity measures,
-                        Jaccard and earth mover’s distance (EMD) for our image-based code clone detection technique.
-                        Jaccard similarity offered better detection performance than EMD. The F1 score of our technique
-                        on detecting Java clones with pervasive code modifications is comparable to five well-known code
-                        clone detectors: CCFinderX, Deckard, iClones, NiCad, and Simian. A Gaussian blur filter is chosen
-                        as a normalisation technique for type-2 and type-3 clones. <br /><br />
-                        We found that blurring code images
-                        before similarity computation resulted in higher precision and recall. The detection performance
-                        after including the blur filter increased by 1 to 6 percent. The manual investigation of clone
-                        pairs in three software systems revealed that our technique, while it missed some of the true
-                        clones, could also detect additional true clone pairs missed by NiCad.
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://crest.cs.ucl.ac.uk/resources/cloplag/">Visit the project's website</a>
-                    </div>
-              </div>
-              <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/emse.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">A Comparison of Code Similarity Analysers</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                      <p><font color="red">Empirical Software Engineering Journal</font></p>
-                      <b>C. Ragkhitwetsagul, J. Krinke, D. Clark</b><br/><br/>
-                        We evaluate 30 code similarity detection techniques and tools using five experimental scenarios for Java source code. These are (1) pervasively modified code, created with tools for source code and bytecode obfuscation, and boiler-plate code, (2) source code normalisation through compilation and decompilation using different decompilers, (3) reuse of optimal configurations over different data sets, (4) tool evaluation using ranked-based measures, and (5) local + global code modifications. Our experimental results show that in the presence of pervasive modifications, some of the general textual similarity measures can offer similar performance to specialised code similarity tools, while in the presence of boiler-plate code, highly specialised source code similarity detection techniques and tools outperform textual similarity measures. Our study strongly validates the use of compilation/decompilation as a normalisation technique. Its use reduced false classifications to zero for three of the tools. Moreover, we demonstrate that optimal configurations are very sensitive to a specific data set. After directly applying optimal configurations derived from one data set to another, the tools perform poorly on the new data set. The code similarity analysers are thoroughly evaluated not only based on several well-known pair-based and query-based error measures but also on each specific type of pervasive code modification.
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://crest.cs.ucl.ac.uk/resources/cloplag/">Visit the project's website</a>
-                    </div>
-              </div>
-              <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/iwsc2017.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Using Compilation-Decompilation to Enhance Clone Detection</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                      <img width="100px" src="images/iwsc2017_logo.png" border="0" alt="">&nbsp;
-                      <a href="files/iwsc2017Award.pdf"><img width="100px" src="images/iwsc_award.jpg" border="0" alt=""></a>
-                      <p><font color="red">Accepted at IWSC 2017 and won the People's Choice Award!</font></p>
-                      <b>C. Ragkhitwetsagul, J. Krinke</b><br/><br/>
-                        We study effects of compilation and decompilation to code clone detection in Java. Compilation/decompilation canonicalise syntactic changes made to source code and can be used as source code normalisation. We used NiCad to detect clones before and after decompilation in three open source software systems, JUnit, JFreeChart, and Tomcat. We filtered and compared the clones in the original and decompiled clone set and found that 1,201 clone pairs (78.7%) are common between the two sets while 326 pairs (21.3\%) are only in one of the sets. A manual investigation identified 325 out of the 326 pairs as true clones. The 252 original-only clone pairs contain a single false positive while the 74 decompiled-only clone pairs are all true positives. Many clones in the original source code that are detected only after decompilation are type-3 clones that are difficult to detect due to added or deleted statements, keywords, package names; flipped if-else statements; or changed loops. We suggest to use decompilation as normalisation to compliment clone detection. By combining clones found before and after decompilation, one can achieve higher recall without losing precision.
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://cragkhit.github.io/crjk-iwsc17//">Visit the project's website</a>
-                    </div>
-               </div>
-               <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/isics_black.jpg" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Measuring Code Similarity in Large-scaled Code Corpora</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                      <img src="images/icsme2016.png" border="0" alt="">
-                      <p><font color="red">Accepted at ICSME 2016 Doctoral Symposium!</font></p>
-                      <b>C. Ragkhitwetsagul</b><br/><br/>
-                        There are numerous tools available to measure code similarity in the past decades. These tools are created for specific use cases and come with several parameters which are sensitive to dataset and have to be tuned carefully to obtain the optimal tool’s performance. We have evaluated 30 similarity analysers for source code similarity and found that specialised tools such as clone and plagiarism detectors, with proper parameter tuning, outperform general techniques such as string matching. Unfortunately, although these specialised tools can handle code similarity in a local code base, they fail to locate similar code artefacts from a large-scaled corpora. This challenge is important since the amount of online source code is rising and at the same time being reused oftenly. Hence, we propose a scalable search system specifically designed for source code. Our proposed code search framework based on information retrieval, tokenisation, code normalisation, and variable-length gram. This framework will be able to locate similar code artefacts not only based on textual similarity, but also syntactic and structural similarity. It is also resilient to incomplete code fragments that are normally found on the Internet.
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/cloplag.jpg" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Similarity of Source Code in the Presence of Pervasive Modifications</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                      <img src="images/scam.png" border="0" alt="">
-                      <p><font color="red">Accepted at SCAM 2016!</font></p>
-                      <b>C. Ragkhitwetsagul, J. Krinke, <br />D. Clark</b><br/><br/>
-                        Source code analysis to detect code cloning, code plagiarism, and code reuse suffers from the problem of pervasive code modifications, i.e. transformations that may have a global effect. We compare 30 similarity detection techniques and tools against pervasive code modifications. We evaluate the tools using two experimental scenarios for Java source code. These are (1) pervasive modifications created with tools for source code and bytecode obfuscation and (2) source code normalisation through compilation and decompilation using different decompilers. Our experimental results show that highly specialised source code similarity detection techniques and tools can perform better than more general, textual similarity measures. Our study strongly validates the use of compilation/decompilation as a normalisation technique. Its use reduced false classifications to zero for six of the tools. This broad, thorough study is the largest in existence and potentially an invaluable guide for future users of similarity detection in source code.<br /><br /><br /><br /><br /><br />
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://crest.cs.ucl.ac.uk/resources/cloplag/">Visit the project's website</a>
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/clones.jpg" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Searching for Configurations in Clone Evalution: A Replication Study</h2>
-                    </div>
-                    <hr />
-                    <div class="mdl-card__supporting-text">
-                      <img src="images/ssbse2016.png" border="0" alt="">
-                      <p><font color="red">Accepted at SSBSE 2016!</font></p>
-                      <b>C. Ragkhitwetsagul, M. Paixao, <br/>M. Adham, S. Busari, J. Krinke and J.H. Drake</b><br/><br/>
-                      Clone detection is the process of finding duplicated code within a software code base in an automated manner. It is useful in several areas of software development such as code quality analysis, bug detection, and program understanding. We replicate a study of a genetic- algorithm based framework that optimises parameters for clone agree- ment (EvaClone). We apply the framework to 14 releases of Mockito, a Java mocking framework. We observe that the optimised parameters outperform the tools’ default parameters in term of clone agreement by 19.91% to 66.43%. However, the framework gives undesirable results in term of clone quality. EvoClone either maximises or minimises a number of clones in order to achieve the highest agreement resulting in more false positives or false negatives introduced consequently.<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://cragkhit.github.io/ssbsechallenge2016/">Visit the project's website</a>
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/honeydew.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Honedew: Predicting meeting date using machine learning algorithm</h2>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                      <i>Project from master degree</i><br />
-                      <b>C. Ragkhitwetsagul</b><br/><br />
-                      Today  scheduling  a  meeting  via  email  becomes  widely  used.  However,  creating  a meeting in a user’s calendar can be tedious. Honeydew is an intelligent agent, which uses machine-learning  algorithms  to  extract  all  required  information  from  a  meeting  email. Then it creates suggestions for the user. The user can verify the suggestions, and proceed to place the meeting in his calendar. The agent can dramatically reduce user’s workload of  extracting  all  information  from  emails  and  put  them  in  his  calendar  application.  The agent  also  automatically  improves  its  performances  by  learning  from  suggestions  that  is corrected by human users. This paper discusses an algorithm used for predicting meetings date from content in emails. It also includes the evaluation results of the system.<br /><br /><br /><br /><br />
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/Honeydew-final-report-Chaiyong.pdf">View the full report</a>
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/foxbeacon.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">FoxBeacon: Web Bug Detector Implementing P3P Compact Policy for Mozilla Firefox</h2>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                      <i>Project from master degree</i><br />
-                        <b>C. Ragkhitwetsagul</b><br/><br />
-                        This paper describes the design, implementation, and evaluation of a web bug detector called “FoxBeacon.” This detector is originally designed to be an extension of Mozilla Firefox. After being installed, FoxBeacon embeds itself into the Firefox browser and acts as a proxy. It reads every incoming web page and trying to find hidden web bugs. FoxBeacon treats each image as a web bug according to the pre-defined rules. In addition, FoxBeacon also includes the compact policy, one component of Platform of Privacy Policy (P3P), to incorporate and provide more information to its users. This paper also covers the evaluation of FoxBeacon functionalities and its results. The ultimate goal of this project is to optimize between least disruption to the browser’s users and the most effective way in order to make the users aware of the hidden web bugs. In addition, reducing the number of false negatives and false positive is also another important goal.
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/FoxBeacon_final_paper.pdf">View the full report</a>
-                    </div>
-                </div>
-
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/galinkage.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Evaluating Genetic Algorithm for selection of similarity functions for record linkage</h2>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                      <i>Project from master degree</i><br />
-                      <b>F. Shaikh and C. Ragkhitwetsagul</b><br/><br />
-                        Machine learning algorithms have been successfully employed in solving the record linkage problem. Machine learning casts the record linkage problem as a classification problem by training a classifier that classifies 2 records as duplicates or unique. Irrespective of the machine learning algorithm used, the initial step in training a classifier involves selecting a set of similarity functions to be applied to each attribute to get a similarity measure. Usually this is done manually with input from a domain expert. We evaluate an approach in which the optimal combination of similarity function for a given type of input data records is searched using Genetic Algorithms.<br /><br /><br /><br /><br /><br /><br /><br />
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/Genetic_algorithm_final_report_chaiyong_faraz.pdf">View the full report</a>
-                    </div>
-                </div>
-
-                <div class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/hercules.png" border="0" alt="">
-                    </div>
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Hercules File System:<br />A Scalable Fault Tolerant Distributed File System </h2>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                      <i>Project from master degree</i><br/>
-                      <b>F. Shaikh, C. Ragkhitwetsagul, <br />A.R. Pathan</b><br/><br />
-                      We introduce the design of the Hercules File System (HFS), a distributed file  system  with  scalable  MDS  cluster  and  scalable and  fault-tolerant  DS  cluster.  The Hercules File System allows Metadata and Data Servers to be dynamically added to the MDS cluster even after the initial setup time while the system is up and running without disrupting the normal operations carried out by the file system. The file system is also fault-tolerant and can serve clients in the events of failures of the DS and MDS. A Health Monitor is also designed which is a GUI tool that monitors the state of the servers of the File  System  and  also  gives  the  run-time  visualization  of  operations  requested  by  the clients.
-                    </div>
-                    <div class="mdl-card__actions mdl-card--border">
-                        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/Hercules%20FS%20Project%20Report.pdf">View the full report</a>
-                    </div>
-                </div>
-
             </div>
-            <footer class="mdl-mini-footer">
-                <div class="mdl-mini-footer__left-section">
-                    <div class="mdl-logo">Chaiyong's Personal Website</div>
+        </div>
+    </section>
+
+    <!-- Current Projects Section -->
+    <section class="research-interests" id="current-projects">
+        <div class="container">
+            <h2 class="section-title">Current and Past Research Projects</h2>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>MAINTAIN - Intelligent Maintenance of Software Systems</h3>
+                    <p>
+                        <strong>Team:</strong> Matheus Paixao, Paulo Henrique Maia, Ismayle De Sousa Santos, Jerffeson Teixeira De Souza, 
+                        Allysson Allex de Paula Araújo, Anderson Uchôa, Thiago Ferreira, Chaiyong Ragkhitwetsagul
+                    </p>
+                    <p><strong>Funding:</strong> CNPq/MCTI No 10/2023 - Universal 2023</p>
+                    <p>
+                        This research is led by Dr. Matheus Paixao and the team of UECE, Brazil. We plan to adopt the state-of-the-art 
+                        in machine learning and software engineering to develop a novel approach for software maintenance.
+                    </p>
                 </div>
-                <div class="mdl-mini-footer__right-section">
-                    <ul class="mdl-mini-footer__link-list">
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">Privacy & Terms</a></li>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Code Similarity Applications for Improving Software Quality</h3>
+                    <p>
+                        <strong>Team:</strong> Chaiyong Ragkhitwetsagul, Prof. Peter Haddawy (Mentor)
+                    </p>
+                    <p><strong>Funding:</strong> Research Grant for New Scholar (RGNS 2021) - Ministry of Higher Education Science Research and Innovation (MHESRI)</p>
+                    <p>
+                        This research project aims to propose a novel approach to improve software by using code similarity techniques 
+                        and create an automated tool for detecting similar code and giving relevant recommendations.
+                    </p>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Automated Software Engineering for Thailand Software Industry (ASETSI)</h3>
+                    <p>
+                        <strong>Team:</strong> Chaiyong Ragkhitwetsagul, Jens Krinke, Morakot Choetkiertikul, Thanwadee Sunetnanta, 
+                        Federica Sarro, ProGaming, Trinity Roots, Zwiz.AI, CourseSquare
+                    </p>
+                    <p>
+                        This Thai-UK collaboration aims to improve the quality of software development processes and products in 
+                        Thailand's software industry by transferring the knowledge of state-of-the-art automated software engineering (ASE) 
+                        tools and techniques from the UK experts.
+                    </p>
+                    <div class="research-actions">
+                        <a href="https://muict-seru.github.io/ASETSI/" target="_blank" class="btn btn-small">Visit Project Website</a>
+                    </div>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3>Toxic Code Snippets on Stack Overflow</h3>
+                    <p>
+                        <strong>Team:</strong> C. Ragkhitwetsagul, J. Krinke, M. Paixao, G. Bianco, R. Oliveto
+                    </p>
+                    <p><strong>Journal-First Presentation at ESEC/FSE 2019</strong></p>
+                    <p>
+                        Our clone detection found online clone pairs between 72,365 Java code snippets on Stack Overflow and 111 open 
+                        source projects. We found 100 of them (66%) to be outdated and potentially harmful for reuse.
+                    </p>
+                    <div class="research-actions">
+                        <a href="https://ucl-crest.github.io/cloverflow-web/" target="_blank" class="btn btn-small">Project Website</a>
+                    </div>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>Image-based Code Clone Detection</h3>
+                    <p>
+                        <strong>Team:</strong> C. Ragkhitwetsagul, J. Krinke, B. Marnette
+                    </p>
+                    <p><strong>🏆 Won the People's Choice Award at IWSC 2018!</strong></p>
+                    <p>
+                        We introduce a new code clone detection technique based on image similarity. The technique captures visual 
+                        perception of code seen by humans in an IDE by applying syntax highlighting and images conversion on raw source code text.
+                    </p>
+                    <div class="research-actions">
+                        <a href="http://crest.cs.ucl.ac.uk/resources/cloplag/" target="_blank" class="btn btn-small">Project Website</a>
+                    </div>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>A Comparison of Code Similarity Analysers</h3>
+                    <p>
+                        <strong>Team:</strong> C. Ragkhitwetsagul, J. Krinke, D. Clark
+                    </p>
+                    <p><strong>Empirical Software Engineering Journal</strong></p>
+                    <p>
+                        We evaluate 30 code similarity detection techniques and tools using five experimental scenarios for Java source code. 
+                        Our study strongly validates the use of compilation/decompilation as a normalisation technique.
+                    </p>
+                    <div class="research-actions">
+                        <a href="http://crest.cs.ucl.ac.uk/resources/cloplag/" target="_blank" class="btn btn-small">Project Website</a>
+                    </div>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>Using Compilation-Decompilation to Enhance Clone Detection</h3>
+                    <p>
+                        <strong>Team:</strong> C. Ragkhitwetsagul, J. Krinke
+                    </p>
+                    <p><strong>🏆 Won the People's Choice Award at IWSC 2017!</strong></p>
+                    <p>
+                        We study effects of compilation and decompilation to code clone detection in Java. By combining clones found 
+                        before and after decompilation, one can achieve higher recall without losing precision.
+                    </p>
+                    <div class="research-actions">
+                        <a href="https://cragkhit.github.io/crjk-iwsc17/" target="_blank" class="btn btn-small">Project Website</a>
+                    </div>
+                </div>
+            
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Measuring Code Similarity in Large-scaled Code Corpora</h3>
+                    <p>
+                        <strong>Team:</strong> C. Ragkhitwetsagul
+                    </p>
+                    <p><strong>Accepted at ICSME 2016 Doctoral Symposium!</strong></p>
+                    <p>
+                        We propose a scalable search system specifically designed for source code. Our proposed code search framework 
+                        based on information retrieval, tokenisation, code normalisation, and variable-length gram.
+                    </p>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Similarity of Source Code in the Presence of Pervasive Modifications</h3>
+                    <p>
+                        <strong>Team:</strong> C. Ragkhitwetsagul, J. Krinke, D. Clark
+                    </p>
+                    <p><strong>Accepted at SCAM 2016!</strong></p>
+                    <p>
+                        We compare 30 similarity detection techniques and tools against pervasive code modifications. 
+                        This broad, thorough study is the largest in existence and potentially an invaluable guide for future users.
+                    </p>
+                    <div class="research-actions">
+                        <a href="http://crest.cs.ucl.ac.uk/resources/cloplag/" target="_blank" class="btn btn-small">Project Website</a>
+                    </div>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>Searching for Configurations in Clone Evaluation: A Replication Study</h3>
+                    <p>
+                        <strong>Team:</strong> C. Ragkhitwetsagul, M. Paixao, M. Adham, S. Busari, J. Krinke and J.H. Drake
+                    </p>
+                    <p><strong>Accepted at SSBSE 2016!</strong></p>
+                    <p>
+                        We replicate a study of a genetic-algorithm based framework that optimises parameters for clone agreement (EvaClone). 
+                        We observe that the optimised parameters outperform the tools' default parameters by 19.91% to 66.43%.
+                    </p>
+                    <div class="research-actions">
+                        <a href="http://cragkhit.github.io/ssbsechallenge2016/" target="_blank" class="btn btn-small">Project Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Tools Section -->
+    <section class="research-interests" id="software-tools">
+        <div class="container">
+            <h2 class="section-title">Software Tools & Applications</h2>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Achilles: Automated Tool for Detecting and Visualizing npm Dependency Vulnerabilities</h3>
+                    <p>
+                        <strong>Team:</strong> V. Jarukitpipat, W. Wanprasert, K. Chhun, C. Ragkhitwetsagul, R. G. Kula, T. Sunetnant, M. Choetkiertikul
+                    </p>
+                    <p>
+                        Achilles assists programmers in comprehending and analyzing potential risks of vulnerabilities of npm packages 
+                        via the dependency graph visualization and analysis report. The tool can detect vulnerabilities currently 
+                        existing in several most-starred GitHub open source projects.
+                    </p>
+                    <div class="research-actions">
+                        <a href="https://achillestool.com/" target="_blank" class="btn btn-small">Try the Tool Online</a>
+                    </div>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>JARVAN: An Automatic Checker for Reused Stack Overflow Code Snippets in Java Software Projects</h3>
+                    <p>
+                        <strong>Team:</strong> P. Poolthong, P. Sirilertworakul, K. Wonwien, C. Ragkhitwetsagul
+                    </p>
+                    <p>
+                        JARVAN is an automated checker for reused code snippets from Stack Overflow in Java software projects. 
+                        It helps analyze code clones from Stack Overflow within GitHub repositories and can detect software license 
+                        violations caused by reusing code from Stack Overflow.
+                    </p>
+                    <div class="research-actions">
+                        <a href="https://github.com/MUICT-SERU/SP2020-JARVAN" target="_blank" class="btn btn-small">View Project</a>
+                    </div>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Teddy: Automatic Recommendation of Pythonic Idiom Usage For Pull-Based Software Projects</h3>
+                    <p>
+                        <strong>Team:</strong> Phan-udom, P., Wattanakul, N., Sakulniwat, T., Ragkhitwetsagul, C., Sunetnanta, T., Choetkiertikul, M., & Kula, R. G.
+                    </p>
+                    <p>
+                        <strong>🏆 Won the Best Tool Demo Award at ICSME 2020!</strong><br>
+                        Teddy is an automated tool that helps check Pythonic idiom usage. It offers a prevention mode with Just-In-Time 
+                        analysis and a detection mode with historical analysis to run thorough scans of idiomatic and non-idiomatic code.
+                    </p>
+                    <div class="research-actions">
+                        <a href="https://muict-seru.github.io/icsme20-teddy-tooldemo/" target="_blank" class="btn btn-small">Project Website</a>
+                        <a href="https://youtu.be/vOCQReSvBxA" target="_blank" class="btn btn-small">Watch Demo</a>
+                    </div>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>Siamese: Scalable and Incremental Code Clone Search via Multiple Code Representations</h3>
+                    <p>
+                        <strong>Team:</strong> C. Ragkhitwetsagul, J. Krinke
+                    </p>
+                    <p>
+                        <strong>Journal-First Presentation at ICSE 2020</strong><br>
+                        Siamese offers the highest mean average precision of 95% and 99% on two clone benchmarks compared to seven 
+                        state-of-the-art clone detection tools. It can return cloned code snippets within 8 seconds for a code corpus 
+                        of 365 million lines of code.
+                    </p>
+                    <div class="research-actions">
+                        <a href="https://github.com/UCL-CREST/Siamese" target="_blank" class="btn btn-small">Download Tool</a>
+                        <a href="https://www.youtube.com/embed/Bq3F43URr8A" target="_blank" class="btn btn-small">Watch Video</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Master's Projects Section -->
+    <section class="research-interests" id="masters-projects">
+        <div class="container">
+            <h2 class="section-title">My Master's Degree Projects</h2>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Honeydew: Predicting Meeting Date Using Machine Learning Algorithm</h3>
+                    <p>
+                        <strong>Team:</strong> C. Ragkhitwetsagul
+                    </p>
+                    <p><strong>Project from master degree</strong></p>
+                    <p>
+                        Honeydew is an intelligent agent that uses machine-learning algorithms to extract all required information 
+                        from a meeting email and creates suggestions for the user. The agent can dramatically reduce user's workload 
+                        of extracting information from emails and putting them in calendar applications.
+                    </p>
+                    <div class="research-actions">
+                        <a href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/Honeydew-final-report-Chaiyong.pdf" target="_blank" class="btn btn-small">View Full Report</a>
+                    </div>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>FoxBeacon: Web Bug Detector Implementing P3P Compact Policy for Mozilla Firefox</h3>
+                    <p>
+                        <strong>Team:</strong> C. Ragkhitwetsagul
+                    </p>
+                    <p><strong>Project from master degree</strong></p>
+                    <p>
+                        FoxBeacon is a web bug detector designed as an extension of Mozilla Firefox. It reads every incoming web page 
+                        and tries to find hidden web bugs, treating each image as a web bug according to pre-defined rules. 
+                        It also includes the compact policy component of Platform for Privacy Policy (P3P).
+                    </p>
+                    <div class="research-actions">
+                        <a href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/FoxBeacon_final_paper.pdf" target="_blank" class="btn btn-small">View Full Report</a>
+                    </div>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-dna"></i>
+                    </div>
+                    <h3>Evaluating Genetic Algorithm for Selection of Similarity Functions for Record Linkage</h3>
+                    <p>
+                        <strong>Team:</strong> F. Shaikh and C. Ragkhitwetsagul
+                    </p>
+                    <p><strong>Project from master degree</strong></p>
+                    <p>
+                        We evaluate an approach in which the optimal combination of similarity function for a given type of input 
+                        data records is searched using Genetic Algorithms, casting the record linkage problem as a classification problem.
+                    </p>
+                    <div class="research-actions">
+                        <a href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/Genetic_algorithm_final_report_chaiyong_faraz.pdf" target="_blank" class="btn btn-small">View Full Report</a>
+                    </div>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Hercules File System: A Scalable Fault Tolerant Distributed File System</h3>
+                    <p>
+                        <strong>Team:</strong> F. Shaikh, C. Ragkhitwetsagul, A.R. Pathan
+                    </p>
+                    <p><strong>Project from master degree</strong></p>
+                    <p>
+                        We introduce the design of the Hercules File System (HFS), a distributed file system with scalable MDS cluster 
+                        and scalable and fault-tolerant DS cluster. The file system allows servers to be dynamically added while 
+                        the system is running without disrupting normal operations.
+                    </p>
+                    <div class="research-actions">
+                        <a href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cmu/Hercules%20FS%20Project%20Report.pdf" target="_blank" class="btn btn-small">View Full Report</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Chaiyong's Personal Website</h3>
+                    <p>Software Engineering Researcher & Educator</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="teaching.html">Teaching</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-            </footer>
-        </main>
-    </div>
-    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-</body>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/cragkhit" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=VArdauUAAAAJ" target="_blank" aria-label="Google Scholar">
+                            <i class="fas fa-graduation-cap"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/chaiyong-ragkhitwetsagul-4286406" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Chaiyong Ragkhitwetsagul. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-</html>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html> 

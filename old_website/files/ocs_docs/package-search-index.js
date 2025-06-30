@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"edu.gemini.app.ocs"},{"l":"edu.gemini.app.ocs.controller"},{"l":"edu.gemini.app.ocs.example"},{"l":"edu.gemini.app.ocs.model"}];updateSearchResults();

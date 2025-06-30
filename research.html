@@ -1,590 +1,867 @@
-<!doctype html>
-<!--
-  Material Design Lite
-  Copyright 2015 Google Inc. All rights reserved.
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
--->
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A portfolio template that uses Material Design Lite.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Chaiyong Ragkhitwetsagul @ MUICT</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139965822-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-139965822-1');
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research - Chaiyong Ragkhitwetsagul</title>
+    <meta name="description" content="Research interests and publications of Chaiyong Ragkhitwetsagul in software engineering, code similarity, and clone detection.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
-            <div class="mdl-layout__header-row portfolio-logo-row">
-                <span class="mdl-layout__title">
-                    <div class="portfolio-logo"></div>
-                    <span class="mdl-layout__title">Nothing is impossible, the word itself says 'I'm possible'! &ndash; Audrey Hepburn</span>
-                </span>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Chaiyong Ragkhitwetsagul</a>
             </div>
-            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
-                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link" href="index.html">Home</a>
-                    <a class="mdl-navigation__link is-active" href="research.html">Research</a>
-                    <a class="mdl-navigation__link" href="teaching.html">Teaching</a>
-                    <a class="mdl-navigation__link" href="students.html">Students</a>
-                    <a class="mdl-navigation__link" href="projects.html">Projects</a>
-                    <a class="mdl-navigation__link" href="links.html">Links</a>
-                    <a class="mdl-navigation__link" href="contact.html">Contact</a>
-                </nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="research.html" class="nav-link active">Research</a>
+                </li>
+                <li class="nav-item">
+                    <a href="teaching.html" class="nav-link">Teaching</a>
+                </li>
+                <li class="nav-item">
+                    <a href="students.html" class="nav-link">Students</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="links.html" class="nav-link">Links</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
-        </header>
-        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
-            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-              <a class="mdl-navigation__link" href="index.html">Home</a>
-              <a class="mdl-navigation__link is-active" href="research.html">Research</a>
-              <a class="mdl-navigation__link" href="teaching.html">Teaching</a>
-              <a class="mdl-navigation__link" href="students.html">Students</a>
-              <a class="mdl-navigation__link" href="projects.html">Projects</a>
-              <a class="mdl-navigation__link" href="links.html">Links</a>
-              <a class="mdl-navigation__link" href="contact.html">Contact</a>
-            </nav>
         </div>
-        <main class="mdl-layout__content">
-            <div class="mdl-grid portfolio-max-width">
-                <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
-                  <!-- <div class="mdl-card__media mdl-cell mdl-cell--12-col-tablet">
-                      <img class="article-image" src=" images/research2.jpg" border="0" alt="">
-                  </div> -->
-                    <!--<div class="mdl-card__media mdl-cell mdl-cell--12-col-tablet">
-                        <img class="article-image" src=" images/example-blog01.jpg" border="0" alt="">
-                    </div>-->
-                    <div class="mdl-cell mdl-cell--12-col">
-                        <h3 class="mdl-card__title-text">My Research Interests</h3>
-                        <div class="mdl-card__supporting-text no-left-padding">
-                          <p>
-                            Currently, my research interests lie in 4 areas as follows.
-                            <p>
-                              <b>Coding Proficiency:</b> I am interested in applying natural language proficiency framework like CEFR to programming languages. With my research collaborators, we have developed proficiency frameworks for Python and JavaScript and created tools for automated coding proficiency analysis (<a href="https://arxiv.org/abs/2203.15990">pycefr</a> and <a href="https://arxiv.org/abs/2408.16452">jscefr</a>). We are now interested in applying theses tools to perform empirical studies on coding proficiency in various contexts, such as code reviews, issue resolutions, and software maintenance.
-                            </p>
-                            <p>
-                            <b>Code Similarity:</b> I am interested in applications of code similarity in software engineering activities. Some of the research topics in this area that I am working on include code improvement recommendations based on Stack Overflow answer edits, and finding the optimal configurations for code clone search.
-                            Moreover, one of my main focuses is the scalability of code similarity/clone detection.
-                            Scalable code clone detection is increasingly important nowadays due to
-                            the popularity of code reuse from online sources such as Stack Overflow
-                            or GitHub. Previous studies have shown that cloning code snippets from
-                            Stack Overflow not only potentially introduces vulnerabilities to the software but
-                            also causes licensing conflicts.
-                            I have built a scalable code search tool (<a href="https://siamesetool.github.io/siamese/">Siamese</a>)
-                            that instantly retrieves clone snippets from online sources.
-                            It incorporates novel techniques of multiple code representations and query reduction to accurately
-                            retrieve clones within hundred millions line of code within seconds.
-                            The tool facilitates developers and SE researchers
-                            in many ways, such as finding clones during commit or code review time, finding
-                            similar code examples, or software plagiarism detection.
-                            </p>
-                            <p>
-                              <b>Software Engineering for Data Science:</b> I, and my team at the Faculty of ICT, Mahidol University, are interested in studying the applications of software engineering practices and tools in data science projects. We are performing an empirical study on the current states of adoption of SE practices and tools in data science industry in Thailand. This will lead to recommendations on how to improve the software quality of data science projects and the skills of the data science practitioners by using the knowledge from software engineering.
-                            </p>
-                            <p>
-                              <b>Software Engineering Challenges in Thailand:</b> I, and my team at the Faculty of ICT, Mahidol University and UK partners in UCL, are interested in supporting Thai software industry to produce better software with better software development practices. We have conducted several studies to understand the software engineering challenges in Thailand, such as the adoption of automated software engineering tools and techniques (Ragkhitwetsagul, 2022, Ragkhitwetsagul, 2024) and are working closely with our industry partners to address these challenges.
-                            </p>
-                          </p>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero research-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Research</h1>
+                    <p class="hero-subtitle">Software Engineering & Code Analysis</p>
+                    <p class="hero-description">
+                        Exploring code similarity, clone detection, coding proficiency, and advancing software engineering practices in Thailand.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="publications" id="publications">
+        <div class="container">
+            <h2 class="section-title">Publications</h2>
+            <p class="section-subtitle">
+                My publications sorted chronologically in descending order. <br />You can also find them at: 
+                <a href="https://scholar.google.com/citations?user=VArdauUAAAAJ" target="_blank">
+                    <i class="fab fa-google"></i> Google Scholar
+                </a> | 
+                <a href="https://www.scopus.com/authid/detail.uri?authorId=56422351700" target="_blank">Scopus</a>
+            </p>
+
+            <div class="publications-container">
+                <!-- 2025 -->
+                <div class="year-section">
+                    <h3 class="year-title">2025</h3>
+                    <div class="publication-list">
+                        <div class="publication-item">
+                            <h4>An Exploratory Study on the Lifecycle of Code Clones during Code Review</h4>
+                            <p class="authors">Italo Uchoa, Denis Sousa, Matheus Paixão, Pedro Maia, Anderson Uchôa, Chaiyong Ragkhitwetsagul</p>
+                            <p class="venue">Proceedings of the 39th Brazilian Symposium on Software Engineering (SBES 2025), Brazil</p>
+                            <div class="publication-links">
+                                <a href="#" class="btn btn-small">Preprint (coming soon)</a>
+                            </div>
                         </div>
-                      </div>
-                </div>
-                <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
-                    <!--<div class="mdl-card__media mdl-cell mdl-cell--12-col-tablet">
-                        <img class="article-image" src=" images/example-blog01.jpg" border="0" alt="">
-                    </div>-->
-                    <div class="mdl-cell mdl-cell--12-col">
-                        <h3 class="mdl-card__title-text">Publications</h3>
-                        <div class="mdl-card__supporting-text no-left-padding">
-                          <p style="margin-bottom:10px">
-                           My publications sorted chronologically in descending order are as shown below.<br/>You can also find them at: <a href="https://scholar.google.com/citations?user=VArdauUAAAAJ&hl=en&authuser=2"><i class="fa-brands fa-google-scholar"></i>Google Scholar</a>&nbsp;|&nbsp;<a href="https://www.scopus.com/authid/detail.uri?authorId=56422351700">Scopus</a>.
-                          </p>
-                        
-                        <h4 class="mdl-card__title-text" style="margin-bottom:10px;margin-top:10px">2025</h4><hr />
-                        <div class="mdl-card__supporting-text no-left-padding">
-                          <p style="margin-bottom:10px">
-                            Italo Uchoa, Denis Sousa, Matheus Paixão, Pedro Maia, Anderson Uchôa, Chaiyong Ragkhitwetsagul,&nbsp;<i>An Exploratory Study on the Lifecycle of Code Clones during Code Review
-                            </i>, Proceedings of the 39th Brazilian Symposium on Software Engineering (SBES 2025), Brazil.
-                           <br />
-                           <b>Download:</b>&nbsp;<a href="#">Preprint (coming soon)</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Prachnachai Meakpaiboonwattana, Warittha Tarntong, Thai Mekratanavorakul, Chaiyong Ragkhitwetsagul, Pattaraporn Sangaroonsilp, Raula Kula, Morakot Choetkiertikul, Kenichi Matsumoto and Thanwadee Sunetnanta,&nbsp;<i>Social Media Reactions to Open Source Promotions: AI-Powered GitHub Projects on Hacker News
-                            </i>, Proceedings of the 41st International Conference on Software Maintenance and Evolution (ICSME) 2025 - Research Track, 7-12 Septerm 2025, Auckland, New Zealand.
-                           <br />
-                           <b>Download:</b>&nbsp;<a href="https://arxiv.org/abs/2506.12643">Preprint</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            In-on Wiratsin and Chaiyong Ragkhitwetsagul,&nbsp;<i>Effectiveness of Explainable Artificial Intelligence (XAI) Techniques for Improving Human Trust in Machine Learning Models: A Systematic Literature Review
-                            </i>, IEEE Access, 2025.
-                           <br />
-                           <b>Download:</b>&nbsp;<a href="https://ieeexplore.ieee.org/document/11017606">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Teeradaj Racharak, Chaiyong Ragkhitwetsagul, Chommakorn Sontesadisai, and Thanwadee Sunetnanta,&nbsp;<i>Test It Before You Trust It: Applying Software Testing for Trustworthy In-context Learning
-                            </i>, Proceedings of the 30th Annual International Conference on Natural Language & Information Systems (NLDB 2025), 4-6 July 2025, Kanazawa, Japan.
-                           <br />
-                           <b>Download:</b>&nbsp;<a href="http://arxiv.org/abs/2504.18827">Preprint</a>
-                         </p>
-                          <p style="margin-bottom:10px">
-                            Sushawapak Kancharoendee, Thanat Phichitphanphong, Chanikarn Jongyingyos, Brittany Reid, Raula Gaikovina Kula, Morakot Choetkiertikul, Chaiyong Rakhitwetsagul, Thanwadee Sunetnanta,&nbsp;<i>On Categorizing Open Source Software Security Vulnerability Reporting Mechanisms on GitHub
-                            </i>, Proceedings of the 32nd IEEE International Conference on Software Analysis, Evolution and Reengineering (SANER), 4-7 March 2025, Montreal, Quebec, Canada.
-                           <br />
-                           <b>Download:</b>&nbsp;<a href="https://arxiv.org/pdf/2502.07395">Preprint</a>
-                         </p>
-                          <h4 class="mdl-card__title-text" style="margin-bottom:10px;margin-top:10px">2024</h4><hr />
-                          <p style="margin-bottom:10px">
-                            Choetkiertikul M., Banyongrakkul P., Ragkhitwetsagul C., Tuarob S., Dam H. K., and Sunetnanta T.,&nbsp;<i>Sprint2Vec: a deep characterization of sprints in iterative software development</i>, Transactions on Software Engineering, 2024. (To appear)
-                           <br />
-                           <b>Download:</b>&nbsp;<a href="https://doi.org/10.1109/TSE.2024.3509016">DOI</a>
-                         </p>
-                          <p style="margin-bottom:10px">
-                            Deeprom R., Yang S., Higo Y., Choetkiertikul M. and Ragkhitwetsagul C.,&nbsp;<i>Challenges in Adopting LLaMA: An Empirical Study of Discussions on Stack Overflow</i>, Proceedings of the 12th International Workshop on Quantitative Approaches to Software Quality (QuASoQ 2024), 3 December 2024, Chongqing, China.
-                           <br />
-                           <b>Download:</b>&nbsp;<a href="https://ceur-ws.org/Vol-3864/quasoq-2024-paper-05.pdf">Proceedings</a>
-                         </p>
-                         <p style="margin-bottom:10px">
-                          Kazimoto D. M., Choetkiertikul M., Ragkhitwetsagul C., Sunetnanta T.,&nbsp;<i>DEV-EYE: A Tool for Monitoring Bus Factor Using Commit History</i>, Proceedings of the 31st Asia-Pacific Software Engineering Conference (APSEC 2024) Early Research Achievement Track, 3-6 December 2024, Chongqing, China.
-                          <br />
-                          <b>Download:</b>&nbsp;<a href="">Preprint</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                             Sriwilailak C., Higo Y., Lapvikai P., Ragkhitwetsagul C., Choetkiertikul M.,&nbsp;<i>Autorepairability of ChatGPT and Gemini: A Comparative Study</i>, Proceedings of the 31st Asia-Pacific Software Engineering Conference (APSEC 2024) Early Research Achievement Track, 3-6 December 2024, Chongqing, China.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="">Preprint</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Ragkhitwetsagul C., Kongwongsupak K., Maneesawas T., Puttiwarodom N., Rojpaisarnkit R., Choetkiertikul M., Kula R. G., Sunetnanta T.,&nbsp;<i>jscefr: A Framework to Evaluate the Code Proficiency for JavaScript</i>, Proceedings of the 40th International Conference on Software Maintenance and Evolution (ICSME '24) Tool Demo Track, 6-11 October 2024, Flagstaff, AZ, USA.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="https://arxiv.org/abs/2408.16452">Preprint</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Sousa D., Paixao M., Ragkhitwetsagul C., and Uchoa I.,&nbsp;<i>Code Clone Configuration as a Multi-Objective Search Problem</i>, Proceedings of the 18th ACM/IEEE International Symposium on Empirical Software Engineering and Measurement (ESEM '24) Emerging Results, Vision and Reflection Papers Track, 20-25 October 2024, Barcelona, Spain.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="https://doi.org/10.1145/3674805.3690757">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Rojpaisarnkit R., Robles G., Kula R. G., Wang D., Ragkhitwetsagul C., Gonzalez-Barahona J. M., Matsumoto K.,&nbsp;<i>Towards Identifying Code Proficiency through the Analysis of Python Textbooks</i>, Proceedings of the 40th International Conference on Software Maintenance and Evolution (ICSME '24), 6-11 October 2024, Flagstaff, AZ, USA.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="https://arxiv.org/pdf/2408.02262">Preprint</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Ragkhitwetsagul C., Prasertpol V., Ritta N., Sae-Wong P., Noraset T. and Choetkiertikul M.,&nbsp;<i>Typhon: Automatic Recommendation of Relevant Code Cells in Jupyter Notebooks</i>, Proceedings of the 21st International Joint Conference on Computer Science and Software Engineering (JCSSE '24), 19-22 June 2024, Phuket, Thailand.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="https://arxiv.org/abs/2405.09075">Preprint</a>,&nbsp;|&nbsp;<a href="publications/Typhon_JCSSE_2024.pdf">Presentation</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Ragkhitwetsagul C., Jarukitpipat V., Kula R. G., Choetkiertikul M., Chhun K., Wanprasert W., Sunetnanta T.,&nbsp;<i>See to Believe: Using Visualization To Motivate Updating Third-party Dependencies</i>, Proceedings of the 21st International Joint Conference on Computer Science and Software Engineering (JCSSE '24), 19-22 June 2024, Phuket, Thailand.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="https://arxiv.org/abs/2405.09074">Preprint</a>,&nbsp;|&nbsp;<a href="publications/V-Achilles_JCSSE_2024.pdf">Presentation</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Ragkhitwetsagul C., Krinke J., Choetkiertikul M., Sunetnanta T.,  Sarro F., <i>Adoption of Automated Software Engineering Tools and Techniques in Thailand</i>, Empirical Software Engineering, 2024
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="https://link.springer.com/article/10.1007/s10664-024-10472-6">DOI (Open Access)</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Sanamontre T., Visoottiviseth V., and Ragkhitwetsagul C., <i>Detecting Malicious Android Game Applications on Third-Party Stores Using Machine Learning</i>, Proceedings of the 38th International Conference on
-                            Advanced Information Networking and Applications (AINA 2024), Volume IV, LNDECT 202, 17-19 April 2024, Kitakyushu, Japan.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="publications/2024_Sanamontre.pdf">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.org/10.1007/978-3-031-57916-5_21">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Lapvikai P., Ragkhitwetsagul C., Choetkiertikul M., Higo Y., <i>Autorepairability: A New Software Quality Characteristic</i>, 31st IEEE International Conference on Software Analysis, Evolution, and Reengineering (SANER 2024), Rovaniemi, Finland.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="publications/2024_SANER_ERA_Pongpop.pdf">Preprint</a>
-                          </p>
-                          <h4 class="mdl-card__title-text" style="margin-bottom:10px;margin-top:10px">2023</h4><hr />
-                          <p style="margin-bottom:10px">
-                            Choetkiertikul M., Puengmongkolchaikit A., Chandra P., Ragkitwetsakul C., Maipradit R., Hata H., Sunetnanta T., Matsumoto K., <i>Studying the association between Gitcoin's issues and resolving outcomes</i>, Journal of Systems and Software, 2023.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="https://www.sciencedirect.com/science/article/abs/pii/S0164121223002303">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Choetkiertikul M., Hoonlor A., Ragkhitwetsagul C., Pongpaichet S., Sunetnanta T., Settewong T., Jiravatvanich V., Kaewpichai U., Kula R. G., <i>Mining the Characteristics of Jupyter Notebooks in Data Science Projects</i> in the Mining Software Repositories 2023 (MSR '23) - Registered Report, 15-16 May 2023, Melbourne, Australia.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="https://arxiv.org/abs/2304.05325">Preprint</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Rattanukul, P., Chansida Makaranond, C., Pumipat Watanakulcharus, P., Ragkhitwetsagul, C.,Nearunchorn†, T., Visoottiviseth, V., Choetkiertikul, M., Sunetnanta, T., <i>Microusity: A testing tool for Backends for Frontends (BFF) Microservice Systems</i> in the 31st IEEE/ACM International Conference on Program Comprehension (ICPC '23), 15-16 May 2023, Melbourne, Australia.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="https://arxiv.org/abs/2302.11150">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.ieeecomputersociety.org/10.1109/ICPC58990.2023.00021">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Sangaroonsilp, P., Dam, H. K., Choetkiertikul, M., Ragkhitwetsagul, C., & Ghose, A. (2023). <i>A taxonomy for mining and classifying privacy requirements in issue reports</i>. Information and Software Technology, 157 (January),
-                             <br />
-                             <b>Download:</b>&nbsp;<a href="https://doi.org/10.1016/j.infsof.2023.107162">DOI (Open Access)</a>
-                          </p>
-                          <h4 class="mdl-card__title-text" style="margin-bottom:10px;margin-top:10px">2022</h4><hr />
-                          <p style="margin-bottom:10px">
-                            Ritta, N., & Settewong, T., Kula, R. G., Ragkhitwetsagul, C., Sunetnanta, T., & Matsumoto, K., <i>Reusing My Own Code : Preliminary Results for Competitive Coding in Jupyter Notebooks</i> in the 29th Asia-Pacific Software Engineering Conference (APSEC 2022), 6-9 December 2022, Virtual Event.
-                             <br />
-                             <b>Download:</b>&nbsp;<a href="publications/2022_APSEC_ERA_Palm.pdf">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.org/10.1109/APSEC57359.2022.00062">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Settewong, T., Ritta, N., Kula, R. G., Ragkhitwetsagul, C., Sunetnanta, T., & Matsumoto, K., <i>Why Visualize Data When Coding ? Preliminary Categories for Coding in Jupyter Notebooks</i> in the 29th Asia-Pacific Software Engineering Conference (APSEC 2022), 6-9 December 2022, Virtual Event.
-                             <br />
-                             <b>Download:</b>&nbsp;<a href="publications/2022_APSEC_ERA_Gail.pdf">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.org/10.1109/APSEC57359.2022.00063">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Ragkhitwetsagul, C., Choetkiertikul, M., Hoonlor, A., & Prachyabrued, M.,<i>Virtual Reality for Software Engineering Presentations</i> in the 29th Asia-Pacific Software Engineering Conference (APSEC 2022), 6-9 December 2022, Virtual Event -- <b>Won the best paper award!</b>
-                             <br />
-                             <b>Download:</b>&nbsp;<a href="publications/2022_APSEC_EDU.pdf">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.org/10.1109/APSEC57359.2022.00072">DOI</a>&nbsp;|&nbsp;<a href="publications/apsec2022_edu_best_paper.pdf">Best Paper Award</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Krinke J. and Ragkhitwetsagul C.,<i>BigCloneBench Considered Harmful for Machine Learning.</i> in the 16th International Workshop on Software Clones (IWSC '22), 2 October 2022, Limassol, Cyprus - <b>Won the Best Paper Award and Best Presentation Award!.</b>
-                             <br />
-                             <b>Download:</b>&nbsp;<a href="publications/2022_iwsc.pdf">Preprint</a>,&nbsp;|&nbsp;<a href="https://doi.org/10.1109/IWSC55060.2022.00008">DOI</a>&nbsp;|&nbsp;<a href="files/iwsc2022BestPaperAward.pdf">Best Paper</a>&nbsp;&amp;&nbsp;<a href="files/iwsc2022BestPaperAward.pdf">People's Choice Award</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Jarukitpipat, V., Chhun, K., Wanprasert, W., Choetkiertikul, M., Sunetnanta, T., Kula, R. G., Chinthanet, B., Ishio, T., & Matsumoto, K., <i>V-Achilles : An Interactive Visualization of Transitive Security Vulnerabilities</i>. The 37th IEEE/ACM International Conference on Automated Software Engineering (ASE '22) - Tool Demonstration Track, 10-14 October 2022, Michigan, USA.
-                             <br />
-                             <b>Download:</b>&nbsp;<a href="publications/2022_ase_achilles.pdf">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.org/10.1145/3551349.3559526">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Kangwanwisit, P., Choetkiertikul, M., Ragkhitwetsagul, C., Sunetnanta, T., Maipradit, R., Hata, H.,  Matsumoto, K.<i>A component recommendation model for issues in software projects</i>. The 19th International Joint Conference on Computer Science and Software Engineering (JCSSE '22), 22 - 25 June 2022, Bangkok, Thailand.
-                             <br />
-                             <b>Download:</b>&nbsp;<a href="https://doi.org/10.1109/JCSSE54890.2022.9836311">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Ragkhitwetsagul C. and Paixao M.,<i>Recommending Code Improvements Based on Stack Overflow Answer Edits.</i> in the 19th International Conference on Mining Software Repositories (MSR '22') - Registered Report Track, 18-19 May 2022, Pittsburgh, PA, USA.
-                             <br />
-                             <b>Download:</b>&nbsp;<a href="https://arxiv.org/abs/2204.06773">Preprint</a>&nbsp;|
-                             <b>Video:</b>&nbsp;<iframe width="560" height="315" src="https://www.youtube.com/embed/ySAOlzw1YBI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                          </p>
-                          <p style="margin-bottom:10px">
-                           Robles G., Kula R. G., Ragkhitwetsagul C., Sakulniwat T., Matsumoto K., Gonzalez-Barahona J. M., <i>pycefr: Python Competency Level through Code Analysis.</i> in the 30th IEEE/ACM International Conference on Program Comprehension (ICPC '22) - Tool Demonstration Track, 16-17 May 2022, Pittsburgh, PA, USA.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="https://arxiv.org/abs/2203.15990">Preprint</a>&nbsp;|&nbsp;<a href="https://dl.acm.org/doi/10.1145/3524610.3527878">DOI</a>&nbsp;|&nbsp;<b><a href="https://tinyurl.com/ypdt3fwe">Video</a></b>&nbsp;|&nbsp;<a href="https://doi.org/10.1145/3524610.3527878">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Ragkhitwetsagul C., Krinke J., Choetkiertikul M., Sunetnanta T., Sarro F., <i>Identifying Software Engineering Challenges in Software SMEs: A Case Study in Thailand</i>. in the 29th International Conference on Software Analysis, Evolution, and Reengineering (SANER’22) - Industry Track, 15-18 March 2022, Honolulu, Hawaii.
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="publications/2022_saner_asetsi.pdf">Preprint</a>&nbsp;|&nbsp;<b><a href="files/saner2022_asetsi.pdf">Slides</a></b>&nbsp;|&nbsp;<b>
-				  <a href="https://youtu.be/OgfCeaLsauE?t=3669">Video</a></b>&nbsp;|&nbsp;<a href="https://doi.org/10.1109/SANER53432.2022.00036">DOI</a>
-                          </p>
-                          <h4 class="mdl-card__title-text" style="margin-bottom:10px;margin-top:10px">2021</h4><hr />
-                          <p style="margin-bottom:10px">
-                            Phaithoon S., Wongnil S., Pussawong P., Choetkiertikul M., Rakhitwetsagul C., Sunetnanta T., Maipradit R., Hata H., Matsumoto K.,&nbsp;<i>FixMe: A GitHub Bot for Detecting and Monitoring On-hold Self-Admitted Technical Debt.</i> in the Proceedings of the International Conference on Automated Software Engineering (ASE) - Tool Demonstrations Track, 2021 (Virtual Event).
-                            <br />
-                            <b>Download:</b>&nbsp;<a href="https://arxiv.org/abs/2109.02878">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.ieeecomputersociety.org/10.1109/ASE51524.2021.9678680">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Krinke, J., & Ragkhitwetsagul, C. (2021). <i>Code Similarity in Clone Detection (Book Chapter).</i>
-                            In K. Inoue & C. K. Roy (Eds.), Code Clone Analysis (pp. 135–160), Springer.<br />
-                            <b>Download:</b>&nbsp;<a href="https://doi.org/10.1007/978-981-16-1927-4">The Chapter</a>&nbsp;
-                            |&nbsp;<a href="https://link.springer.com/book/10.1007/978-981-16-1927-4">The Book</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Robert White, Jens Krinke, Earl Barr, Federica Sarro, Chaiyong Ragkhitwetsagul,
-                            <i>Artefact Relation Graphs for Unit Test Reuse Recommendation.</i>
-                            in the Proceedings of IEEE International Conference on Software Testing (ICST) 2021, Virtual Event.<br />
-                            <b>Download:</b>&nbsp;<a href="https://ieeexplore.ieee.org/abstract/document/9438599">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            Choetkiertikul, M., Dam, H.K., Tran, T. et al. 
-                            <i>Automatically recommending components for issue reports using deep learning.</i> 
-                            Empirical Software Engineering 26, 14 (2021). <br />
-                            <b>Download:</b>&nbsp;<a href="https://doi.org/10.1007/s10664-020-09898-5">DOI</a>
-                          </p>
-                          <h4 class="mdl-card__title-text" style="margin-bottom:10px;margin-top:10px">2020</h4><hr />
-                          <p style="margin-bottom:10px">
-                            D. Han, C. Ragkhitwetsagul, J. Krinke, M. Paixao, G. Rosa, 
-                            <i>Does code review really remove coding convention violations?</i>. 
-                            in the Proceedings of 20th IEEE International Working Conference on Source Code Analysis and Manipulation (SCAM), 28 Sept.-2 Oct. 2020, Adelaide, Australia (Virtual Event).<br />
-                            <b>Download:</b>&nbsp;<a href="publications/2020_scam.pdf">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.org/10.1109/SCAM51674.2020.00010">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            C. Ragkhitwetsagul, J. Krinke. <i>Siamese: Scalable and Incremental Code Clone Search via Multiple Code Representations</i>. 
-                            Empirical Software Engineering (EMSE), 2019 / ICSE 2020 (Journal-First). <br />
-                            <b>Download:</b>&nbsp;<a href="publications/2019_siamese_aam.pdf">Preprint</a>&nbsp;|
-                            DOI&nbsp;<a href="https://doi.org/10.1007/s10664-019-09697-7">10.1007/s10664-019-09697-7</a>&nbsp;|
-                            Website:&nbsp;<a href="https://github.com/UCL-CREST/Siamese">github.com/UCL-CREST/Siamese</a><br/>|
-                            Video:&nbsp;<iframe width="560" height="315" src="https://www.youtube.com/embed/Bq3F43URr8A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                          </p>
-                          <p style="margin-bottom:10px">
-                          C. Khanan, W. Luewichana, K. Pruktharathikoon, J. Jiarpakdee, C. Tantithamthavorn, M. Choetkiertikul, C. Ragkhitwetsagul, T. Sunetnanta.
-                          <i>JITBot: An Explainable Just-In-Time Defect Prediction Bot</i>,
-                          in the 35th IEEE/ACM International Conference on Automated Software Engineering (ASE ’20) - Tool Demo Track, September 21–25, 2020, Virtual Event, Australia<br />
-                          Website:&nbsp;<a href="https://jitbot-tool.github.io/">https://jitbot-tool.github.io/</a><br/>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            P. Phan-udom, N. Wattanakul, T. Sakulniwat, C. Ragkhitwetsagul, T. Sunetnanta, M. Choetkiertikul, R.G. Kula
-                            <i>Teddy: Automatic Recommendation of PythonicIdiom Usage For Pull-Based Software Project</i>,
-                            in The 36th IEEE International Conference on Software Maintenance and Evolution (ICSME 2020) - Tool Demo Track (Won the Best Tool Demo Award!), 
-                            September 21 - October 3, 2020, Adelaide, Australia.<br />
-                            <b>Download:</b>&nbsp;<a href="publications/icsme2020_teddy.pdf">Preprint</a>&nbsp;|&nbsp;<a href="publications/icsme2020_teddy_certificate.jpg">Award Certificate</a>
-                          </p>
-                          <h4 class="mdl-card__title-text" style="margin-bottom:10px;margin-top:10px">2019</h4><hr />
-                          <p style="margin-bottom:10px">
-                            N. Assavakamhaenghan, M. Choetkiertikul, S. Tuarob, R. G. Kula, H. Hata,
-                            C. Ragkhitwetsagul, T. Sunetnanta, and K. Matsumoto.
-                            <i>Software Team Member Configurations: A Study of Team Effectiveness in Moodle</i>,
-                            in The 10th International Workshop on Empirical Software Engineering in Practice (IWESEP 2019), Tokyo, Japan<br />
-                            <b>Download:</b>&nbsp;<a href="publications/iwesep19_Noppadol.pdf">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.org/10.1109/IWESEP49350.2019.00012">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            T. Sakulniwat, R. G. Kula, C. Ragkhitwetsagul, M. Choetkiertikul, T. Sunetnanta,
-                            D. Wang, T. Ishio and K. Matsumoto.
-                            <i>Visualizing the Usage of Pythonic Idioms Over Time: A Case Study of the with open Idiom</i>,
-                            in The 10th International Workshop on Empirical Software Engineering in Practice (IWESEP 2019), Tokyo, Japan<br />
-                            <b>Download:</b>&nbsp;<a href="publications/iwesep19_Tattiya.pdf">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.ieeecomputersociety.org/10.1109/IWESEP49350.2019.00016">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            V. Arammongkolvichai, R. Koschke, C. Ragkhitwetsagul, M. Choetkiertikul, T. Sunetnanta.
-                            <i>Improving Clone Detection Precision using Machine Learning Techniques</i>,
-                            in The 10th International Workshop on Empirical Software Engineering in Practice (IWESEP 2019), Tokyo, Japan<br />
-                            <b>Download:</b>&nbsp;<a href="publications/iwesep19_Vara.pdf">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.org/10.1109/IWESEP49350.2019.00014">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            T. Bunkerd, D. Wang, R. G. Kula, C. Ragkhitwetsagul, M. Choetkiertikul,
-                            T. Sunetnanta, T. Ishio, and K. Matsumoto.
-                            <i>How Do Contributors Impact Code Naturalness? An Exploratory Study of 50 Python Projects</i>,
-                            in The 10th International Workshop on Empirical Software Engineering in Practice (IWESEP 2019), Tokyo, Japan<br />
-                            <b>Download:</b>&nbsp;<a href="publications/iwesep19_Thanadon.pdf">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.org/10.1109/IWESEP49350.2019.00010">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            S. Wattanakriengkrai, N. Srisermphoak, S. Sintoplertchaikul,
-                            M. Choetkiertikul, C. Ragkhitwetsagul, T. Sunetnanta,
-                            H. Hata and K. Matsumoto.
-                            <i>Automatic Classifying Self-Admitted Technical Debt Using N-gram IDF</i>,
-                            in the 26th Asia-Pacific Software Engineering Conference (APSEC 19), Putrajaya, Malaysia.<br />
-                            <b>Download:</b>&nbsp;<a href="publications/apsec19_Supatsara.pdf">Preprint</a>&nbsp;|&nbsp;<a href="https://doi.ieeecomputersociety.org/10.1109/APSEC48747.2019.00050">DOI</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                          M. Paixao, J. Krinke, D. Han, C. Ragkhitwetsagul, M. Harman.
-                          <i>The Impact of Code Review on Architectural Changes.</i>
-                          Transactions on Software Engineering (TSE), 2019. <br />
-                          <b>Download:</b>&nbsp;<a href="https://doi.org/10.1109/TSE.2019.2912113">DOI</a>
-                          </p>
-                          <h4 class="mdl-card__title-text" style="margin-bottom:10px;margin-top:10px">2018</h4><hr />
-                          <p style="margin-bottom:10px">
-                            C. Ragkhitwetsagul. <i>Code similarity and clone search in large-scale source code data</i>. PhD thesis, 2018. <br />
-                            <b>Download:</b>&nbsp;<a href="publications/chaiyong_thesis.pdf">PhD thesis</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            C. Ragkhitwetsagul, J. Krinke, M. Paixao, R. Oliveto, G. Bianco (2018). <i>Toxic Code Snippets on Stack Overflow</i>. Transactions on Software Engineering (TSE), 2018. <br />
-                            <b>Download:</b>:&nbsp;<!--a href="http://arxiv.org/abs/1806.07659">1806.08149</a-->
-                            <a href="publications/chaiyong_toxic_code_tse_2019.pdf">Preprint</a>&nbsp;
-                            DOI:&nbsp;<a href="https://doi.org/10.1109/TSE.2019.2900307">10.1109/TSE.2019.2900307</a>&nbsp;
-                            Website:&nbsp;<a href="https://ucl-crest.github.io/cloverflow-web/">ucl-crest.github.io/cloverflow-web</a>&nbsp;<br />
-                            <b>Reviewed in</b> <a href="https://neverworkintheory.org/2021/08/19/toxic-code-snippets-on-stack-overflow.html">neverworkintheory.org</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            &nbsp;&nbsp;&nbsp;&nbsp;Additional material:<br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;C. Ragkhitwetsagul, J. Krinke, R. Oliveto (2017). <i>Awareness and Experience of Developers to Outdated and License-Violating Code on Stack Overflow: An Online Survey</i>. UCL Computer Science Research Note (RN/17/10)</i>, 2017. <br />
-                            &nbsp;&nbsp;&nbsp;&nbsp;<b>Download:</b> <a href="http://www.cs.ucl.ac.uk/fileadmin/UCL-CS/research/Research_Notes/cloverflow_survey_rn-17-10.pdf">Research Note</a>&nbsp;arXiv:&nbsp;<a href="http://arxiv.org/abs/1806.08149">1806.08149</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            J. Wilkie , Z. Al Halabi , A. Karaoglu , J. Liao , G. Ndungu, C. Ragkhitwetsagul, M. Paixão , J. Krinke (2018). <i>Who's this? Developer identification using IDE event data</i>. In 15th International Conference on Mining Software Repositories -- Mining Challenge (MSR 2018), 2018. Gothenburg, Sweden, 2018. <br />
-                            <b>Download:</b>&nbsp;<a href="publications/mining_challenge_18.pdf">Preprint</a>&nbsp;
-                            DOI:&nbsp;<a href="https://doi.org/10.1145/3196398.3196461">10.1145/3196398.3196461</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            C. Ragkhitwetsagul, J. Krinke, B. Marnette (2017). <i>A picture is worth a thousand words: code clone detection based on image similarity</i>. In 12th International Workshop on Software Clones, 2018. Campobasso, Italy, 2018. <br />
-                            <b>Download:</b> <a href="publications/iwsc2018_vincent.pdf">Preprint</a>&nbsp;DOI:&nbsp;<a href="https://doi.org/10.1109/IWSC.2018.8327318">10.1109/IWSC.2018.8327318</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            C. Ragkhitwetsagul, J. Krinke, D. Clark (2017), <i>A comparison of code similarity analysers,</i> Empirical Software Engineering, vol. 23, no. 4, pp. 2464–2519, Aug. 2018.<br />
-                            <b>Download:</b> <a href="publications/cloplag_emse.pdf">Preprint</a>&nbsp;DOI:&nbsp;<a href="http://dx.doi.org/10.1007/s10664-017-9564-7">10.1007/s10664-017-9564-7</a>
-                            &nbsp;Slideshow:&nbsp;<a href="https://www.slideshare.net/secret/dEQX7m8ZfTlKPJ" target="_blank">Slideshare</a>
-                          </p>
-                          <h4 class="mdl-card__title-text" style="margin-bottom:10px;margin-top:10px">2017</h4><hr />
-                          <p style="margin-bottom:10px">
-                            M. Paixao, J. Krinke, D. Han, C. Ragkhitwetsagul and M. Harman (2017). <i>Are Developers Aware of the Architectural Impact of Their Changes?</i> In the 32nd IEEE/ACM International Conference on Automated Software Engineering (ASE 2017), Illinois, USA<br />
-                            <b>Download:</b> <a href="publications/preprint_ase_architecture_awareness.pdf">Preprint</a>&nbsp;DOI:&nbsp;<a href="https://doi.org/10.1109/ASE.2017.8115622">10.1109/ASE.2017.8115622</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            C. Ragkhitwetsagul, J. Krinke (2017). <i>Using Compilation/Decompilation to Enhance Clone Detection</i>. In 11th International Workshop on Software Clones, 2017. Klagenfurt, Austria</i> -- Won the People's Choice Award!<br />
-                            <b>Download:</b> <a href="publications/iwsc2017.pdf">Preprint</a>&nbsp;DOI:&nbsp;<a href="https://doi.org/10.1109/IWSC.2017.7880502">10.1109/IWSC.2017.7880502</a>&nbsp;Slideshow:&nbsp;<a href="http://www.slideshare.net/shyyonk/using-compilationdecompilation-to-enhance-clone-detection">SlideShare</a>
-                          </p>
-                          <h4 class="mdl-card__title-text" style="margin-bottom:10px;margin-top:10px">2016</h4><hr />
-                          <p style="margin-bottom:10px">
-                            C. Ragkhitwetsagul, J. Krinke, D. Clark (2016). <i>Similarity of Source Code in the Presence of Pervasive Modifications</i>. In 16th IEEE International Working Conference on Source Code Analysis and Manipulation (SCAM), 2016. North Carolina, USA. <br />
-                            <b>Download:</b> <a href="publications/scam2016.pdf">Preprint</a>&nbsp;DOI:&nbsp;<a href="http://ieeexplore.ieee.org/document/7781805/">10.1109/SCAM.2016.13</a>&nbsp;Slideshow:&nbsp;<a href="http://www.slideshare.net/shyyonk/similarity-of-source-code-in-the-presence-of-pervasive-modifications-scam16-67298196">SlideShare</a>
-                          </p>
-                          <p style="margin-bottom:10px">
-                            C. Ragkhitwetsagul (2016). <i>Measuring Code Similarity in Large-scaled Code Corpora</i>. In 32nd International Conference on Software Maintenance and Evolution (ICSME): Doctoral Symposium, 2016. North Carolina, USA.</i>
-                            <br />
-                            <b>Download:</b> <a href="publications/chaiyong_icsme2016ds.pdf">Preprint</a>&nbsp;DOI:&nbsp;<a href="http://ieeexplore.ieee.org/document/7816530/">10.1109/ICSME.2016.18</a>
-                            </p>
-                          <p style="margin-bottom:10px">
-                            <!--I do not have any publication now <i class="material-icons ">mood_bad</i> (they're coming soon! Please wait.).-->
-                            C. Ragkhitwetsagul, M. Paixao, M. Adham, S. Busari, J. Krinke, and J.H. Drake (2016). <i>Searching for Configurations in Clone Evalution: A Replication Study.</i> In 8th International Symposium on Search-based Software Engineering (SSBSE): Challenge Track, 2016. North Carolina, USA.
-                            <br />
-                            <b>Download:</b> <a href="publications/chaiyong_et_al_ssbse2016-46.pdf">Preprint</a>&nbsp;DOI:&nbsp;<a href="http://rd.springer.com/chapter/10.1007/978-3-319-47106-8_20">10.1007/978-3-319-47106-8_20</a>&nbsp;Slideshow:&nbsp;<a href="http://www.slideshare.net/shyyonk/searching-for-configurations-in-clone-evaluation-a-replication-study-ssbse16">SlideShare</a>
-                          </p>
-                          <hr />
-                          <!--<h4>Past</h4><hr />-->
-                          <p><i>The publications listed from here are undergraduate student projects that I advised at the faculty of ICT, Mahidol University before my PhD:</i></p>
-                          <p>P. Janviriya, T. Ongarjithichai, P. Numruktrakul, C. Ragkhitwetsagul (2014). <i>CloudyDays : Cloud Storage Integration System.</i> In Student Project Conference (ICT-ISPC), 2014 Third ICT International (pp. 125–128). Nakhonpathom, Thailand.
-                          <br />
-                          <b>Download:</b> DOI: <a href="http://dx.doi.org/10.1109/ICT-ISPC.2014.6923233">10.1109/ICT-ISPC.2014.6923233</a>
-                          </p>
-                          <p>P. Hathaiwichian, L. Siriwittayacharoen, A. Wongwachirawanich, C. Ragkhitwetsagul (2014). <i>Android Application for Event Management and Information Propagation.</i> In Student Project Conference (ICT-ISPC), 2014 Third ICT International (pp. 139–142). Nakhonpathom, Thailand.
-                          <br />
-                          <b>Download:</b> DOI: <a href="http://dx.doi.org/10.1109/ICT-ISPC.2014.6923236">10.1109/ICT-ISPC.2014.6923236</a>
-                          </p>
-                          </ul>
+
+                        <div class="publication-item">
+                            <h4>Social Media Reactions to Open Source Promotions: AI-Powered GitHub Projects on Hacker News</h4>
+                            <p class="authors">Prachnachai Meakpaiboonwattana, Warittha Tarntong, Thai Mekratanavorakul, Chaiyong Ragkhitwetsagul, Pattaraporn Sangaroonsilp, Raula Kula, Morakot Choetkiertikul, Kenichi Matsumoto and Thanwadee Sunetnanta</p>
+                            <p class="venue">Proceedings of the 41st International Conference on Software Maintenance and Evolution (ICSME) 2025 - Research Track, 7-12 September 2025, Auckland, New Zealand</p>
+                            <div class="publication-links">
+                                <a href="https://arxiv.org/abs/2506.12643" target="_blank" class="btn btn-small">Preprint</a>
+                            </div>
                         </div>
-                      </div>
-                </div>
-                <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
-                  <!--<div class="mdl-card__media mdl-cell mdl-cell--12-col-tablet">
-                      <img class="article-image" src=" images/example-blog01.jpg" border="0" alt="">
-                  </div>-->
-                  <div class="mdl-cell mdl-cell--12-col">
-                      <h3 class="mdl-card__title-text">Academic Services</h3>
-                      <div class="mdl-card__supporting-text no-left-padding">
-                        <p style="margin-bottom:10px">
-                        <h4>2021</h4>
-                        </p>
-                        <p style="margin-bottom:10px">Empirical Software Engineering (EMSE) Reviewer</p>
-                        <p style="margin-bottom:10px">ICSME 2021 Research Track Program Committee (<a href="https://icsme2021.github.io/">https://icsme2021.github.io</a>)</p>
-                        <p style="margin-bottom:10px">ICPC 2021 ERA Track Co-chair (<a href="https://conf.researchr.org/track/icpc-2021/icpc-2021-era">https://conf.researchr.org/track/icpc-2021/icpc-2021-era</a>)</p>
-                        <p style="margin-bottom:10px">ASE 2021 Research Track Program Committee (<a href="https://conf.researchr.org/track/ase-2021/ase-2021-papers">https://conf.researchr.org/track/ase-2021/ase-2021-papers</a>)</p>
-                        <p style="margin-bottom:10px">ASE 2021 Late Breaking Results Track Program Committee (<a href="https://conf.researchr.org/track/ase-2021/ase-2021-late-breaking-results">https://conf.researchr.org/track/ase-2021/ase-2021-late-breaking-results</a>)</p>
-                        <p style="margin-bottom:10px">SANER 2021 ERA Track Program Committee (<a href="https://saner2021.shidler.hawaii.edu/index">https://saner2021.shidler.hawaii.edu/index</a>)</p>
-                        <hr />
-                        <p style="margin-bottom:10px">
-                          <h4>2020</h4>
-                        </p>
-                        <p style="margin-bottom:10px">Journal of Systems & Software (JSS) Reviewer</p>
-                        <p style="margin-bottom:10px">Science of Computer Programming (SCICO) Reviewer</p>
-                        <p style="margin-bottom:10px">Computer Science Review (COSREV) Reviewer</p>
-                        <p style="margin-bottom:10px">ASE 2020 Late Breaking Results Track Program Committee (<a href="https://conf.researchr.org/track/ase-2020/ase-2020-late-breaking-results">https://conf.researchr.org/track/ase-2020/ase-2020-late-breaking-results</a>)</p>
-                        <p style="margin-bottom:10px">ASE 2020 Research Track Program Committee (<a href="https://conf.researchr.org/track/ase-2020/ase-2020-papers">https://conf.researchr.org/track/ase-2020/ase-2020-papers</a>)</p>
-                        <p style="margin-bottom:10px">ICPC 2020 Research Track Program Committee (<a href="https://conf.researchr.org/track/icpc-2020/icpc-2020-research">https://conf.researchr.org/track/icpc-2020/icpc-2020-research</a>)</p>
-                      </div>
-                    </div>
-                  </div>
-                <div class="mdl-grid mdl-cell mdl-cell--12-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp">
-                    <!--<div class="mdl-card__media mdl-cell mdl-cell--12-col-tablet">
-                        <img class="article-image" src=" images/example-blog01.jpg" border="0" alt="">
-                    </div>-->
-                    <div class="mdl-cell mdl-cell--12-col">
-                        <h3 class="mdl-card__title-text">Presentations</h3>
-                        <div class="mdl-card__supporting-text no-left-padding">
-                          <p style="margin-bottom:10px">
-                            <b>21/2/2017:</b> <a href="http://www.slideshare.net/shyyonk/using-compilationdecompilation-to-enhance-clone-detection">Using Compilation/Decompilation to Enhance Clone Detection</a>: The slides of my talk at <a href=https://iwsc2017.github.io>IWSC '17</a>.
-                          </p>
-                          <p style="margin-bottom:10px">
-                            <b>3/10/2016:</b> <a href="http://www.slideshare.net/shyyonk/similarity-of-source-code-in-the-presence-of-pervasive-modifications-scam16-67298196">Similarity of Source Code in the Presence of Pervasive Modifications</a>: The slides of my talk at <a href="http://www.ieee-scam.org/2016/">SCAM '16</a>.
-                          </p>
-                          <p style="margin-bottom:10px">
-                            <b>9/10/2016:</b> <a href="http://www.slideshare.net/shyyonk/searching-for-configurations-in-clone-evaluation-a-replication-study-ssbse16">Searching for Configurations in Clone Evalution: A Replication Study</a>: The slides of my talk at <a href="http://ssbse.org/2016">SSBSE '16 (Challenge Track)</a>.
-                          </p>
-                          <p style="margin-bottom:10px">
-                            <b>15/06/2016:</b> <a href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/cloplag-issse2016.pdf">Similarity of Source Code in the Presence of Pervasive Modifications</a>: The slides of my talk at <a href="http://www.sesa.unisa.it/seschool/">the 12th International Summer School on Software Engineering (Student Talk)</a> covering the complete results of CloPlag experiment.
-                          </p>
-                          <p style="margin-bottom:10px">
-                            <b>01/06/2015:</b> <a href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/COW42-CloPlag.pdf">CloPlag: A Study of Effects of Code Obfuscation to Similarity Detection Tools</a>: Latest update of CloPlag study with more results! It was given at COW 42 Annual Research Review of CREST.
-                          </p>
-                          <p style="margin-bottom:10px">
-                            <b>06/02/2015:</b> <a href="http://www0.cs.ucl.ac.uk/staff/C.Ragkhitwetsagul/files/CloPlag.pdf">CloPlag: A Study of Effects of Code Obfuscation to Clone/Plagiarism Detection Tools</a>: A presentation of intial results from the experiment on effects of code obfuscation to current similarity detection tools. It was given at a CREST Monthly Meeting.
-                          </p>
+
+                        <div class="publication-item">
+                            <h4>Effectiveness of Explainable Artificial Intelligence (XAI) Techniques for Improving Human Trust in Machine Learning Models: A Systematic Literature Review</h4>
+                            <p class="authors">In-on Wiratsin and Chaiyong Ragkhitwetsagul</p>
+                            <p class="venue">IEEE Access, 2025</p>
+                            <div class="publication-links">
+                                <a href="https://ieeexplore.ieee.org/document/11017606" target="_blank" class="btn btn-small">DOI</a>
+                            </div>
                         </div>
-                      </div>
-                </div>
-                <div class="mdl-cell mdl-cell--4-col-tablet mdl-card mdl-card mdl-shadow--4dp">
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Worth Reading</h2>
-                    </div>
-                    <div class="mdl-card__media">
-                        <a href="#"><img class="article-image" src=" images/worth_reading.jpg" border="0" alt="" title="Photo by Sharon McCutcheon on Unsplash"></a>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                      <p style="padding:5px">Interesting papers or articles regarding doing a PhD and conducting reserach in general.</p>
-      	            	<ul>
-      	            		<li>Schwartz, M. A., <a href="http://doi.org/10.1785/gssrl.82.1.3">THE IMPORTANCE OF STUPIDITY IN SCIENTIFIC RESEARCH.</a> Journal of Cell Science. 2008; 121, 1771.</li>
-      	            		<li>Harman, M., <a href="files/harman-writing-advice.pdf">Draft Guidelines for My Students on Writing Software Engineering Research Papers.</a></li>
-                        <li>Jeff Offutt, <a href="http://cs.gmu.edu/~offutt/stvr/17-3-july2007.html">Editorial: Standards for reviewing papers.</a> Softw. Test. Verif. Reliab. 2007; 17:135–136</li>
-                        <li>Virginia Gewin, <a href="https://www.nature.com/articles/d41586-018-02404-4">How to write a first-class paper</a></li>
-      	            	</ul>
-                    </div>
-                </div>
-                <div class="mdl-cell mdl-cell--4-col-tablet mdl-card mdl-card mdl-shadow--4dp">
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Worth Watching</h2>
-                    </div>
-                    <div class="mdl-card__media">
-                        <a href="#"><img class="article-image" src=" images/worth_watching.jpg" border="0" alt="" title="Photo by John Schnobrich on Unsplash"></a>
-                    </div>
-                    <div class="mdl-card__supporting-text">
-                      <p style="padding:5px">Videos or slides that I found very valuable for doing research.</p>
-      	            	<ul>
-      	            		<li>Jones, S. P., <a href="https://www.microsoft.com/en-us/research/video/how-to-write-a-great-research-paper-3/">How to write a great research paper.</a></li>
-            						<li>Jones, S. P., Hughes J., Launchbury, J., <a href="https://www.microsoft.com/en-us/research/video/how-to-give-a-great-research-talk-3/">How to give a great research talk.</a> 1993.</li>
-                        <li>Andreas Zeller, <a href="https://www.slideshare.net/andreas.zeller/on-impact-in-software-engineering-research">On Impact in Software Engineering Research</a></li>
-                        <li>Andreas Zeller, <a href="https://www.facebook.com/icseconf/videos/1092382754247263/">Relevance, Simplicity, and Innovation: Stories and Takeaways from SE research (from 42 minutes onwards)</a></li>
-                        <li>Alexander Serebrenik, <a href="">Peer Reviews (and how to survive them)</a></li>
-      	            	</ul>
+
+                        <div class="publication-item">
+                            <h4>Test It Before You Trust It: Applying Software Testing for Trustworthy In-context Learning</h4>
+                            <p class="authors">Teeradaj Racharak, Chaiyong Ragkhitwetsagul, Chommakorn Sontesadisai, and Thanwadee Sunetnanta</p>
+                            <p class="venue">Proceedings of the 30th Annual International Conference on Natural Language & Information Systems (NLDB 2025), 4-6 July 2025, Kanazawa, Japan</p>
+                            <div class="publication-links">
+                                <a href="http://arxiv.org/abs/2504.18827" target="_blank" class="btn btn-small">Preprint</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>On Categorizing Open Source Software Security Vulnerability Reporting Mechanisms on GitHub</h4>
+                            <p class="authors">Sushawapak Kancharoendee, Thanat Phichitphanphong, Chanikarn Jongyingyos, Brittany Reid, Raula Gaikovina Kula, Morakot Choetkiertikul, Chaiyong Rakhitwetsagul, Thanwadee Sunetnanta</p>
+                            <p class="venue">Proceedings of the 32nd IEEE International Conference on Software Analysis, Evolution and Reengineering (SANER), 4-7 March 2025, Montreal, Quebec, Canada</p>
+                            <div class="publication-links">
+                                <a href="https://arxiv.org/pdf/2502.07395" target="_blank" class="btn btn-small">Preprint</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!--div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-card mdl-card mdl-shadow--4dp portfolio-blog-card-full-bg  ">
-                    <div class="mdl-card__title mdl-card--expand "></div>
-                    <div class="mdl-card__actions">
-                        <span class="demo-card-image__filename"><font color="white">SCAM+ICSME+SSBSE 2016</font></span>
+
+                <!-- 2024 -->
+                <div class="year-section">
+                    <h3 class="year-title">2024</h3>
+                    <div class="publication-list">
+                        <div class="publication-item">
+                            <h4>Sprint2Vec: a deep characterization of sprints in iterative software development</h4>
+                            <p class="authors">Choetkiertikul M., Banyongrakkul P., Ragkhitwetsagul C., Tuarob S., Dam H. K., and Sunetnanta T.</p>
+                            <p class="venue">Transactions on Software Engineering, 2024. (To appear)</p>
+                            <div class="publication-links">
+                                <a href="https://doi.org/10.1109/TSE.2024.3509016" target="_blank" class="btn btn-small">DOI</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>Challenges in Adopting LLaMA: An Empirical Study of Discussions on Stack Overflow</h4>
+                            <p class="authors">Deeprom R., Yang S., Higo Y., Choetkiertikul M. and Ragkhitwetsagul C.</p>
+                            <p class="venue">Proceedings of the 12th International Workshop on Quantitative Approaches to Software Quality (QuASoQ 2024), 3 December 2024, Chongqing, China</p>
+                            <div class="publication-links">
+                                <a href="https://ceur-ws.org/Vol-3864/quasoq-2024-paper-05.pdf" target="_blank" class="btn btn-small">Proceedings</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>DEV-EYE: A Tool for Monitoring Bus Factor Using Commit History</h4>
+                            <p class="authors">Kazimoto D. M., Choetkiertikul M., Ragkhitwetsagul C., Sunetnanta T.</p>
+                            <p class="venue">Proceedings of the 31st Asia-Pacific Software Engineering Conference (APSEC 2024) Early Research Achievement Track, 3-6 December 2024, Chongqing, China</p>
+                            <div class="publication-links">
+                                <a href="" class="btn btn-small">Preprint</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>Autorepairability of ChatGPT and Gemini: A Comparative Study</h4>
+                            <p class="authors">Sriwilailak C., Higo Y., Lapvikai P., Ragkhitwetsagul C., Choetkiertikul M.</p>
+                            <p class="venue">Proceedings of the 31st Asia-Pacific Software Engineering Conference (APSEC 2024) Early Research Achievement Track, 3-6 December 2024, Chongqing, China</p>
+                            <div class="publication-links">
+                                <a href="" class="btn btn-small">Preprint</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>jscefr: A Framework to Evaluate the Code Proficiency for JavaScript</h4>
+                            <p class="authors">Ragkhitwetsagul C., Kongwongsupak K., Maneesawas T., Puttiwarodom N., Rojpaisarnkit R., Choetkiertikul M., Kula R. G., Sunetnanta T.</p>
+                            <p class="venue">Proceedings of the 40th International Conference on Software Maintenance and Evolution (ICSME '24) Tool Demo Track, 6-11 October 2024, Flagstaff, AZ, USA</p>
+                            <div class="publication-links">
+                                <a href="https://arxiv.org/abs/2408.16452" target="_blank" class="btn btn-small">Preprint</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>Code Clone Configuration as a Multi-Objective Search Problem</h4>
+                            <p class="authors">Sousa D., Paixao M., Ragkhitwetsagul C., and Uchoa I.</p>
+                            <p class="venue">Proceedings of the 18th ACM/IEEE International Symposium on Empirical Software Engineering and Measurement (ESEM '24) Emerging Results, Vision and Reflection Papers Track, 20-25 October 2024, Barcelona, Spain</p>
+                            <div class="publication-links">
+                                <a href="https://doi.org/10.1145/3674805.3690757" target="_blank" class="btn btn-small">DOI</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>Towards Identifying Code Proficiency through the Analysis of Python Textbooks</h4>
+                            <p class="authors">Rojpaisarnkit R., Robles G., Kula R. G., Wang D., Ragkhitwetsagul C., Gonzalez-Barahona J. M., Matsumoto K.</p>
+                            <p class="venue">Proceedings of the 40th International Conference on Software Maintenance and Evolution (ICSME '24), 6-11 October 2024, Flagstaff, AZ, USA</p>
+                            <div class="publication-links">
+                                <a href="https://arxiv.org/pdf/2408.02262" target="_blank" class="btn btn-small">Preprint</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>Typhon: Automatic Recommendation of Relevant Code Cells in Jupyter Notebooks</h4>
+                            <p class="authors">Ragkhitwetsagul C., Prasertpol V., Ritta N., Sae-Wong P., Noraset T. and Choetkiertikul M.</p>
+                            <p class="venue">Proceedings of the 21st International Joint Conference on Computer Science and Software Engineering (JCSSE '24), 19-22 June 2024, Phuket, Thailand</p>
+                            <div class="publication-links">
+                                <a href="https://arxiv.org/abs/2405.09075" target="_blank" class="btn btn-small">Preprint</a>
+                                <a href="publications/Typhon_JCSSE_2024.pdf" target="_blank" class="btn btn-small">Presentation</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>See to Believe: Using Visualization To Motivate Updating Third-party Dependencies</h4>
+                            <p class="authors">Ragkhitwetsagul C., Jarukitpipat V., Kula R. G., Choetkiertikul M., Chhun K., Wanprasert W., Sunetnanta T.</p>
+                            <p class="venue">Proceedings of the 21st International Joint Conference on Computer Science and Software Engineering (JCSSE '24), 19-22 June 2024, Phuket, Thailand</p>
+                            <div class="publication-links">
+                                <a href="https://arxiv.org/abs/2405.09074" target="_blank" class="btn btn-small">Preprint</a>
+                                <a href="publications/V-Achilles_JCSSE_2024.pdf" target="_blank" class="btn btn-small">Presentation</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>Adoption of Automated Software Engineering Tools and Techniques in Thailand</h4>
+                            <p class="authors">Ragkhitwetsagul C., Krinke J., Choetkiertikul M., Sunetnanta T., Sarro F.</p>
+                            <p class="venue">Empirical Software Engineering, 2024</p>
+                            <div class="publication-links">
+                                <a href="https://link.springer.com/article/10.1007/s10664-024-10472-6" target="_blank" class="btn btn-small">DOI (Open Access)</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>Detecting Malicious Android Game Applications on Third-Party Stores Using Machine Learning</h4>
+                            <p class="authors">Sanamontre T., Visoottiviseth V., and Ragkhitwetsagul C.</p>
+                            <p class="venue">Proceedings of the 38th International Conference on Advanced Information Networking and Applications (AINA 2024), Volume IV, LNDECT 202, 17-19 April 2024, Kitakyushu, Japan</p>
+                            <div class="publication-links">
+                                <a href="publications/2024_Sanamontre.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                <a href="https://doi.org/10.1007/978-3-031-57916-5_21" target="_blank" class="btn btn-small">DOI</a>
+                            </div>
+                        </div>
+
+                        <div class="publication-item">
+                            <h4>Autorepairability: A New Software Quality Characteristic</h4>
+                            <p class="authors">Lapvikai P., Ragkhitwetsagul C., Choetkiertikul M., Higo Y.</p>
+                            <p class="venue">31st IEEE International Conference on Software Analysis, Evolution, and Reengineering (SANER 2024), Rovaniemi, Finland</p>
+                            <div class="publication-links">
+                                <a href="publications/2024_SANER_ERA_Pongpop.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                            </div>
+                        </div>
                     </div>
-                </div-->
-                <div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-card mdl-shadow--4dp ">
-                    <div class="mdl-card__media">
-                        <a href="#"> <img class="article-image" src=" images/cow43.jpg" border="0" alt=""></a>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="load-more-container">
+                    <button class="btn btn-secondary" id="loadMoreBtn">Load More Publications</button>
+                </div>
+
+                <!-- Hidden Publications (initially hidden) -->
+                <div id="hiddenPublications" style="display: none;">
+                    <!-- 2023 -->
+                    <div class="year-section">
+                        <h3 class="year-title">2023</h3>
+                        <div class="publication-list">
+                            <div class="publication-item">
+                                <h4>Studying the association between Gitcoin's issues and resolving outcomes</h4>
+                                <p class="authors">Choetkiertikul M., Puengmongkolchaikit A., Chandra P., Ragkitwetsakul C., Maipradit R., Hata H., Sunetnanta T., Matsumoto K.</p>
+                                <p class="venue">Journal of Systems and Software, 2023</p>
+                                <div class="publication-links">
+                                    <a href="https://www.sciencedirect.com/science/article/abs/pii/S0164121223002303" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Mining the Characteristics of Jupyter Notebooks in Data Science Projects</h4>
+                                <p class="authors">Choetkiertikul M., Hoonlor A., Ragkhitwetsagul C., Pongpaichet S., Sunetnanta T., Settewong T., Jiravatvanich V., Kaewpichai U., Kula R. G.</p>
+                                <p class="venue">Proceedings of the Mining Software Repositories 2023 (MSR '23) - Registered Report, 15-16 May 2023, Melbourne, Australia</p>
+                                <div class="publication-links">
+                                    <a href="https://arxiv.org/abs/2304.05325" target="_blank" class="btn btn-small">Preprint</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Microusity: A testing tool for Backends for Frontends (BFF) Microservice Systems</h4>
+                                <p class="authors">Rattanukul, P., Chansida Makaranond, C., Pumipat Watanakulcharus, P., Ragkhitwetsagul, C., Nearunchorn†, T., Visoottiviseth, V., Choetkiertikul, M., Sunetnanta, T.</p>
+                                <p class="venue">Proceedings of the 31st IEEE/ACM International Conference on Program Comprehension (ICPC '23), 15-16 May 2023, Melbourne, Australia</p>
+                                <div class="publication-links">
+                                    <a href="https://arxiv.org/abs/2302.11150" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.ieeecomputersociety.org/10.1109/ICPC58990.2023.00021" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>A taxonomy for mining and classifying privacy requirements in issue reports</h4>
+                                <p class="authors">Sangaroonsilp, P., Dam, H. K., Choetkiertikul, M., Ragkhitwetsagul, C., & Ghose, A.</p>
+                                <p class="venue">Information and Software Technology, 157 (January), 2023</p>
+                                <div class="publication-links">
+                                    <a href="https://doi.org/10.1016/j.infsof.2023.107162" target="_blank" class="btn btn-small">DOI (Open Access)</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mdl-card__supporting-text">
-                        <b>Research Activities<b>
+
+                    <!-- 2022 -->
+                    <div class="year-section">
+                        <h3 class="year-title">2022</h3>
+                        <div class="publication-list">
+                            <div class="publication-item">
+                                <h4>Reusing My Own Code : Preliminary Results for Competitive Coding in Jupyter Notebooks</h4>
+                                <p class="authors">Ritta, N., & Settewong, T., Kula, R. G., Ragkhitwetsagul, C., Sunetnanta, T., & Matsumoto, K.</p>
+                                <p class="venue">Proceedings of the 29th Asia-Pacific Software Engineering Conference (APSEC 2022), 6-9 December 2022, Virtual Event</p>
+                                <div class="publication-links">
+                                    <a href="publications/2022_APSEC_ERA_Palm.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/APSEC57359.2022.00062" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Why Visualize Data When Coding ? Preliminary Categories for Coding in Jupyter Notebooks</h4>
+                                <p class="authors">Settewong, T., Ritta, N., Kula, R. G., Ragkhitwetsagul, C., Sunetnanta, T., & Matsumoto, K.</p>
+                                <p class="venue">Proceedings of the 29th Asia-Pacific Software Engineering Conference (APSEC 2022), 6-9 December 2022, Virtual Event</p>
+                                <div class="publication-links">
+                                    <a href="publications/2022_APSEC_ERA_Gail.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/APSEC57359.2022.00063" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Virtual Reality for Software Engineering Presentations</h4>
+                                <p class="authors">Ragkhitwetsagul, C., Choetkiertikul, M., Hoonlor, A., & Prachyabrued, M.</p>
+                                <p class="venue">Proceedings of the 29th Asia-Pacific Software Engineering Conference (APSEC 2022), 6-9 December 2022, Virtual Event -- <strong>Won the best paper award!</strong></p>
+                                <div class="publication-links">
+                                    <a href="publications/2022_APSEC_EDU.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/APSEC57359.2022.00072" target="_blank" class="btn btn-small">DOI</a>
+                                    <a href="publications/apsec2022_edu_best_paper.pdf" target="_blank" class="btn btn-small">Best Paper Award</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>BigCloneBench Considered Harmful for Machine Learning</h4>
+                                <p class="authors">Krinke J. and Ragkhitwetsagul C.</p>
+                                <p class="venue">Proceedings of the 16th International Workshop on Software Clones (IWSC '22), 2 October 2022, Limassol, Cyprus - <strong>Won the Best Paper Award and Best Presentation Award!</strong></p>
+                                <div class="publication-links">
+                                    <a href="publications/2022_iwsc.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/IWSC55060.2022.00008" target="_blank" class="btn btn-small">DOI</a>
+                                    <a href="files/iwsc2022BestPaperAward.pdf" target="_blank" class="btn btn-small">Best Paper</a>
+                                    <a href="files/iwsc2022BestPaperAward.pdf" target="_blank" class="btn btn-small">People's Choice Award</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>V-Achilles : An Interactive Visualization of Transitive Security Vulnerabilities</h4>
+                                <p class="authors">Jarukitpipat, V., Chhun, K., Wanprasert, W., Choetkiertikul, M., Sunetnanta, T., Kula, R. G., Chinthanet, B., Ishio, T., & Matsumoto, K.</p>
+                                <p class="venue">Proceedings of the 37th IEEE/ACM International Conference on Automated Software Engineering (ASE '22) - Tool Demonstration Track, 10-14 October 2022, Michigan, USA</p>
+                                <div class="publication-links">
+                                    <a href="publications/2022_ase_achilles.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1145/3551349.3559526" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>A component recommendation model for issues in software projects</h4>
+                                <p class="authors">Kangwanwisit, P., Choetkiertikul, M., Ragkhitwetsagul, C., Sunetnanta, T., Maipradit, R., Hata, H., Matsumoto, K.</p>
+                                <p class="venue">Proceedings of the 19th International Joint Conference on Computer Science and Software Engineering (JCSSE '22), 22 - 25 June 2022, Bangkok, Thailand</p>
+                                <div class="publication-links">
+                                    <a href="https://doi.org/10.1109/JCSSE54890.2022.9836311" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Recommending Code Improvements Based on Stack Overflow Answer Edits</h4>
+                                <p class="authors">Ragkhitwetsagul C. and Paixao M.</p>
+                                <p class="venue">Proceedings of the 19th International Conference on Mining Software Repositories (MSR '22') - Registered Report Track, 18-19 May 2022, Pittsburgh, PA, USA</p>
+                                <div class="publication-links">
+                                    <a href="https://arxiv.org/abs/2204.06773" target="_blank" class="btn btn-small">Preprint</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>pycefr: Python Competency Level through Code Analysis</h4>
+                                <p class="authors">Robles G., Kula R. G., Ragkhitwetsagul C., Sakulniwat T., Matsumoto K., Gonzalez-Barahona J. M.</p>
+                                <p class="venue">Proceedings of the 30th IEEE/ACM International Conference on Program Comprehension (ICPC '22) - Tool Demonstration Track, 16-17 May 2022, Pittsburgh, PA, USA</p>
+                                <div class="publication-links">
+                                    <a href="https://arxiv.org/abs/2203.15990" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://dl.acm.org/doi/10.1145/3524610.3527878" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Identifying Software Engineering Challenges in Software SMEs: A Case Study in Thailand</h4>
+                                <p class="authors">Ragkhitwetsagul C., Krinke J., Choetkiertikul M., Sunetnanta T., Sarro F.</p>
+                                <p class="venue">Proceedings of the 29th International Conference on Software Analysis, Evolution, and Reengineering (SANER'22) - Industry Track, 15-18 March 2022, Honolulu, Hawaii</p>
+                                <div class="publication-links">
+                                    <a href="publications/2022_saner_asetsi.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="files/saner2022_asetsi.pdf" target="_blank" class="btn btn-small">Slides</a>
+                                    <a href="https://youtu.be/OgfCeaLsauE?t=3669" target="_blank" class="btn btn-small">Video</a>
+                                    <a href="https://doi.org/10.1109/SANER53432.2022.00036" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mdl-card__supporting-text">
-                    	<p>
-                      <b>Mar-18:</b> Presented at <a href="https://iwsc2018.github.io">IWSC '18</a><br />
-                      <b>Sep-17:</b> Student volunteer at <a href="http://esec-fse17.uni-paderborn.de">FSE '17</a><br />
-                      <b>Feb-17:</b> Presented at <a href="https://iwsc2017.github.io">IWSC '17</a><br />
-                      <b>Oct-16:</b> Presented at <a href="http://www.ieee-scam.org/2016/">SCAM '16</a>, <a href="http://icsme2016.github.io">ICSME16</a> and <a href="http://ssbse.org/2016/">SSBSE16</a>.<br />
-                    	<b>Jul-16:</b> <a href="http://www.ieee-scam.org/2015/">SCAM '16</a> subreviewer<br />
-                    	<b>May-16:</b> <a href="https://peerj.com">PeerJ Computer Science journal</a> reviewer.<br />
-	                    <b>Jul-15:</b> <a href="http://www.ieee-scam.org/2015/">SCAM '15'</a> subreviewer<br />
-                      <b>Jun-15:</b> Presented at <a href="http://crest.cs.ucl.ac.uk/cow/42/">COW 42</a>.</p>
+
+                    <!-- 2021 -->
+                    <div class="year-section">
+                        <h3 class="year-title">2021</h3>
+                        <div class="publication-list">
+                            <div class="publication-item">
+                                <h4>FixMe: A GitHub Bot for Detecting and Monitoring On-hold Self-Admitted Technical Debt</h4>
+                                <p class="authors">Phaithoon S., Wongnil S., Pussawong P., Choetkiertikul M., Rakhitwetsagul C., Sunetnanta T., Maipradit R., Hata H., Matsumoto K.</p>
+                                <p class="venue">Proceedings of the International Conference on Automated Software Engineering (ASE) - Tool Demonstrations Track, 2021 (Virtual Event)</p>
+                                <div class="publication-links">
+                                    <a href="https://arxiv.org/abs/2109.02878" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.ieeecomputersociety.org/10.1109/ASE51524.2021.9678680" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Code Similarity in Clone Detection (Book Chapter)</h4>
+                                <p class="authors">Krinke, J., & Ragkhitwetsagul, C.</p>
+                                <p class="venue">In K. Inoue & C. K. Roy (Eds.), Code Clone Analysis (pp. 135–160), Springer, 2021</p>
+                                <div class="publication-links">
+                                    <a href="https://doi.org/10.1007/978-981-16-1927-4" target="_blank" class="btn btn-small">The Chapter</a>
+                                    <a href="https://link.springer.com/book/10.1007/978-981-16-1927-4" target="_blank" class="btn btn-small">The Book</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Artefact Relation Graphs for Unit Test Reuse Recommendation</h4>
+                                <p class="authors">Robert White, Jens Krinke, Earl Barr, Federica Sarro, Chaiyong Ragkhitwetsagul</p>
+                                <p class="venue">Proceedings of IEEE International Conference on Software Testing (ICST) 2021, Virtual Event</p>
+                                <div class="publication-links">
+                                    <a href="https://ieeexplore.ieee.org/abstract/document/9438599" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Automatically recommending components for issue reports using deep learning</h4>
+                                <p class="authors">Choetkiertikul, M., Dam, H.K., Tran, T. et al.</p>
+                                <p class="venue">Empirical Software Engineering 26, 14 (2021)</p>
+                                <div class="publication-links">
+                                    <a href="https://doi.org/10.1007/s10664-020-09898-5" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2020 -->
+                    <div class="year-section">
+                        <h3 class="year-title">2020</h3>
+                        <div class="publication-list">
+                            <div class="publication-item">
+                                <h4>Does code review really remove coding convention violations?</h4>
+                                <p class="authors">D. Han, C. Ragkhitwetsagul, J. Krinke, M. Paixao, G. Rosa</p>
+                                <p class="venue">Proceedings of 20th IEEE International Working Conference on Source Code Analysis and Manipulation (SCAM), 28 Sept.-2 Oct. 2020, Adelaide, Australia (Virtual Event)</p>
+                                <div class="publication-links">
+                                    <a href="publications/2020_scam.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/SCAM51674.2020.00010" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Siamese: Scalable and Incremental Code Clone Search via Multiple Code Representations</h4>
+                                <p class="authors">C. Ragkhitwetsagul, J. Krinke</p>
+                                <p class="venue">Empirical Software Engineering (EMSE), 2019 / ICSE 2020 (Journal-First)</p>
+                                <div class="publication-links">
+                                    <a href="publications/2019_siamese_aam.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1007/s10664-019-09697-7" target="_blank" class="btn btn-small">DOI</a>
+                                    <a href="https://github.com/UCL-CREST/Siamese" target="_blank" class="btn btn-small">Website</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>JITBot: An Explainable Just-In-Time Defect Prediction Bot</h4>
+                                <p class="authors">C. Khanan, W. Luewichana, K. Pruktharathikoon, J. Jiarpakdee, C. Tantithamthavorn, M. Choetkiertikul, C. Ragkhitwetsagul, T. Sunetnanta</p>
+                                <p class="venue">Proceedings of the 35th IEEE/ACM International Conference on Automated Software Engineering (ASE '20) - Tool Demo Track, September 21–25, 2020, Virtual Event, Australia</p>
+                                <div class="publication-links">
+                                    <a href="https://jitbot-tool.github.io/" target="_blank" class="btn btn-small">Website</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Teddy: Automatic Recommendation of PythonicIdiom Usage For Pull-Based Software Project</h4>
+                                <p class="authors">P. Phan-udom, N. Wattanakul, T. Sakulniwat, C. Ragkhitwetsagul, T. Sunetnanta, M. Choetkiertikul, R.G. Kula</p>
+                                <p class="venue">Proceedings of the 36th IEEE International Conference on Software Maintenance and Evolution (ICSME 2020) - Tool Demo Track (Won the Best Tool Demo Award!), September 21 - October 3, 2020, Adelaide, Australia</p>
+                                <div class="publication-links">
+                                    <a href="publications/icsme2020_teddy.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="publications/icsme2020_teddy_certificate.jpg" target="_blank" class="btn btn-small">Award Certificate</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2019 -->
+                    <div class="year-section">
+                        <h3 class="year-title">2019</h3>
+                        <div class="publication-list">
+                            <div class="publication-item">
+                                <h4>Software Team Member Configurations: A Study of Team Effectiveness in Moodle</h4>
+                                <p class="authors">N. Assavakamhaenghan, M. Choetkiertikul, S. Tuarob, R. G. Kula, H. Hata, C. Ragkhitwetsagul, T. Sunetnanta, and K. Matsumoto</p>
+                                <p class="venue">Proceedings of the 10th International Workshop on Empirical Software Engineering in Practice (IWESEP 2019), Tokyo, Japan</p>
+                                <div class="publication-links">
+                                    <a href="publications/iwesep19_Noppadol.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/IWESEP49350.2019.00012" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Visualizing the Usage of Pythonic Idioms Over Time: A Case Study of the with open Idiom</h4>
+                                <p class="authors">T. Sakulniwat, R. G. Kula, C. Ragkhitwetsagul, M. Choetkiertikul, T. Sunetnanta, D. Wang, T. Ishio and K. Matsumoto</p>
+                                <p class="venue">Proceedings of the 10th International Workshop on Empirical Software Engineering in Practice (IWESEP 2019), Tokyo, Japan</p>
+                                <div class="publication-links">
+                                    <a href="publications/iwesep19_Tattiya.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.ieeecomputersociety.org/10.1109/IWESEP49350.2019.00016" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Improving Clone Detection Precision using Machine Learning Techniques</h4>
+                                <p class="authors">V. Arammongkolvichai, R. Koschke, C. Ragkhitwetsagul, M. Choetkiertikul, T. Sunetnanta</p>
+                                <p class="venue">Proceedings of the 10th International Workshop on Empirical Software Engineering in Practice (IWESEP 2019), Tokyo, Japan</p>
+                                <div class="publication-links">
+                                    <a href="publications/iwesep19_Vara.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/IWESEP49350.2019.00014" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>How Do Contributors Impact Code Naturalness? An Exploratory Study of 50 Python Projects</h4>
+                                <p class="authors">T. Bunkerd, D. Wang, R. G. Kula, C. Ragkhitwetsagul, M. Choetkiertikul, T. Sunetnanta, T. Ishio, and K. Matsumoto</p>
+                                <p class="venue">Proceedings of the 10th International Workshop on Empirical Software Engineering in Practice (IWESEP 2019), Tokyo, Japan</p>
+                                <div class="publication-links">
+                                    <a href="publications/iwesep19_Thanadon.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/IWESEP49350.2019.00010" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Automatic Classifying Self-Admitted Technical Debt Using N-gram IDF</h4>
+                                <p class="authors">S. Wattanakriengkrai, N. Srisermphoak, S. Sintoplertchaikul, M. Choetkiertikul, C. Ragkhitwetsagul, T. Sunetnanta, H. Hata and K. Matsumoto</p>
+                                <p class="venue">Proceedings of the 26th Asia-Pacific Software Engineering Conference (APSEC 19), Putrajaya, Malaysia</p>
+                                <div class="publication-links">
+                                    <a href="publications/apsec19_Supatsara.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.ieeecomputersociety.org/10.1109/APSEC48747.2019.00050" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>The Impact of Code Review on Architectural Changes</h4>
+                                <p class="authors">M. Paixao, J. Krinke, D. Han, C. Ragkhitwetsagul, M. Harman</p>
+                                <p class="venue">Transactions on Software Engineering (TSE), 2019</p>
+                                <div class="publication-links">
+                                    <a href="https://doi.org/10.1109/TSE.2019.2912113" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2018 -->
+                    <div class="year-section">
+                        <h3 class="year-title">2018</h3>
+                        <div class="publication-list">
+                            <div class="publication-item">
+                                <h4>Code similarity and clone search in large-scale source code data</h4>
+                                <p class="authors">C. Ragkhitwetsagul</p>
+                                <p class="venue">PhD thesis, 2018</p>
+                                <div class="publication-links">
+                                    <a href="publications/chaiyong_thesis.pdf" target="_blank" class="btn btn-small">PhD thesis</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Toxic Code Snippets on Stack Overflow</h4>
+                                <p class="authors">C. Ragkhitwetsagul, J. Krinke, M. Paixao, R. Oliveto, G. Bianco</p>
+                                <p class="venue">Transactions on Software Engineering (TSE), 2018</p>
+                                <div class="publication-links">
+                                    <a href="publications/chaiyong_toxic_code_tse_2019.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/TSE.2019.2900307" target="_blank" class="btn btn-small">DOI</a>
+                                    <a href="https://ucl-crest.github.io/cloverflow-web/" target="_blank" class="btn btn-small">Website</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Who's this? Developer identification using IDE event data</h4>
+                                <p class="authors">J. Wilkie, Z. Al Halabi, A. Karaoglu, J. Liao, G. Ndungu, C. Ragkhitwetsagul, M. Paixão, J. Krinke</p>
+                                <p class="venue">Proceedings of the 15th International Conference on Mining Software Repositories -- Mining Challenge (MSR 2018), Gothenburg, Sweden, 2018</p>
+                                <div class="publication-links">
+                                    <a href="publications/mining_challenge_18.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1145/3196398.3196461" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>A picture is worth a thousand words: code clone detection based on image similarity</h4>
+                                <p class="authors">C. Ragkhitwetsagul, J. Krinke, B. Marnette</p>
+                                <p class="venue">Proceedings of the 12th International Workshop on Software Clones, 2018, Campobasso, Italy</p>
+                                <div class="publication-links">
+                                    <a href="publications/iwsc2018_vincent.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/IWSC.2018.8327318" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>A comparison of code similarity analysers</h4>
+                                <p class="authors">C. Ragkhitwetsagul, J. Krinke, D. Clark</p>
+                                <p class="venue">Empirical Software Engineering, vol. 23, no. 4, pp. 2464–2519, Aug. 2018</p>
+                                <div class="publication-links">
+                                    <a href="publications/cloplag_emse.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="http://dx.doi.org/10.1007/s10664-017-9564-7" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2017 -->
+                    <div class="year-section">
+                        <h3 class="year-title">2017</h3>
+                        <div class="publication-list">
+                            <div class="publication-item">
+                                <h4>Are Developers Aware of the Architectural Impact of Their Changes?</h4>
+                                <p class="authors">M. Paixao, J. Krinke, D. Han, C. Ragkhitwetsagul and M. Harman</p>
+                                <p class="venue">Proceedings of the 32nd IEEE/ACM International Conference on Automated Software Engineering (ASE 2017), Illinois, USA</p>
+                                <div class="publication-links">
+                                    <a href="publications/preprint_ase_architecture_awareness.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/ASE.2017.8115622" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Using Compilation/Decompilation to Enhance Clone Detection</h4>
+                                <p class="authors">C. Ragkhitwetsagul, J. Krinke</p>
+                                <p class="venue">Proceedings of the 11th International Workshop on Software Clones, 2017, Klagenfurt, Austria -- Won the People's Choice Award!</p>
+                                <div class="publication-links">
+                                    <a href="publications/iwsc2017.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="https://doi.org/10.1109/IWSC.2017.7880502" target="_blank" class="btn btn-small">DOI</a>
+                                    <a href="http://www.slideshare.net/shyyonk/using-compilationdecompilation-to-enhance-clone-detection" target="_blank" class="btn btn-small">SlideShare</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2016 -->
+                    <div class="year-section">
+                        <h3 class="year-title">2016</h3>
+                        <div class="publication-list">
+                            <div class="publication-item">
+                                <h4>Similarity of Source Code in the Presence of Pervasive Modifications</h4>
+                                <p class="authors">C. Ragkhitwetsagul, J. Krinke, D. Clark</p>
+                                <p class="venue">Proceedings of the 16th IEEE International Working Conference on Source Code Analysis and Manipulation (SCAM), 2016, North Carolina, USA</p>
+                                <div class="publication-links">
+                                    <a href="publications/scam2016.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="http://ieeexplore.ieee.org/document/7781805/" target="_blank" class="btn btn-small">DOI</a>
+                                    <a href="http://www.slideshare.net/shyyonk/similarity-of-source-code-in-the-presence-of-pervasive-modifications-scam16-67298196" target="_blank" class="btn btn-small">SlideShare</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Measuring Code Similarity in Large-scaled Code Corpora</h4>
+                                <p class="authors">C. Ragkhitwetsagul</p>
+                                <p class="venue">Proceedings of the 32nd International Conference on Software Maintenance and Evolution (ICSME): Doctoral Symposium, 2016, North Carolina, USA</p>
+                                <div class="publication-links">
+                                    <a href="publications/chaiyong_icsme2016ds.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="http://ieeexplore.ieee.org/document/7816530/" target="_blank" class="btn btn-small">DOI</a>
+                                </div>
+                            </div>
+
+                            <div class="publication-item">
+                                <h4>Searching for Configurations in Clone Evaluation: A Replication Study</h4>
+                                <p class="authors">C. Ragkhitwetsagul, M. Paixao, M. Adham, S. Busari, J. Krinke, and J.H. Drake</p>
+                                <p class="venue">Proceedings of the 8th International Symposium on Search-based Software Engineering (SSBSE): Challenge Track, 2016, North Carolina, USA</p>
+                                <div class="publication-links">
+                                    <a href="publications/chaiyong_et_al_ssbse2016-46.pdf" target="_blank" class="btn btn-small">Preprint</a>
+                                    <a href="http://rd.springer.com/chapter/10.1007/978-3-319-47106-8_20" target="_blank" class="btn btn-small">DOI</a>
+                                    <a href="http://www.slideshare.net/shyyonk/searching-for-configurations-in-clone-evaluation-a-replication-study-ssbse16" target="_blank" class="btn btn-small">SlideShare</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <footer class="mdl-mini-footer">
-                <div class="mdl-mini-footer__left-section">
-                    <div class="mdl-logo">Chaiyong Ragkhitwetsagul</div>
-                </div>
-                <div class="mdl-mini-footer__right-section">
-                    <ul class="mdl-mini-footer__link-list">
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">Privacy & Terms</a></li>
+        </div>
+    </section>
+
+    <!-- Academic Services Section -->
+    <section class="academic-services" id="services">
+        <div class="container">
+            <h2 class="section-title">Academic Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>2021</h3>
+                    <ul>
+                        <li>Empirical Software Engineering (EMSE) Reviewer</li>
+                        <li>ICSME 2021 Research Track Program Committee</li>
+                        <li>ICPC 2021 ERA Track Co-chair</li>
+                        <li>ASE 2021 Research Track Program Committee</li>
+                        <li>ASE 2021 Late Breaking Results Track Program Committee</li>
+                        <li>SANER 2021 ERA Track Program Committee</li>
                     </ul>
                 </div>
-            </footer>
-        </main>
-    </div>
-    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-</body>
 
-</html>
+                <div class="service-card">
+                    <h3>2020</h3>
+                    <ul>
+                        <li>Journal of Systems & Software (JSS) Reviewer</li>
+                        <li>Science of Computer Programming (SCICO) Reviewer</li>
+                        <li>Computer Science Review (COSREV) Reviewer</li>
+                        <li>ASE 2020 Late Breaking Results Track Program Committee</li>
+                        <li>ASE 2020 Research Track Program Committee</li>
+                        <li>ICPC 2020 Research Track Program Committee</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Interests Section -->
+    <section class="research-interests" id="interests">
+        <div class="container">
+            <h2 class="section-title">Research Interests</h2>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Coding Proficiency</h3>
+                    <p>
+                        I am interested in applying natural language proficiency framework like CEFR to programming languages. 
+                        With my research collaborators, we have developed proficiency frameworks for Python and JavaScript 
+                        and created tools for automated coding proficiency analysis 
+                        (<a href="https://arxiv.org/abs/2203.15990" target="_blank">pycefr</a> and 
+                        <a href="https://arxiv.org/abs/2408.16452" target="_blank">jscefr</a>). 
+                        We are now interested in applying these tools to perform empirical studies on coding proficiency 
+                        in various contexts, such as code reviews, issue resolutions, and software maintenance.
+                    </p>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3>Code Similarity</h3>
+                    <p>
+                        I am interested in applications of code similarity in software engineering activities. 
+                        Some of the research topics in this area that I am working on include code improvement 
+                        recommendations based on Stack Overflow answer edits, and finding the optimal configurations 
+                        for code clone search. Moreover, one of my main focuses is the scalability of code similarity/clone detection.
+                    </p>
+                    <p>
+                        I have built a scalable code search tool (<a href="https://siamesetool.github.io/siamese/" target="_blank">Siamese</a>)
+                        that instantly retrieves clone snippets from online sources. It incorporates novel techniques 
+                        of multiple code representations and query reduction to accurately retrieve clones within 
+                        hundred millions line of code within seconds.
+                    </p>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Software Engineering for Data Science (SE4DS)</h3>
+                    <p>
+                        I, and my team at the Faculty of ICT, Mahidol University, are interested in studying 
+                        the applications of software engineering practices and tools in data science projects. 
+                        We are performing an empirical study on the current states of adoption of SE practices 
+                        and tools in data science industry in Thailand. This will lead to recommendations on 
+                        how to improve the software quality of data science projects and the skills of the 
+                        data science practitioners by using the knowledge from software engineering.
+                    </p>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Software Engineering Challenges in Thailand</h3>
+                    <p>
+                        I, and my team at the Faculty of ICT, Mahidol University and UK partners in UCL, 
+                        are interested in supporting Thai software industry to produce better software with 
+                        better software development practices. We have conducted several studies to understand 
+                        the software engineering challenges in Thailand, such as the adoption of automated 
+                        software engineering tools and techniques, and are working closely with our industry 
+                        partners to address these challenges.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Presentations Section -->
+    <section class="presentations" id="presentations">
+        <div class="container">
+            <h2 class="section-title">Presentations</h2>
+            <div class="presentations-list">
+                <div class="presentation-item">
+                    <div class="presentation-date">21/2/2017</div>
+                    <div class="presentation-content">
+                        <h4>Using Compilation/Decompilation to Enhance Clone Detection</h4>
+                        <p>The slides of my talk at <a href="https://iwsc2017.github.io" target="_blank">IWSC '17</a>.</p>
+                        <a href="http://www.slideshare.net/shyyonk/using-compilationdecompilation-to-enhance-clone-detection" target="_blank" class="btn btn-small">View Slides</a>
+                    </div>
+                </div>
+
+                <div class="presentation-item">
+                    <div class="presentation-date">3/10/2016</div>
+                    <div class="presentation-content">
+                        <h4>Similarity of Source Code in the Presence of Pervasive Modifications</h4>
+                        <p>The slides of my talk at <a href="http://www.ieee-scam.org/2016/" target="_blank">SCAM '16</a>.</p>
+                        <a href="http://www.slideshare.net/shyyonk/similarity-of-source-code-in-the-presence-of-pervasive-modifications-scam16-67298196" target="_blank" class="btn btn-small">View Slides</a>
+                    </div>
+                </div>
+
+                <div class="presentation-item">
+                    <div class="presentation-date">9/10/2016</div>
+                    <div class="presentation-content">
+                        <h4>Searching for Configurations in Clone Evaluation: A Replication Study</h4>
+                        <p>The slides of my talk at <a href="http://ssbse.org/2016" target="_blank">SSBSE '16 (Challenge Track)</a>.</p>
+                        <a href="http://www.slideshare.net/shyyonk/searching-for-configurations-in-clone-evaluation-a-replication-study-ssbse16" target="_blank" class="btn btn-small">View Slides</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Chaiyong's Personal Website</h3>
+                    <p>Software Engineering Researcher & Educator</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="teaching.html">Teaching</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/cragkhit" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=VArdauUAAAAJ" target="_blank" aria-label="Google Scholar">
+                            <i class="fas fa-graduation-cap"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/chaiyong-ragkhitwetsagul-4286406" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Chaiyong Ragkhitwetsagul. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html> 

@@ -1,133 +1,228 @@
-<!doctype html>
-<!--
-  Material Design Lite
-  Copyright 2015 Google Inc. All rights reserved.
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-      https://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License
--->
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="A portfolio template that uses Material Design Lite.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Chaiyong Ragkhitwetsagul @ MUICT</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.grey-pink.min.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139965822-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-139965822-1');
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Chaiyong Ragkhitwetsagul</title>
+    <meta name="description" content="Contact information and location details for Chaiyong Ragkhitwetsagul at Mahidol University.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-        <header class="mdl-layout__header mdl-layout__header--waterfall portfolio-header">
-            <div class="mdl-layout__header-row portfolio-logo-row">
-                <span class="mdl-layout__title">
-                    <div class="portfolio-logo"></div>
-                    <span class="mdl-layout__title">And now you want to see me :-)</span>
-                </span>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">Chaiyong Ragkhitwetsagul</a>
             </div>
-            <div class="mdl-layout__header-row portfolio-navigation-row mdl-layout--large-screen-only">
-                <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-                    <a class="mdl-navigation__link" href="index.html">Home</a>
-                    <a class="mdl-navigation__link" href="research.html">Research</a>
-                    <a class="mdl-navigation__link" href="teaching.html">Teaching</a>
-                    <a class="mdl-navigation__link" href="students.html">Students</a>
-                    <a class="mdl-navigation__link" href="projects.html">Projects</a>
-                    <a class="mdl-navigation__link" href="links.html">Links</a>
-                    <a class="mdl-navigation__link is-active" href="contact.html">Contact</a>
-                </nav>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="research.html" class="nav-link">Research</a>
+                </li>
+                <li class="nav-item">
+                    <a href="teaching.html" class="nav-link">Teaching</a>
+                </li>
+                <li class="nav-item">
+                    <a href="students.html" class="nav-link">Students</a>
+                </li>
+                <li class="nav-item">
+                    <a href="projects.html" class="nav-link">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a href="links.html" class="nav-link">Links</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
             </div>
-        </header>
-        <div class="mdl-layout__drawer mdl-layout--small-screen-only">
-            <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
-              <a class="mdl-navigation__link" href="index.html">Home</a>
-              <a class="mdl-navigation__link" href="research.html">Research</a>
-              <a class="mdl-navigation__link" href="teaching.html">Teaching</a>
-              <a class="mdl-navigation__link" href="students.html">Students</a>
-              <a class="mdl-navigation__link" href="projects.html">Projects</a>
-              <a class="mdl-navigation__link" href="links.html">Links</a>
-              <a class="mdl-navigation__link is-active" href="contact.html">Contact</a>
-            </nav>
         </div>
-        <main class="mdl-layout__content">
-            <div class="mdl-grid portfolio-max-width portfolio-contact">
-                <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Contact Info</h2>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero research-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">Contact</h1>
+                    <p class="hero-subtitle">Get in Touch</p>
+                    <p class="hero-description">
+                        I'm always interested in research collaborations, student supervision, and discussions about 
+                        software engineering. Feel free to reach out through any of the channels below.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section class="research-interests" id="contact-info">
+        <div class="container">
+            <h2 class="section-title">Contact Information</h2>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-envelope"></i>
                     </div>
-                    <div class="mdl-card__media">
-                        <img class="article-image" src=" images/contact-image2.jpg" border="0" alt="">
+                    <h3>Email</h3>
+                    <p>
+                        <strong>Primary Email:</strong><br>
+                        <a href="mailto:cragkhit@gmail.com">cragkhit@gmail.com</a>
+                    </p>
+                    <p>
+                        <strong>Academic Email:</strong><br>
+                        <a href="mailto:chaiyong.rag@mahidol.ac.th">chaiyong.rag@mahidol.ac.th</a>
+                    </p>
+                    <p>
+                        I typically respond to emails within 24-48 hours during weekdays.
+                    </p>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-phone"></i>
                     </div>
-                    <div class="mdl-card__supporting-text">
-                        <p><b>Address:</b> Faculty of Information and Communication Technology, Mahidol University<br/>
-                          999 Phuttamonthon 4 Road, Salaya , Nakhon Pathom<br />
-                          73170 THAILAND<br />
-                        <b>Phone:</b> +66 (02) 441-0909<br />
-                        <b>Email:</b> cragkhit (at) gmail (dot) com, chaiyong.rag (at) mahidol (dot) ac (dot) th<br />
-                        <b>Web:</b> <a href="https://cragkhit.github.io">cragkhit.github.io</a><br />
-                        <b>ORCID:</b><img width="200px" src="images/chaiyong_orcid.png" /><br />
-                        <a
-                        id="cy-effective-orcid-url"
-                        class="underline"
-                         href="https://orcid.org/0000-0002-6502-1107"
-                         target="orcid.widget"
-                         rel="me noopener noreferrer"
-                         style="vertical-align: top">
-                         <img
-                            src="https://orcid.org/sites/default/files/images/orcid_16x16.png"
-                            style="width: 1em; margin-inline-start: 0.5em"
-                            alt="ORCID iD icon"/>
-                          https://orcid.org/0000-0002-6502-1107
-                        </a>
-                      </p>
+                    <h3>Phone</h3>
+                    <p>
+                        <strong>Office Phone:</strong><br>
+                        <a href="tel:+66024410909">+66 (02) 441-0909</a>
+                    </p>
+                    <p>
+                        <strong>Office Hours:</strong><br>
+                        Monday - Friday<br>
+                        9:00 AM - 5:00 PM (Bangkok Time)
+                    </p>
+                    <p>
+                        For urgent matters, please email first as I may be in meetings or teaching.
+                    </p>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Office Address</h3>
+                    <p>
+                        <strong>Faculty of Information and Communication Technology</strong><br>
+                        Mahidol University<br>
+                        999 Phuttamonthon 4 Road, Salaya<br>
+                        Nakhon Pathom 73170<br>
+                        THAILAND
+                    </p>
+                    <p>
+                        My office is located in the Faculty of ICT building on the Salaya campus.
+                    </p>
+                </div>
+
+                <div class="interest-card">
+                    <div class="interest-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Online Presence</h3>
+                    <p>
+                        <strong>Personal Website:</strong><br>
+                        <a href="https://cragkhit.github.io" target="_blank">cragkhit.github.io</a>
+                    </p>
+                    <p>
+                        <strong>ORCID ID:</strong><br>
+                        <a href="https://orcid.org/0000-0002-6502-1107" target="_blank">0000-0002-6502-1107</a>
+                    </p>
+                    <p>
+                        <strong>Research Group:</strong><br>
+                        <a href="https://muict-seru.github.io" target="_blank">SERU Research Group</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="publications" id="location">
+        <div class="container">
+            <h2 class="section-title">Location</h2>
+            <div class="publications-container">
+                <div class="publication-item">
+                    <h4>Campus Location</h4>
+                    <p class="authors">Mahidol University - Salaya Campus</p>
+                    <p class="venue">
+                        The Faculty of ICT is located on the Salaya campus of Mahidol University, 
+                        approximately 30 kilometers west of Bangkok city center. The campus is easily 
+                        accessible by car, bus, or train.
+                    </p>
+                    <div class="map-container" style="margin-top: 2rem;">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.7421884102887!2d100.32253601423!3d13.794409200022624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2938b7dca4d8f%3A0x18cb4e1c1854103a!2sFaculty+of+Information+and+Communication+Technology!5e0!3m2!1sen!2sth!4v1539100511867" 
+                            width="100%" 
+                            height="400" 
+                            style="border:0; border-radius: 8px;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
                 </div>
             </div>
-            <div class="mdl-grid portfolio-max-width portfolio-contact">
-                <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp">
-                    <div class="mdl-card__title">
-                        <h2 class="mdl-card__title-text">Map</h2>
-                    </div>
-                    <div class="map">
-                 	 	  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3874.7421884102887!2d100.32253601423!3d13.794409200022624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e2938b7dca4d8f%3A0x18cb4e1c1854103a!2sFaculty+of+Information+and+Communication+Technology!5e0!3m2!1sen!2sth!4v1539100511867" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                 	 </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Chaiyong's Personal Website</h3>
+                    <p>Software Engineering Researcher & Educator</p>
                 </div>
-            </div>
-            <footer class="mdl-mini-footer">
-                <div class="mdl-mini-footer__left-section">
-                    <div class="mdl-logo">Chaiyong's Personal Website</div>
-                </div>
-                <div class="mdl-mini-footer__right-section">
-                    <ul class="mdl-mini-footer__link-list">
-                        <li><a href="#">Help</a></li>
-                        <li><a href="#">Privacy & Terms</a></li>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="research.html">Research</a></li>
+                        <li><a href="teaching.html">Teaching</a></li>
+                        <li><a href="students.html">Students</a></li>
                     </ul>
                 </div>
-            </footer>
-        </main>
-    </div>
-    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
-</body>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="https://github.com/cragkhit" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://scholar.google.com/citations?user=VArdauUAAAAJ" target="_blank" aria-label="Google Scholar">
+                            <i class="fas fa-graduation-cap"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/chaiyong-ragkhitwetsagul-4286406" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Chaiyong Ragkhitwetsagul. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-</html>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html> 
