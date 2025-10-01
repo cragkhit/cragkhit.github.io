@@ -262,6 +262,96 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Venue Summary Auto-Update functionality
+function updateVenueSummary() {
+    // Extract venue information from all publications by looking for <span class="acronym"> elements
+    const publicationItems = document.querySelectorAll('.publication-item');
+    const venueMap = new Map();
+    
+    publicationItems.forEach(item => {
+        // Look for the acronym span within this publication item
+        const acronymElement = item.querySelector('.venue .acronym');
+        if (acronymElement) {
+            const venue = acronymElement.textContent.trim();
+            if (venue) {
+                venueMap.set(venue, (venueMap.get(venue) || 0) + 1);
+            }
+        }
+    });
+    
+    // Sort venues by count (descending) and then alphabetically
+    const sortedVenues = new Map([...venueMap.entries()].sort((a, b) => {
+        if (b[1] !== a[1]) return b[1] - a[1]; // Sort by count descending
+        return a[0].localeCompare(b[0]); // Then alphabetically
+    }));
+    
+    // Update the HTML with all venues in a single list
+    updateAllVenues(sortedVenues);
+}
+
+function updateAllVenues(venueMap) {
+    const venueStats = document.querySelector('.venue-stats');
+    if (!venueStats) return;
+    
+    const categoryDiv = venueStats.querySelector('.venue-category');
+    if (!categoryDiv) return;
+    
+    const venueTagsDiv = categoryDiv.querySelector('.venue-tags');
+    if (!venueTagsDiv) return;
+    
+    // Clear existing tags
+    venueTagsDiv.innerHTML = '';
+    
+    // Add all venue tags
+    venueMap.forEach((count, venue) => {
+        const tag = document.createElement('span');
+        tag.className = `venue-tag ${getTagClassByCount(count)}`;
+        tag.textContent = `${venue} × ${count}`;
+        venueTagsDiv.appendChild(tag);
+    });
+}
+
+function getTagClassByCount(count) {
+    if (count >= 4) return 'high';    // Red for 4+ publications
+    if (count >= 3) return 'medium';  // Orange for 3 publications
+    if (count === 2) return 'low';    // Green for 2 publications
+    return 'single';                  // Gray for 1 publication
+}
+
+function extractVenueAcronym(venueText) {
+    // This function is now deprecated since we're reading directly from <span class="acronym"> elements
+    // Keeping it for backward compatibility but it won't be used
+    return null;
+}
+
+function extractVenueAcronym(venueText) {
+    // This function is now deprecated since we're reading directly from <span class="acronym"> elements
+    // Keeping it for backward compatibility but it won't be used
+    return null;
+}
+
+function getTagClass(count, tagClasses) {
+    if (count >= 4 && tagClasses.includes('high')) return 'high';
+    if (count >= 3 && tagClasses.includes('medium')) return 'medium';
+    if (count === 2 && tagClasses.includes('low')) return 'low';
+    return 'single';
+}
+
+// Initialize venue summary update when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    // Add a small delay to ensure all content is loaded
+    setTimeout(updateVenueSummary, 100);
+    
+    // Also update when "Load More" button is clicked
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+            // Update after the content is shown/hidden
+            setTimeout(updateVenueSummary, 300);
+        });
+    }
+});
+
 // Add CSS for loading animation
 const loadingStyle = document.createElement('style');
 loadingStyle.textContent = `
