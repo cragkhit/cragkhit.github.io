@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Study Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        input[type="datetime-local"],
+        input[type="number"],
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .sessions-section {
+            margin-top: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333;
+            font-size: 20px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .session-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .session-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .session-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .session-info {
+            flex: 1;
+        }
+
+        .session-date {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .session-duration {
+            color: #667eea;
+            font-size: 14px;
+        }
+
+        .session-note {
+            color: #666;
+            font-size: 12px;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .session-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .data-management {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 Financial Study Tracker</h1>
+        <p class="subtitle">Track your financial study sessions and monitor your progress</p>
+
+        <div class="form-section">
+            <h2 style="margin-bottom: 20px;">Add Study Session</h2>
+            <form id="studyForm">
+                <div class="form-group">
+                    <label for="studyDate">Date & Time</label>
+                    <input type="datetime-local" id="studyDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration (minutes)</label>
+                    <input type="number" id="duration" min="1" placeholder="e.g., 60" required>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes (optional)</label>
+                    <input type="text" id="notes" placeholder="What did you study?">
+                </div>
+                <div class="button-group">
+                    <button type="submit" class="btn-primary">Add Session</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="sessions-section">
+            <div class="section-header">
+                <h2>Study Statistics</h2>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalSessions">0</div>
+                    <div class="stat-label">Total Sessions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalHours">0h</div>
+                    <div class="stat-label">Total Hours</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="avgDuration">0m</div>
+                    <div class="stat-label">Avg Duration</div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>Study Sessions</h2>
+            </div>
+            <div id="sessionsList" class="session-list">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📖</div>
+                    <p>No study sessions yet. Add your first session above!</p>
+                </div>
+            </div>
+
+            <div class="data-management">
+                <button onclick="exportData()" class="btn-secondary">Export JSON</button>
+                <button onclick="importData()" class="btn-secondary">Import JSON</button>
+                <button onclick="clearAllData()" class="btn-danger">Clear All Data</button>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="fileInput" accept=".json" class="hidden">
+
+    <script>
+        // Data storage key
+        const STORAGE_KEY = 'financialStudySessions';
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSessions();
+            setCurrentDateTime();
+        });
+
+        // Set current date and time
+        function setCurrentDateTime() {
+            const now = new Date();
+            const localDateTime = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+                .toISOString()
+                .slice(0, 16);
+            document.getElementById('studyDate').value = localDateTime;
+        }
+
+        // Handle form submission
+        document.getElementById('studyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const date = document.getElementById('studyDate').value;
+            const duration = parseInt(document.getElementById('duration').value);
+            const notes = document.getElementById('notes').value;
+
+            const session = {
+                id: Date.now() + Math.random(),
+                date: date,
+                duration: duration,
+                notes: notes,
+                timestamp: new Date(date).getTime()
+            };
+
+            addSession(session);
+            
+            // Reset form
+            this.reset();
+            setCurrentDateTime();
+        });
+
+        // Add a session
+        function addSession(session) {
+            const sessions = getSessions();
+            sessions.push(session);
+            saveSessions(sessions);
+            loadSessions();
+        }
+
+        // Get sessions from localStorage
+        function getSessions() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : [];
+        }
+
+        // Save sessions to localStorage
+        function saveSessions(sessions) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(sessions));
+        }
+
+        // Load and display sessions
+        function loadSessions() {
+            const sessions = getSessions();
+            
+            // Sort sessions by date (newest first)
+            sessions.sort((a, b) => b.timestamp - a.timestamp);
+            
+            // Update statistics
+            updateStats(sessions);
+            
+            // Display sessions
+            const sessionsList = document.getElementById('sessionsList');
+            
+            if (sessions.length === 0) {
+                sessionsList.innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-state-icon">📖</div>
+                        <p>No study sessions yet. Add your first session above!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            sessionsList.innerHTML = sessions.map(session => {
+                const date = new Date(session.date);
+                const formattedDate = date.toLocaleString('en-US', {
+                    weekday: 'short',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                const hours = Math.floor(session.duration / 60);
+                const minutes = session.duration % 60;
+                const durationText = hours > 0 
+                    ? `${hours}h ${minutes}m` 
+                    : `${minutes}m`;
+
+                return `
+                    <div class="session-item">
+                        <div class="session-info">
+                            <div class="session-date">${formattedDate}</div>
+                            <div class="session-duration">${durationText}</div>
+                            ${session.notes ? `<div class="session-note">${session.notes}</div>` : ''}
+                        </div>
+                        <div class="session-actions">
+                            <button onclick="deleteSession(${session.id})" class="btn-danger btn-small">Delete</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Update statistics
+        function updateStats(sessions) {
+            const totalSessions = sessions.length;
+            const totalMinutes = sessions.reduce((sum, session) => sum + session.duration, 0);
+            const totalHours = (totalMinutes / 60).toFixed(1);
+            const avgDuration = totalSessions > 0 ? Math.round(totalMinutes / totalSessions) : 0;
+
+            document.getElementById('totalSessions').textContent = totalSessions;
+            document.getElementById('totalHours').textContent = totalHours + 'h';
+            document.getElementById('avgDuration').textContent = avgDuration + 'm';
+        }
+
+        // Delete a session
+        function deleteSession(id) {
+            if (!confirm('Are you sure you want to delete this session?')) {
+                return;
+            }
+
+            const sessions = getSessions();
+            const filtered = sessions.filter(session => session.id !== id);
+            saveSessions(filtered);
+            loadSessions();
+        }
+
+        // Export data to JSON
+        function exportData() {
+            const sessions = getSessions();
+            const dataStr = JSON.stringify(sessions, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `financial-study-tracker-${Date.now()}.json`;
+            link.click();
+            
+            URL.revokeObjectURL(url);
+        }
+
+        // Import data from JSON
+        function importData() {
+            const fileInput = document.getElementById('fileInput');
+            fileInput.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        if (Array.isArray(data)) {
+                            // Validate session objects
+                            const isValid = data.every(session => 
+                                session.hasOwnProperty('id') &&
+                                session.hasOwnProperty('date') &&
+                                session.hasOwnProperty('duration') &&
+                                session.hasOwnProperty('timestamp')
+                            );
+                            
+                            if (!isValid) {
+                                alert('Invalid data format: sessions must have id, date, duration, and timestamp fields');
+                                return;
+                            }
+                            
+                            if (confirm('This will replace all existing data. Continue?')) {
+                                saveSessions(data);
+                                loadSessions();
+                                alert('Data imported successfully!');
+                            }
+                        } else {
+                            alert('Invalid JSON format');
+                        }
+                    } catch (error) {
+                        alert('Error reading file: ' + error.message);
+                    }
+                };
+                reader.readAsText(file);
+                fileInput.value = '';
+            };
+            fileInput.click();
+        }
+
+        // Clear all data
+        function clearAllData() {
+            if (confirm('Are you sure you want to clear all data? This cannot be undone!')) {
+                if (confirm('Really sure? This will delete all your study sessions.')) {
+                    localStorage.removeItem(STORAGE_KEY);
+                    loadSessions();
+                    alert('All data cleared!');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
