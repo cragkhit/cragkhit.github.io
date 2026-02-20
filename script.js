@@ -337,8 +337,79 @@ function getTagClass(count, tagClasses) {
     return 'single';
 }
 
+async function loadAcademicServices() {
+    const servicesGrid = document.getElementById('servicesGrid');
+    if (!servicesGrid) return;
+
+    try {
+        const candidatePaths = ['./reviewers.json', 'reviewers.json', '/reviewers.json'];
+        let data = null;
+
+        for (const path of candidatePaths) {
+            try {
+                const response = await fetch(path, { cache: 'no-store' });
+                if (!response.ok) continue;
+                data = await response.json();
+                break;
+            } catch (fetchError) {
+                continue;
+            }
+        }
+
+        if (!data) {
+            throw new Error('Cannot fetch reviewers.json from expected locations.');
+        }
+
+        const key = 'Reviewer of International Conferences and Workshops';
+        let records = Array.isArray(data[key]) ? data[key] : [];
+
+        if (!records.length) {
+            const firstArrayValue = Object.values(data).find((value) => Array.isArray(value));
+            records = Array.isArray(firstArrayValue) ? firstArrayValue : [];
+        }
+
+        const sortedRecords = [...records].sort((a, b) => b.year - a.year);
+
+        servicesGrid.innerHTML = '';
+
+        sortedRecords.forEach((record) => {
+            const serviceCard = document.createElement('div');
+            serviceCard.className = 'service-card';
+
+            const title = document.createElement('h3');
+            title.textContent = String(record.year);
+            serviceCard.appendChild(title);
+
+            const list = document.createElement('ul');
+            const roles = Array.isArray(record.roles) ? record.roles : [];
+
+            roles.forEach((role) => {
+                const item = document.createElement('li');
+                item.textContent = role;
+                list.appendChild(item);
+            });
+
+            serviceCard.appendChild(list);
+            servicesGrid.appendChild(serviceCard);
+        });
+
+        if (!sortedRecords.length) {
+            servicesGrid.innerHTML = '<div class="service-card"><h3>Academic Services</h3><ul><li>No service records found in reviewers.json.</li></ul></div>';
+        }
+    } catch (error) {
+        console.error('Unable to load Academic Services data:', error);
+        const fileProtocolHint = window.location.protocol === 'file:'
+            ? '<li>This page is opened with file:// and browsers may block reading JSON files. Please run a local web server.</li>'
+            : '';
+
+        servicesGrid.innerHTML = `<div class="service-card"><h3>Academic Services</h3><ul><li>Unable to load service records at this time.</li>${fileProtocolHint}</ul></div>`;
+    }
+}
+
 // Initialize venue summary update when page loads
 document.addEventListener('DOMContentLoaded', () => {
+    loadAcademicServices();
+
     // Add a small delay to ensure all content is loaded
     setTimeout(updateVenueSummary, 100);
     
