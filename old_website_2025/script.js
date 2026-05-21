@@ -13,14 +13,15 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
     navMenu.classList.remove('active');
 }));
 
-// Navbar scroll effect — toggles a class, CSS handles the styling.
+// Navbar scroll effect
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
-    if (!navbar) return;
-    if (window.scrollY > 24) {
-        navbar.classList.add('scrolled');
+    if (window.scrollY > 100) {
+        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
     } else {
-        navbar.classList.remove('scrolled');
+        navbar.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+        navbar.style.boxShadow = 'none';
     }
 });
 
@@ -224,9 +225,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Loading animation
-// (removed — was causing a FOUC flash because the opacity:0 rule was injected
-// AFTER the page had already rendered, briefly hiding and re-fading the content.)
+// Add loading animation for page transitions
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+});
 
 // Load More Publications functionality
 document.addEventListener('DOMContentLoaded', () => {
@@ -260,6 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Venue Summary Auto-Update functionality
 function updateVenueSummary() {
     // Extract venue information from all publications by looking for <span class="acronym"> elements
     const publicationItems = document.querySelectorAll('.publication-item');
@@ -285,7 +288,6 @@ function updateVenueSummary() {
     // Update the HTML with all venues in a single list
     updateAllVenues(sortedVenues);
 }
-window.updateVenueSummary = updateVenueSummary;
 
 function updateAllVenues(venueMap) {
     const venueStats = document.querySelector('.venue-stats');
@@ -406,6 +408,8 @@ async function loadAcademicServices() {
 
 // Initialize venue summary update when page loads
 document.addEventListener('DOMContentLoaded', () => {
+    loadAcademicServices();
+
     // Add a small delay to ensure all content is loaded
     setTimeout(updateVenueSummary, 100);
     
@@ -419,9 +423,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Add CSS for form error state
+// Add CSS for loading animation
 const loadingStyle = document.createElement('style');
 loadingStyle.textContent = `
+    body {
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+    
+    body.loaded {
+        opacity: 1;
+    }
+    
     .error {
         border-color: #ef4444 !important;
         box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
