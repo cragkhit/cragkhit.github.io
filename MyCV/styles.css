@@ -591,3 +591,57 @@ button { font-family: inherit; cursor: pointer; }
   .section-head, h4 { break-after: avoid; page-break-after: avoid; }
   .pub-item, .tl-row, .edu-item, .talk-row, .sup-year { break-inside: avoid; page-break-inside: avoid; }
 }
+
+/* ============================================================
+   Auth modal
+   ============================================================ */
+.auth-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: color-mix(in oklab, var(--ink) 40%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+}
+.auth-modal {
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 32px 36px;
+  width: 360px;
+  max-width: calc(100vw - 48px);
+  box-shadow: 0 20px 60px color-mix(in oklab, var(--ink) 18%, transparent);
+}
+.auth-modal-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 18px;
+}
+.auth-icon { font-size: 20px; }
+.auth-modal h3 {
+  font-family: var(--serif); font-style: italic; font-weight: 400;
+  font-size: 22px; margin: 0; color: var(--ink);
+}
+.auth-note {
+  font-size: 13px; line-height: 1.5; color: var(--ink-soft);
+  margin: 0 0 18px;
+}
+.auth-input {
+  display: block; width: 100%;
+  border: 1px solid var(--rule); border-radius: 6px;
+  background: var(--bg-2);
+  color: var(--ink);
+  font-family: var(--mono); font-size: 14px;
+  padding: 10px 13px;
+  outline: none;
+  transition: border-color .15s;
+  margin-bottom: 10px;
+}
+.auth-input:focus { border-color: var(--accent); }
+.auth-error {
+  font-size: 12.5px; color: oklch(0.55 0.18 20);
+  margin: 4px 0 10px; font-family: var(--mono);
+}
+.auth-actions {
+  display: flex; gap: 10px; justify-content: flex-end;
+  margin-top: 18px;
+}
+@media print { .auth-overlay { display: none; } }

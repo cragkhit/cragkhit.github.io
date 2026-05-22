@@ -1,10 +1,88 @@
-/* global React, ReactDOM, Display */
+/* global React, ReactDOM, Display, cvAuth */
 const { useState, useEffect, useRef, useCallback } = React;
 
+/* ============================================================
+   Password modal — shown when entering edit mode
+   ============================================================ */
+function PasswordModal({ isSetup, onSubmit, onCancel, error, pending }) {
+  const [val, setVal]           = useState("");
+  const [confirm, setConfirm]   = useState("");
+  const [localErr, setLocalErr] = useState("");
+  const inputRef                = useRef(null);
+
+  useEffect(() => { inputRef.current?.focus(); }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLocalErr("");
+    if (isSetup) {
+      if (val.length < 8) { setLocalErr("Password must be at least 8 characters."); return; }
+      if (val !== confirm) { setLocalErr("Passwords do not match."); return; }
+    }
+    onSubmit(val);
+  };
+
+  const msg = localErr || error;
+
+  return (
+    <div className="auth-overlay" onClick={(e) => { if (e.target === e.currentTarget) onCancel(); }}>
+      <div className="auth-modal">
+        <div className="auth-modal-header">
+          <span className="auth-icon">🔒</span>
+          <h3>{isSetup ? "Set Edit Password" : "Enter Password"}</h3>
+        </div>
+        {isSetup && (
+          <p className="auth-note">
+            First-time setup. Choose a password to protect your edit mode.
+            It is never stored — only an encrypted token is saved.
+          </p>
+        )}
+        <form onSubmit={handleSubmit}>
+          <input
+            ref={inputRef}
+            type="password"
+            className="auth-input"
+            value={val}
+            onChange={(e) => { setVal(e.target.value); setLocalErr(""); }}
+            placeholder={isSetup ? "New password (min 8 chars)" : "Password"}
+            autoComplete={isSetup ? "new-password" : "current-password"}
+            disabled={pending}
+          />
+          {isSetup && (
+            <input
+              type="password"
+              className="auth-input"
+              value={confirm}
+              onChange={(e) => { setConfirm(e.target.value); setLocalErr(""); }}
+              placeholder="Confirm password"
+              autoComplete="new-password"
+              disabled={pending}
+            />
+          )}
+          {msg && <p className="auth-error">{msg}</p>}
+          <div className="auth-actions">
+            <button type="button" className="tb-btn" onClick={onCancel} disabled={pending}>
+              Cancel
+            </button>
+            <button type="submit" className="tb-btn primary" disabled={pending || !val}>
+              {pending ? "Verifying…" : isSetup ? "Set Password" : "Unlock Edit"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 function App() {
-  const [cv, setCV] = useState(() => loadCV());
-  const [mode, setMode] = useState(() => localStorage.getItem(MODE_KEY) || "display");
+  const [cv, setCV]     = useState(() => loadCV());
+  // Never restore edit mode from localStorage — always require password
+  const [mode, setMode] = useState("display");
   const [theme, setTheme] = useState(() => localStorage.getItem(THEME_KEY) || "light");
+
+  const [showAuth, setShowAuth]   = useState(false);
+  const [authError, setAuthError] = useState("");
+  const [authPending, setAuthPending] = useState(false);
   const [query, setQuery] = useState("");
   const fileRef = useRef(null);
 
@@ -13,9 +91,39 @@ function App() {
   useEffect(() => {
     document.body.dataset.mode = mode;
     document.documentElement.dataset.theme = theme;
-    localStorage.setItem(MODE_KEY, mode);
+    // Do not persist mode — edit always requires password re-entry
     localStorage.setItem(THEME_KEY, theme);
   }, [mode, theme]);
+
+  const handleEditClick = () => {
+    if (mode === "edit") { setMode("display"); return; }
+    setAuthError("");
+    setShowAuth(true);
+  };
+
+  const handleAuthSubmit = async (password) => {
+    setAuthPending(true);
+    setAuthError("");
+    try {
+      if (!cvAuth.isSetup()) {
+        await cvAuth.setup(password);
+        setShowAuth(false);
+        setMode("edit");
+      } else {
+        const key = await cvAuth.verify(password);
+        if (key) {
+          setShowAuth(false);
+          setMode("edit");
+        } else {
+          setAuthError("Incorrect password.");
+        }
+      }
+    } catch {
+      setAuthError("Authentication error. Please try again.");
+    } finally {
+      setAuthPending(false);
+    }
+  };
 
   // mutations — every change stamps today's date as last update
   const stampDate = (data) => {
@@ -76,6 +184,16 @@ function App() {
 
   return (
     <>
+      {showAuth && (
+        <PasswordModal
+          isSetup={!cvAuth.isSetup()}
+          onSubmit={handleAuthSubmit}
+          onCancel={() => { setShowAuth(false); setAuthError(""); }}
+          error={authError}
+          pending={authPending}
+        />
+      )}
+
       <nav className="toolbar">
         <div className="brand"><b>MyCV</b> — <i>{cv.meta.name.split(" ")[0]}'s curriculum vitae</i></div>
 
@@ -102,7 +220,7 @@ function App() {
 
         <button
           className={`tb-btn primary ${mode === "edit" ? "is-on" : ""}`}
-          onClick={() => setMode(mode === "edit" ? "display" : "edit")}
+          onClick={handleEditClick}
         >
           {mode === "edit" ? "✓ Done editing" : "✎ Edit"}
         </button>
@@ -113,8 +231,13 @@ function App() {
           <div className="edit-banner">
             <span className="lab">Edit mode</span>
             <span style={{color: "var(--ink-soft)"}}>Click any text to edit. Hover rows to reorder or remove. Changes save automatically to this device.</span>
-            <span style={{marginLeft: "auto"}}>
+            <span style={{marginLeft: "auto", display: "flex", gap: 8}}>
               <button className="tb-btn" onClick={resetData} style={{fontSize: 11}}>↺ Reset to default</button>
+              <button className="tb-btn" title="Remove stored password token (you will set a new one next time)"
+                onClick={() => { if (confirm("Remove the stored password token? You will be prompted to set a new password next time you enter edit mode.")) { cvAuth.reset(); setMode("display"); } }}
+                style={{fontSize: 11}}>
+                🔑 Change password
+              </button>
             </span>
           </div>
         </div>
