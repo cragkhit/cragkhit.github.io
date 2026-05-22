@@ -439,16 +439,17 @@ function PublicationsSection({ cv, onChange, onList, editing, matches, move, onR
         const items = filtered.filter(p => p.type === g.key);
         if (typeFilter !== "all" && typeFilter !== g.key) return null;
         if (items.length === 0 && !editing) return null;
-        const addBtn = editing && (
-          <AddRowButton
-            onClick={() => onList("publications", "add", { type: g.key, year: new Date().getFullYear(), authors: "Authors", title: "Title", venue: "Venue" })}
-            label={g.label.replace(/s$/, "").toLowerCase()}
-          />
-        );
+        const newPub = { type: g.key, year: new Date().getFullYear(), authors: "Authors", title: "Title", venue: "Venue" };
+        const allIdx = cv.publications.map((p, i) => p.type === g.key ? i : -1).filter(i => i >= 0);
+        const topIdx    = allIdx.length > 0 ? allIdx[0]                    : cv.publications.length;
+        const bottomIdx = allIdx.length > 0 ? allIdx[allIdx.length - 1] + 1 : cv.publications.length;
+        const label = g.label.replace(/s$/, "").toLowerCase();
+        const addTopBtn    = editing && <AddRowButton onClick={() => onList("publications", "addAt", { i: topIdx,    item: newPub })} label={label} />;
+        const addBottomBtn = editing && <AddRowButton onClick={() => onList("publications", "addAt", { i: bottomIdx, item: newPub })} label={label} />;
         return (
           <div className="pub-group" key={g.key}>
             <div className="pub-group-title">{g.label} · {items.length}</div>
-            {addBtn}
+            {addTopBtn}
             {items.map((p) => {
               const i = cv.publications.indexOf(p);
               return (
@@ -463,7 +464,7 @@ function PublicationsSection({ cv, onChange, onList, editing, matches, move, onR
                 </div>
               );
             })}
-            {addBtn}
+            {addBottomBtn}
           </div>
         );
       })}
