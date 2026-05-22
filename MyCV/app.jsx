@@ -148,6 +148,7 @@ function App() {
       else if (op === "field") next[payload.i] = { ...next[payload.i], [payload.k]: payload.v };
       else if (op === "remove") next.splice(payload.i, 1);
       else if (op === "add") next = [...next, payload];
+      else if (op === "addAt") { next = [...next]; next.splice(payload.i, 0, payload.item); }
       else if (op === "replace") next = payload;
       else if (op === "move") {
         const { i, dir } = payload;

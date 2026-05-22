@@ -178,6 +178,7 @@ button { font-family: inherit; cursor: pointer; }
   align-items: baseline; gap: 16px;
   border-bottom: 1px solid var(--ink);
   padding-bottom: 10px; margin-bottom: 24px;
+  position: relative;
 }
 .section-head .num {
   font-family: var(--mono); font-size: 11px; letter-spacing: .12em;
@@ -526,8 +527,8 @@ button { font-family: inherit; cursor: pointer; }
 
   /* dense rows */
   .tl-row, .edu-item, .bullet-list li, .pub-item, .talk-row, .svc-year-row, .sup-year { padding: 4px 0 !important; }
-  .tl-row { grid-template-columns: 130px 1fr !important; gap: 10px !important; }
-  .tl-when { font-size: 8pt !important; }
+  .tl-row { grid-template-columns: 210px 1fr !important; gap: 20px !important; align-items: start !important; }
+  .tl-when { font-size: 8pt !important; white-space: normal !important; overflow: hidden !important; }
   .tl-what .role { font-size: 9.5pt !important; }
   .tl-what .org { font-size: 9pt !important; }
   .tl-when .now { display: none !important; }
