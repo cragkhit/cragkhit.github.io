@@ -25,42 +25,6 @@
     { key: "chapter",    label: "Book Chapters" },
   ];
 
-  const VENUE_ACRONYM_MAP = [
-    [/^Journal of Systems and Software/i, "JSS"],
-    [/^Empirical Software Engineering/i, "EMSE"],
-    [/^IEEE Transactions on Software Engineering/i, "TSE"],
-    [/^ACM Transactions on Software Engineering and Methodology/i, "TOSEM"],
-    [/^Information and Software Technology/i, "IST"],
-    [/^IEEE Access/i, "IEEE Access"],
-    [/^Software: Practice and Experience/i, "SPE"],
-    [/^Science of Computer Programming/i, "SCP"],
-    [/^Software Quality Journal/i, "SQJ"],
-  ];
-
-  // Full names for conference / workshop acronyms. The acronym in the venue
-  // string is expanded inline to "Full Name (ACRONYM)" so the audience knows
-  // what each venue stands for.
-  const VENUE_FULL_NAME = {
-    MSR:    "International Conference on Mining Software Repositories",
-    ICAART: "International Conference on Agents and Artificial Intelligence",
-    APSEC:  "Asia-Pacific Software Engineering Conference",
-    InCIT:  "International Conference on Information Technology",
-    ASE:    "International Conference on Automated Software Engineering",
-    ICSME:  "International Conference on Software Maintenance and Evolution",
-    SBES:   "Brazilian Symposium on Software Engineering",
-    NLDB:   "International Conference on Natural Language & Information Systems",
-    SANER:  "International Conference on Software Analysis, Evolution and Reengineering",
-    ESEM:   "International Symposium on Empirical Software Engineering and Measurement",
-    JCSSE:  "International Joint Conference on Computer Science and Software Engineering",
-    AINA:   "International Conference on Advanced Information Networking and Applications",
-    ICPC:   "International Conference on Program Comprehension",
-    SCAM:   "International Working Conference on Source Code Analysis and Manipulation",
-    ICST:   "IEEE International Conference on Software Testing, Verification and Validation",
-    SSBSE:  "International Symposium on Search-Based Software Engineering",
-    IWSC:   "International Workshop on Software Clones",
-    IWESEP: "International Workshop on Empirical Software Engineering in Practice",
-    QuASoQ: "International Workshop on Quantitative Approaches to Software Quality",
-  };
 
   // --- State -------------------------------------------------------------
   const state = {
@@ -78,27 +42,17 @@
       .replace(/'/g, "&#39;");
   }
 
-  function extractAcronym(venue) {
-    if (!venue) return null;
-    for (const [re, ac] of VENUE_ACRONYM_MAP) {
-      if (re.test(venue)) return ac;
-    }
-    const paren = venue.match(/\(([A-Z][A-Z0-9]{1,9})(?:\s+['']?\d|\s|\))/);
-    if (paren) return paren[1];
-    const bare = venue.match(/\b([A-Z][A-Z0-9]{1,9}(?:\/[A-Z]+)?)\b(?=\s*[''']\s*\d|\s+\d{4})/);
-    if (bare) return bare[1];
-    return null;
-  }
-
-  function highlightAcronym(venue, acronym) {
+  function highlightAcronym(venue, acronym, fullName) {
     if (!acronym) return escapeHtml(venue);
     const re = new RegExp("\\b" + acronym.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b");
     const m = re.exec(venue);
-    if (!m) return escapeHtml(venue);
-    const full = VENUE_FULL_NAME[acronym];
+    if (!m) {
+      return escapeHtml(venue) + ` (<span class="acronym">${escapeHtml(acronym)}</span>)`;
+    }
+    const alreadyExpanded = fullName && venue.includes(fullName);
     const acHtml = `<span class="acronym">${escapeHtml(m[0])}</span>`;
-    const replacement = full
-      ? `<span class="venue-full">${escapeHtml(full)}</span> (${acHtml})`
+    const replacement = (fullName && !alreadyExpanded)
+      ? `<span class="venue-full">${escapeHtml(fullName)}</span> (${acHtml})`
       : acHtml;
     return (
       escapeHtml(venue.slice(0, m.index)) +
@@ -119,8 +73,7 @@
   }
 
   function renderPublication(p, q) {
-    const acronym = extractAcronym(p.venue);
-    const venueHtml = highlightAcronym(p.venue || "", acronym);
+    const venueHtml = highlightAcronym(p.venue || "", p.venueAcronym || null, p.venueFullName || null);
     const links = Array.isArray(p.links) ? p.links : [];
     const linksHtml = links.length
       ? `<div class="publication-links">${links
