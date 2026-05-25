@@ -220,6 +220,11 @@ window.DEFAULT_CV = {
   ],
   services: {
     consulting: ["Software Engineering Consultant (2019–Present): adoption of ISO/IEC 29110-4-1:2018 — Lifecycle profiles for Very Small Entities (VSEs)"],
+    committees: [
+      "University Research Ethics Committee, Example University (2021–Present)",
+      "Faculty Curriculum Committee, Department of Earth and Environmental Sciences (2020–Present)",
+      "National Climate Research Advisory Panel, Ministry of Science (2022–Present)"
+    ],
     courses: [
       { title: "Software Quality Assurance and Testing: Introduction to Testing Principles and Structured Testing Techniques", host: "MUx", url: "https://mux.mahidol.ac.th/courses/course-v1:MU-ICT+ITCS473+MU-ICT_000004" },
       { title: "Applications for Increasing Working Efficiency", host: "Mahidol Channel Academy", url: "https://channel.mahidol.ac.th/mca/course/12/applications-for-increasing-efficiently-working" },
