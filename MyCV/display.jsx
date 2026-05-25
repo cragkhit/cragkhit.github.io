@@ -527,16 +527,19 @@ function ServicesSection({ cv, onList, onChange, editing, onRemove, title, onTit
   const s = cv.services;
   const setS = (next) => onChange("services", next);
   const sMove = (key, i, dir) => {
-    const n = [...s[key]];
+    const n = [...(s[key] || [])];
     const j = i + dir;
     if (j < 0 || j >= n.length) return;
     [n[i], n[j]] = [n[j], n[i]];
     setS({ ...s, [key]: n });
   };
-  const sm = (key, i) => ({
-    onMoveUp: i > 0 ? () => sMove(key, i, -1) : undefined,
-    onMoveDown: i < s[key].length - 1 ? () => sMove(key, i, 1) : undefined,
-  });
+  const sm = (key, i) => {
+    const len = (s[key] || []).length;
+    return {
+      onMoveUp: i > 0 ? () => sMove(key, i, -1) : undefined,
+      onMoveDown: i < len - 1 ? () => sMove(key, i, 1) : undefined,
+    };
+  };
   return (
     <Section num="09" title={title} id="services" onRemove={onRemove} onTitleChange={onTitleChange}>
       <div className="svc-block">
@@ -550,6 +553,19 @@ function ServicesSection({ cv, onList, onChange, editing, onRemove, title, onTit
           ))}
         </ul>
         {editing && <AddRowButton onClick={() => setS({ ...s, consulting: [...s.consulting, "New consulting engagement"] })} label="consulting record" />}
+      </div>
+
+      <div className="svc-block">
+        <h4>Committees</h4>
+        <ul className="bullet-list">
+          {(s.committees || []).map((c, i) => (
+            <li key={i} className="has-actions">
+              <Editable value={c} onChange={(v) => { const n = [...(s.committees || [])]; n[i] = v; setS({ ...s, committees: n }); }} multiline />
+              {editing && <RowActions onRemove={() => { const n = (s.committees || []).filter((_, j) => j !== i); setS({ ...s, committees: n }); }} {...sm("committees", i)} />}
+            </li>
+          ))}
+        </ul>
+        {editing && <AddRowButton onClick={() => setS({ ...s, committees: [...(s.committees || []), "New committee role"] })} label="committee" />}
       </div>
 
       <div className="svc-block">
