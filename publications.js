@@ -30,6 +30,7 @@
   const state = {
     typeFilter: "all",
     yearFilter: "all",
+    venueFilter: "all",
     query: "",
   };
 
@@ -109,6 +110,7 @@
     return pubs.filter((p) => {
       if (state.typeFilter !== "all" && p.type !== state.typeFilter) return false;
       if (state.yearFilter !== "all" && String(p.year) !== String(state.yearFilter)) return false;
+      if (state.venueFilter !== "all" && p.venueAcronym !== state.venueFilter) return false;
       if (q) {
         const hay = ((p.title || "") + " " + (p.authors || "") + " " + (p.venue || "")).toLowerCase();
         if (!hay.includes(q)) return false;
@@ -186,6 +188,41 @@
     });
   }
 
+  function buildVenueFilters() {
+    const wrap = document.getElementById("pubVenueFilters");
+    if (!wrap) return;
+    const all = window.DEFAULT_CV?.publications || [];
+
+    const counts = {};
+    const fullNames = {};
+    for (const p of all) {
+      if (!p.venueAcronym) continue;
+      counts[p.venueAcronym] = (counts[p.venueAcronym] || 0) + 1;
+      if (p.venueFullName && !fullNames[p.venueAcronym]) {
+        fullNames[p.venueAcronym] = p.venueFullName;
+      }
+    }
+
+    const venues = Object.entries(counts).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
+
+    wrap.innerHTML = [
+      `<button type="button" class="pf-btn" data-key="all">All venues</button>`,
+      ...venues.map(([ac, n]) => {
+        const title = fullNames[ac] ? ` title="${escapeHtml(fullNames[ac])}"` : "";
+        return `<button type="button" class="pf-btn" data-key="${escapeHtml(ac)}"${title}>${escapeHtml(ac)} · ${n}</button>`;
+      }),
+    ].join("");
+
+    syncActive(wrap, state.venueFilter);
+    wrap.addEventListener("click", (e) => {
+      const btn = e.target.closest(".pf-btn");
+      if (!btn) return;
+      state.venueFilter = btn.dataset.key;
+      syncActive(wrap, state.venueFilter);
+      renderResults();
+    });
+  }
+
   function buildSearch() {
     const input = document.getElementById("pubSearch");
     if (!input) return;
@@ -208,6 +245,7 @@
   function init() {
     buildTypeFilters();
     buildYearFilters();
+    buildVenueFilters();
     buildSearch();
     renderResults();
     renderServices();
