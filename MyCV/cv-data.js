@@ -69,17 +69,17 @@ window.DEFAULT_CV = {
     { year: "2006", honor: "Winner of the 8th National Software Contest of Thailand (NSC) — Software for Entertainment" }
   ],
   grants: [
-    "Mahidol's Strategic Research Fund (Rising Category) 2025 — \"M-MMT4NL: Multilingual Testing Framework for Large-Language Models\", 1.5M THB × 1.5 years",
-    "Mahidol's Scholarship for Ph.D. Student 2025",
-    "MAINTAIN — Intelligent Maintenance of Software Systems, CNPq/MCTI No 10/2023 — Universal 2023, Researcher (led by Dr. Matheus Paixao, UECE, Brazil)",
-    "Mahidol's Scholarship for Ph.D. Student 2022",
-    "Research Grant for New Scholars (RGNS) from MHESRI — \"Code similarity applications for improving software quality\", 2021–2023, 600K THB × 2 years",
-    "Mahidol University Mini-Research Cluster (MU-MiniRC) — \"Applying Software Engineering for Improving the Development of Data Science Application\", 2021–2022 (led by Dr. Apirak Hoonlor)",
-    "Automated Software Engineering for Thailand Software Industry, Royal Academy of Engineering (UK) and TSRI, 2019–2021, 13,345 GBP × 2 years",
-    "UIC grant, University of Wollongong, 2019–2020",
-    "Amazon AWS Credits for Research, 2018, 20,000 USD",
-    "NSF Student Travel Support for the 8th Symposium on Search-Based Software Engineering, 2016, 700 USD",
-    "Microsoft Azure Research Award, 2016, 20,000 USD"
+    { year: "2025", grant: "Mahidol's Strategic Research Fund (Rising Category) — \"M-MMT4NL: Multilingual Testing Framework for Large-Language Models\", 1.5M THB × 1.5 years" },
+    { year: "2025", grant: "Mahidol's Scholarship for Ph.D. Student" },
+    { year: "2023", grant: "MAINTAIN — Intelligent Maintenance of Software Systems, CNPq/MCTI No 10/2023 — Universal 2023, Researcher (led by Dr. Matheus Paixao, UECE, Brazil)" },
+    { year: "2022", grant: "Mahidol's Scholarship for Ph.D. Student" },
+    { year: "2021–2023", grant: "Research Grant for New Scholars (RGNS) from MHESRI — \"Code similarity applications for improving software quality\", 600K THB × 2 years" },
+    { year: "2021–2022", grant: "Mahidol University Mini-Research Cluster (MU-MiniRC) — \"Applying Software Engineering for Improving the Development of Data Science Application\" (led by Dr. Apirak Hoonlor)" },
+    { year: "2019–2021", grant: "Automated Software Engineering for Thailand Software Industry, Royal Academy of Engineering (UK) and TSRI, 13,345 GBP × 2 years" },
+    { year: "2019–2020", grant: "UIC grant, University of Wollongong" },
+    { year: "2018", grant: "Amazon AWS Credits for Research, 20,000 USD" },
+    { year: "2016", grant: "NSF Student Travel Support for the 8th Symposium on Search-Based Software Engineering, 700 USD" },
+    { year: "2016", grant: "Microsoft Azure Research Award, 20,000 USD" }
   ],
   pubStats: {
     monographs: 0, journals: 11, conferences: 38, chapters: 2, workshops: 7, edited: 0,
