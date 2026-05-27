@@ -604,7 +604,17 @@ button { font-family: inherit; cursor: pointer; }
 
   /* page break behavior */
   .section { break-inside: auto; }
-  .section-head, h4 { break-after: avoid; page-break-after: avoid; }
+
+  /* Prevent section headers from being orphaned at the bottom of a page.
+     "break-after: avoid" alone is often ignored by Chrome's print engine;
+     pairing it with "break-before: avoid" on the immediately-following sibling
+     creates a pincer that the engine must honour together. */
+  .section-head,
+  h4 { break-after: avoid; page-break-after: avoid; }
+
+  .section-head + *,
+  h4 + * { break-before: avoid; page-break-before: avoid; }
+
   .pub-item, .tl-row, .edu-item, .talk-row, .sup-year { break-inside: avoid; page-break-inside: avoid; }
 }
 
