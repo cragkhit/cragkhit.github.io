@@ -105,15 +105,20 @@ function Display({ cv, onChange, onList, mode, query }) {
 
       {!hidden.has("honors") && (
       <Section num="04" title={sectionTitle("honors", "Selected Honors")} id="honors" onRemove={rm("honors")} onTitleChange={titleChange("honors")}>
-        <ul className="bullet-list">
-          {cv.honors.filter(matches).map((h, i) => (
-            <li key={i} className="has-actions">
-              <Editable value={h} onChange={(v) => onList("honors", "set", { i, v })} multiline />
+        <div className="honors-table">
+          {cv.honors.filter(h => matches(h.year) || matches(h.honor)).map((h, i) => (
+            <div key={i} className="honors-row has-actions">
+              <div className="honors-year">
+                <Editable value={h.year} onChange={(v) => onList("honors", "set", { i, v: { ...h, year: v } })} />
+              </div>
+              <div className="honors-honor">
+                <Editable value={h.honor} onChange={(v) => onList("honors", "set", { i, v: { ...h, honor: v } })} multiline />
+              </div>
               {editing && <RowActions onRemove={() => onList("honors", "remove", { i })} {...move("honors", i, cv.honors.length)} />}
-            </li>
+            </div>
           ))}
-        </ul>
-        {editing && <AddRowButton onClick={() => onList("honors", "add", "New honor or award")} label="honor" />}
+        </div>
+        {editing && <AddRowButton onClick={() => onList("honors", "add", { year: "2024", honor: "New honor or award" })} label="honor" />}
       </Section>
       )}
 

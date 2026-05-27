@@ -244,6 +244,21 @@ button { font-family: inherit; cursor: pointer; }
 .edu-meta { font-family: var(--mono); font-size: 11.5px; color: var(--ink-mute); margin-top: 4px; letter-spacing: .04em; }
 
 /* ---------- honors / grants list ---------- */
+/* ---------- honors ---------- */
+.honors-table { width: 100%; }
+.honors-row {
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  gap: 24px;
+  padding: 10px 0;
+  border-bottom: 1px dotted var(--rule);
+  font-size: 14.5px; line-height: 1.55;
+  color: var(--ink-soft);
+  align-items: start;
+}
+.honors-row:last-child { border-bottom: none; }
+.honors-year { font-weight: 600; color: var(--ink); padding-top: 1px; }
+
 .bullet-list { list-style: none; padding: 0; margin: 0; }
 .bullet-list li {
   position: relative;
