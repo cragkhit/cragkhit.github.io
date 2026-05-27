@@ -349,12 +349,11 @@ button { font-family: inherit; cursor: pointer; }
 }
 .sup-year:last-child { border-bottom: none; }
 .sup-year .yr {
-  font-family: var(--mono); font-size: 12px; color: var(--ink-mute);
+  font-family: var(--mono); font-size: 13px; color: var(--accent);
   letter-spacing: .04em;
 }
 .sup-year ul { list-style: none; padding: 0; margin: 0; }
 .sup-year li { font-size: 14px; line-height: 1.5; color: var(--ink-soft); padding: 3px 0; }
-.sup-year li::before { content: "— "; color: var(--accent); }
 
 /* ---------- teaching table ---------- */
 .tt-table { width: 100%; border-collapse: collapse; }
@@ -368,6 +367,7 @@ button { font-family: inherit; cursor: pointer; }
   letter-spacing: .12em; text-transform: uppercase;
   color: var(--ink-mute); font-weight: 500;
   border-bottom: 1px solid var(--ink);
+  padding-top: 2px;
 }
 .tt-code { font-family: var(--mono); font-size: 12px; color: var(--accent); white-space: nowrap; }
 .tt-title { color: var(--ink); }
@@ -390,7 +390,7 @@ button { font-family: inherit; cursor: pointer; }
   padding: 8px 0; border-bottom: 1px dotted var(--rule);
 }
 .svc-year-row:last-child { border-bottom: none; }
-.svc-year-row .yr { font-family: var(--mono); font-size: 12px; color: var(--ink-mute); }
+.svc-year-row .yr { font-family: var(--mono); font-size: 13px; color: var(--accent); }
 
 /* ---------- talks ---------- */
 .talk-row { padding: 14px 0; border-bottom: 1px dotted var(--rule); }

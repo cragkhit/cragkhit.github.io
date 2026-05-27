@@ -372,6 +372,11 @@ function Section({ num, title, id, children, meta, onRemove, onTitleChange }) {
 function PublicationsSection({ cv, onChange, onList, editing, matches, move, onRemove, title, onTitleChange }) {
   const setStat1 = (key, val) => onChange("pubStats", { ...cv.pubStats, citations:  { ...cv.pubStats.citations,  [key]: val } });
   const setStat2 = (key, val) => onChange("pubStats", { ...cv.pubStats, citations2: { ...cv.pubStats.citations2, [key]: val } });
+  const pubCounts = useMemo(() => {
+    const c = { journal: 0, conference: 0, workshop: 0, chapter: 0 };
+    cv.publications.forEach(p => { if (c[p.type] !== undefined) c[p.type]++; });
+    return c;
+  }, [cv.publications]);
   const [typeFilter, setTypeFilter] = useState("all");
   const [yearFilter, setYearFilter] = useState("all");
 
@@ -404,10 +409,10 @@ function PublicationsSection({ cv, onChange, onList, editing, matches, move, onR
   return (
     <Section num="06" title={title} id="publications" meta={`${cv.publications.length} total`} onRemove={onRemove} onTitleChange={onTitleChange}>
       <div className="pub-stats">
-        <div className="pub-stat"><div className="n">{cv.pubStats.journals}</div><div className="l">Journals</div></div>
-        <div className="pub-stat"><div className="n">{cv.pubStats.conferences}</div><div className="l">Conferences</div></div>
-        <div className="pub-stat"><div className="n">{cv.pubStats.workshops}</div><div className="l">Workshops</div></div>
-        <div className="pub-stat"><div className="n">{cv.pubStats.chapters}</div><div className="l">Chapters</div></div>
+        <div className="pub-stat"><div className="n">{pubCounts.journal}</div><div className="l">Journals</div></div>
+        <div className="pub-stat"><div className="n">{pubCounts.conference}</div><div className="l">Conferences</div></div>
+        <div className="pub-stat"><div className="n">{pubCounts.workshop}</div><div className="l">Workshops</div></div>
+        <div className="pub-stat"><div className="n">{pubCounts.chapter}</div><div className="l">Chapters</div></div>
         <div className="pub-stat">
           <div className="n"><Editable value={String(cv.pubStats.citations.count)} onChange={(v) => setStat1("count", parseInt(v) || v)} /></div>
           <div className="l"><Editable value={cv.pubStats.citations.source} onChange={(v) => setStat1("source", v)} /></div>
@@ -615,7 +620,7 @@ function ServicesSection({ cv, onList, onChange, editing, onRemove, title, onTit
             <div className="yr"><Editable value={String(row.year)} onChange={(v) => { const n = [...s.organizing]; n[i] = { ...n[i], year: v }; setS({ ...s, organizing: n }); }} /></div>
             <div style={{fontSize: 14, color: "var(--ink-soft)"}}>
               {row.items.map((it, j) => (
-                <div key={j} style={{position: "relative"}}>— <Editable value={it} onChange={(v) => { const n = [...s.organizing]; n[i] = { ...n[i], items: n[i].items.map((x, k) => k === j ? v : x) }; setS({ ...s, organizing: n }); }} multiline />
+                <div key={j} style={{position: "relative"}}><Editable value={it} onChange={(v) => { const n = [...s.organizing]; n[i] = { ...n[i], items: n[i].items.map((x, k) => k === j ? v : x) }; setS({ ...s, organizing: n }); }} multiline />
                   {editing && <button className="ec-btn danger" style={{marginLeft: 6, width: 16, height: 16, fontSize: 10}} onClick={() => { const n = [...s.organizing]; n[i] = { ...n[i], items: n[i].items.filter((_, k) => k !== j) }; setS({ ...s, organizing: n }); }}>×</button>}
                 </div>
               ))}
