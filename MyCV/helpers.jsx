@@ -21,6 +21,14 @@ function loadCV() {
       if (data?.meta && typeof data.meta.tagline === "string") {
         data.meta.tagline = data.meta.tagline.split(/\s*·\s*/).filter(Boolean);
       }
+      // migrate: honors/grants used to be arrays of plain strings;
+      // re-seed from DEFAULT_CV since the year can't be reliably split out of old text
+      if (Array.isArray(data?.honors) && data.honors.some(h => typeof h === "string")) {
+        data.honors = JSON.parse(JSON.stringify(window.DEFAULT_CV.honors));
+      }
+      if (Array.isArray(data?.grants) && data.grants.some(g => typeof g === "string")) {
+        data.grants = JSON.parse(JSON.stringify(window.DEFAULT_CV.grants));
+      }
       return data;
     }
   } catch (e) {}
