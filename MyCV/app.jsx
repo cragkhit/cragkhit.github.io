@@ -86,8 +86,82 @@ function App() {
   const [query, setQuery] = useState("");
   const fileRef = useRef(null);
 
+  // Disk sync: when linked, every edit is written back to cv-data.js so
+  // research.html sees it without an export/import round trip.
+  const [dirHandle, setDirHandle] = useState(null);
+  const [syncMsg, setSyncMsg] = useState("");
+  const [pendingLoss, setPendingLoss] = useState("");
+  const skipFirstWrite = useRef(true);
+
   // persist
   useEffect(() => { saveCV(cv); }, [cv]);
+
+  // Re-link silently on load if the folder permission is still granted.
+  useEffect(() => {
+    if (!window.cvFsSync?.supported()) return;
+    cvFsSync.restore().then((d) => { if (d) setDirHandle(d); }).catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (!dirHandle) return;
+    // The first run after linking would rewrite the file with what it already
+    // contains; skip it so linking alone never dirties the working tree.
+    if (skipFirstWrite.current) { skipFirstWrite.current = false; return; }
+    const t = setTimeout(async () => {
+      try {
+        const written = await cvFsSync.write(dirHandle, cv);
+        const at = new Date().toLocaleTimeString();
+        setSyncMsg(`saved ${written.length} files · ${at}`);
+        setPendingLoss("");
+      } catch (err) {
+        // A shrinking save is usually a stale copy, but it can also be a
+        // deliberate deletion — surface it and let the user decide.
+        if (err.message.startsWith("refusing to save")) setPendingLoss(err.message);
+        setSyncMsg(err.message);
+      }
+    }, 800);
+    return () => clearTimeout(t);
+  }, [cv, dirHandle]);
+
+  const saveAnyway = async () => {
+    try {
+      const written = await cvFsSync.write(dirHandle, cv, { force: true });
+      setSyncMsg(`saved ${written.length} files · ${new Date().toLocaleTimeString()}`);
+      setPendingLoss("");
+    } catch (err) {
+      setSyncMsg(`save failed — ${err.message}`);
+    }
+  };
+
+  const toggleLink = async () => {
+    if (dirHandle) {
+      await cvFsSync.forget();
+      setDirHandle(null);
+      setSyncMsg("");
+      return;
+    }
+    try {
+      const d = await cvFsSync.pickDir();
+      // What's in localStorage may be an older fork than the file on disk, so
+      // check before letting it become the thing that gets written.
+      const disk = await cvFsSync.readCurrent(d).catch(() => null);
+      const loss = cvFsSync.assessLoss(disk, cv);
+      if (loss) {
+        const takeDisk = confirm(
+          `The CV in this browser is missing ${loss} compared to cv-data.js on disk.\n\n` +
+          `OK — load the file's version (recommended, discards the browser copy)\n` +
+          `Cancel — don't link, so nothing is overwritten`
+        );
+        if (!takeDisk) { setSyncMsg("not linked — browser copy is out of date"); return; }
+        setCV(disk);
+      }
+      skipFirstWrite.current = true;
+      setDirHandle(d);
+      setSyncMsg("linked — edits now save to cv-data.js");
+    } catch (err) {
+      if (err.name !== "AbortError") setSyncMsg(err.message);
+    }
+  };
   useEffect(() => {
     document.body.dataset.mode = mode;
     document.documentElement.dataset.theme = theme;
@@ -212,6 +286,21 @@ function App() {
         </button>
         <button className="tb-btn" onClick={() => window.print()} title="Print or save PDF">⎙ Print</button>
         {mode === "edit" && <>
+          {window.cvFsSync?.supported() && (
+            <button
+              className={`tb-btn ${dirHandle ? "is-on" : ""}`}
+              onClick={toggleLink}
+              title={dirHandle ? "Edits are saving to cv-data.js — click to unlink" : "Save edits straight to cv-data.js"}
+            >
+              {dirHandle ? "⛓ Linked" : "⛓ Link file"}
+            </button>
+          )}
+          {syncMsg && <span className="tb-note">{syncMsg}</span>}
+          {pendingLoss && (
+            <button className="tb-btn" onClick={saveAnyway} title="Write anyway, accepting the loss">
+              ⚠ Save anyway
+            </button>
+          )}
           <button className="tb-btn" onClick={exportJSON} title="Download JSON">↓ Export</button>
           <button className="tb-btn" onClick={() => fileRef.current?.click()} title="Upload JSON">↑ Import</button>
         </>}

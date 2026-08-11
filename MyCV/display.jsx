@@ -150,7 +150,7 @@ function Display({ cv, onChange, onList, mode, query }) {
       )}
 
       {!hidden.has("teaching") && (
-      <Section num="08" title={sectionTitle("teaching", "Teaching at Example University")} id="teaching" onRemove={rm("teaching")} onTitleChange={titleChange("teaching")}>
+      <Section num="08" title={sectionTitle("teaching", "Teaching at Mahidol University")} id="teaching" onRemove={rm("teaching")} onTitleChange={titleChange("teaching")}>
         <table className="tt-table">
           <thead><tr><th>Code</th><th>Course</th><th>Years</th>{editing && <th></th>}</tr></thead>
           <tbody>
