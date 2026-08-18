@@ -191,6 +191,29 @@ window.DEFAULT_CV = {
     { code: "ITDS201", title: "Industry Experiences and Problems II (TH)", years: "2022" },
     { code: "ITCS155", title: "Computer Applications (TH)", years: "2019–2020" }
   ],
+  evaluations: {
+    years: [2019, 2020, 2021, 2022, 2023, 2024, 2025],
+    scale: 5,
+    courses: [
+      { code: "ITCS371", title: "Introduction to Software Engineering (EN)", scores: [4.69, 4.72, 4.6, 4.67, 4.67, null, null] },
+      { code: "ITDS261", title: "Introduction to Software Engineering (TH)", scores: [null, null, null, 4.59, 4.52, 4.58, null] },
+      { code: "ITDS262", title: "Software Engineering Lab (TH)", scores: [null, null, null, 4.59, 4.5, 4.59, null] },
+      { code: "ITCS473", title: "Software Quality Assurance and Testing (EN)", scores: [4.8, 4.81, 4.61, 4.79, 4.86, 4.81, 4.86] },
+      { code: "ITDS362", title: "Software Quality Assurance and Testing (TH)", scores: [null, null, null, null, 4.71, 4.6, 4.72] },
+      { code: "ITCS431", title: "Software Design and Development (EN)", scores: [4.64, 4.61, 4.68, 4.64, 4.65, 4.6, null] },
+      { code: "ITCS361", title: "Software Design and Development (TH)", scores: [null, null, null, null, 4.53, 4.57, 4.82] },
+      { code: "ITCS224", title: "Fundamentals of Information Systems and Software Development (EN)", scores: [null, null, null, null, null, 4.44, null] },
+      { code: "ITCS491", title: "Senior Project I (EN)", scores: [4.93, 4.54, null, 5, 5, null, 4.83] },
+      { code: "ITCS492", title: "Senior Project II (EN)", scores: [5, 4.45, 5, 5, 5, 4.81, null] },
+      { code: "ITCS155", title: "Computer Applications (TH)", scores: [4.63, 4.63, null, null, null, null, null] },
+      { code: "ITCS335", title: "Introduction to E-business Systems (EN)", scores: [null, 4.05, 4.4, 4.51, 4.59, null, null] },
+      { code: "ITDS101", title: "Industry Problems and Experiences I (TH)", scores: [null, null, null, 4.27, 4.46, 4.8, 4.77] },
+      { code: "ITDS201", title: "Industry Problems and Experiences II (TH)", scores: [null, null, null, 4.24, null, null, null] },
+      { code: "ITCS126", title: "Introduction to Entrepreneurship (EN)", scores: [null, null, null, null, null, 4.42, null] },
+      { code: "ITCS383", title: "Software Construction and Evolution", scores: [null, null, null, null, null, null, 4.65] },
+      { code: "ITCS382", title: "Software Design and Modelling", scores: [null, null, null, null, null, null, 4.54] }
+    ]
+  },
   curriculum: [
     "Bachelor of Science in Digital Science and Technology (DST), Faculty of Information and Communication Technology, Mahidol University"
   ],

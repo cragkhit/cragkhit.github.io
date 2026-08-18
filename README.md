@@ -98,6 +98,32 @@ Opening the editor on a device that is merely out of date pulls the newer
 version automatically; a device with its own unpushed edits is told instead of
 being overwritten.
 
+## Regenerating the Faculty CV
+
+The ICT Faculty CV was kept as a Word document by hand, alongside `cv-data.json`,
+so the two drifted. `tools/gen-cv.py` builds it from the data instead:
+
+```
+python3 tools/gen-cv.py                 # .docx and .pdf into dist/
+python3 tools/gen-cv.py --format docx   # skip the PDF step
+python3 tools/gen-cv.py --format md     # inspect the intermediate Markdown
+python3 tools/gen-cv.py --data cv-data.js --reference other.docx
+```
+
+The pipeline is `cv-data.json` → Markdown → `.docx` → `.pdf`. Pandoc produces
+the `.docx`, taking its styles — headings, body text, list indents — from the
+existing faculty document via `--reference-doc`; only its styles are used,
+never its content. Microsoft Word then renders the PDF over AppleScript. The
+`Latest update:` line in the page header is restamped from `meta.lastUpdate`,
+since pandoc would otherwise copy whatever date the template froze.
+
+Publication counts under *Publication Statistics* are derived from the
+publication list rather than stored, so they cannot fall out of step with it.
+Outputs land in `dist/`, which is git-ignored.
+
+Without Word, use `--format docx` and convert by hand. Without pandoc
+(`brew install pandoc`), only `--format md` works.
+
 ## Technologies Used
 
 - **HTML5** - Semantic markup
