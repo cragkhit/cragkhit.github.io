@@ -61,6 +61,43 @@ new_website/
 - `links.html` - Useful links and resources
 - `contact.html` - Contact information and form
 
+## CV Data and Sync
+
+The CV lives in one place and is published from there:
+
+```
+cv-data.json     canonical — the only file to edit by hand
+cv-data.js       generated — `window.DEFAULT_CV = …`, loaded with a plain
+                 script tag by research.html, projects.html, teaching.html
+                 and the MyCV editor
+```
+
+`cv-data.js` is regenerated from `cv-data.json` on every save and should never
+be edited directly. The MyCV editor (`MyCV/index.html`) writes both files
+through whichever sync path is available:
+
+- **Cloud sync (`MyCV/gh-sync.js`)** — commits both files to this repository
+  through the GitHub API, in a single commit, then GitHub Pages republishes.
+  Works in any browser, including phones and tablets, which makes it the way
+  to keep several devices in step. Needs a fine-grained personal access token
+  scoped to this repository with **Contents: read and write**; it is entered
+  once per device in the editor's ☁ dialog and stored encrypted with the edit
+  password.
+- **Disk sync (`MyCV/fs-sync.js`)** — writes straight into a local checkout
+  via the File System Access API. Chromium only, and needs the repo cloned.
+- **Export / Import** — a JSON download and upload, as a fallback.
+
+Both sync paths share `MyCV/cv-serialize.js`, which generates the two files
+and refuses a save that would drop publications, publication links or venue
+acronyms compared to the copy it is about to overwrite. Cloud sync adds a
+staleness check: if the copy on GitHub changed since this device last synced,
+the push is blocked and the editor offers **Load cloud** or **Push anyway**
+rather than silently overwriting.
+
+Opening the editor on a device that is merely out of date pulls the newer
+version automatically; a device with its own unpushed edits is told instead of
+being overwritten.
+
 ## Technologies Used
 
 - **HTML5** - Semantic markup

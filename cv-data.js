@@ -1,6 +1,6 @@
-// Default CV data. Lives in localStorage once the user edits it.
-// Rewritten by MyCV's disk sync (MyCV/fs-sync.js) — edits made here by
-// hand, including comments, are overwritten on the next CV edit.
+// Generated from cv-data.json — do not edit by hand.
+// Rewritten in full by MyCV on every save (MyCV/cv-serialize.js);
+// edits made here, including comments, are overwritten.
 // pubStats holds only citation figures; the journal/conference/workshop/
 // chapter counts are derived from `publications` at render time.
 window.DEFAULT_CV = {

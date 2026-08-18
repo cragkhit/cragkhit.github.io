@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Display, cvAuth */
+/* global React, ReactDOM, Display, cvAuth, cvFsSync, cvGhSync, cvSerialize */
 const { useState, useEffect, useRef, useCallback } = React;
 
 /* ============================================================
@@ -74,6 +74,79 @@ function PasswordModal({ isSetup, onSubmit, onCancel, error, pending }) {
   );
 }
 
+/* ============================================================
+   Cloud sync setup — repository and access token
+   ============================================================ */
+function CloudModal({ config, connected, onConnect, onDisconnect, onCancel, error, pending, canStore }) {
+  const [owner, setOwner]   = useState(config.owner);
+  const [repo, setRepo]     = useState(config.repo);
+  const [branch, setBranch] = useState(config.branch);
+  const [token, setToken]   = useState("");
+  const inputRef            = useRef(null);
+
+  useEffect(() => { inputRef.current?.focus(); }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onConnect({ owner: owner.trim(), repo: repo.trim(), branch: branch.trim() }, token.trim());
+  };
+
+  return (
+    <div className="auth-overlay" onClick={(e) => { if (e.target === e.currentTarget) onCancel(); }}>
+      <div className="auth-modal">
+        <div className="auth-modal-header">
+          <span className="auth-icon">☁</span>
+          <h3>{connected ? "Cloud Sync" : "Connect Cloud Sync"}</h3>
+        </div>
+        <p className="auth-note">
+          Saves the CV as a commit to your website repository, so any browser can pick
+          it up. Create a <b>fine-grained personal access token</b> at GitHub → Settings →
+          Developer settings, scoped to this repository only, with{" "}
+          <b>Contents: read and write</b>.
+        </p>
+        <form onSubmit={handleSubmit}>
+          <div className="cloud-row">
+            <input className="auth-input" value={owner} onChange={(e) => setOwner(e.target.value)}
+              placeholder="owner" autoComplete="off" disabled={pending} />
+            <input className="auth-input" value={repo} onChange={(e) => setRepo(e.target.value)}
+              placeholder="repository" autoComplete="off" disabled={pending} />
+            <input className="auth-input" value={branch} onChange={(e) => setBranch(e.target.value)}
+              placeholder="branch" autoComplete="off" disabled={pending} />
+          </div>
+          <input
+            ref={inputRef}
+            type="password"
+            className="auth-input"
+            value={token}
+            onChange={(e) => setToken(e.target.value)}
+            placeholder={connected ? "Replace token (github_pat_…)" : "Access token (github_pat_…)"}
+            autoComplete="off"
+            disabled={pending}
+          />
+          <p className="auth-note" style={{marginTop: 0}}>
+            {canStore
+              ? "The token is encrypted with your edit password before being stored on this device."
+              : "No edit password is set, so the token will be kept for this session only."}
+          </p>
+          {error && <p className="auth-error">{error}</p>}
+          <div className="auth-actions">
+            {connected && (
+              <button type="button" className="tb-btn" onClick={onDisconnect} disabled={pending}
+                title="Forget the stored token on this device">
+                Disconnect
+              </button>
+            )}
+            <button type="button" className="tb-btn" onClick={onCancel} disabled={pending}>Close</button>
+            <button type="submit" className="tb-btn primary" disabled={pending || !token}>
+              {pending ? "Checking…" : "Connect"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [cv, setCV]     = useState(() => loadCV());
   // Never restore edit mode from localStorage — always require password
@@ -93,8 +166,115 @@ function App() {
   const [pendingLoss, setPendingLoss] = useState("");
   const skipFirstWrite = useRef(true);
 
+  // Cloud sync: commits to the website repo, so devices without a checkout —
+  // or without the File System Access API — stay in step.
+  const [ghToken, setGhToken]       = useState(null);
+  const [ghMsg, setGhMsg]           = useState("");
+  const [ghBusy, setGhBusy]         = useState(false);
+  const [ghDirty, setGhDirty]       = useState(false);
+  const [ghConflict, setGhConflict] = useState("");
+  const [showCloud, setShowCloud]   = useState(false);
+  const [cloudErr, setCloudErr]     = useState("");
+  // The edit password's derived key, kept for the session so the stored
+  // GitHub token can be decrypted — and re-encrypted — without re-prompting.
+  const authKeyRef = useRef(null);
+
+  const cloudReady = window.cvGhSync?.supported() && cvGhSync.configured();
+
   // persist
   useEffect(() => { saveCV(cv); }, [cv]);
+
+  // On load, compare this device against the cloud copy. Adopting it silently
+  // is only safe when nothing was edited here since the last sync; anything
+  // else is surfaced and left to the user.
+  useEffect(() => {
+    if (!cloudReady) return;
+    let cancelled = false;
+    cvGhSync.status(cv, null)   // deliberately the mount-time cv, run once
+      .then((s) => {
+        if (cancelled || !s) return;
+        if (s.state === "behind") {
+          setCV(s.remote.cv);
+          cvGhSync.setSyncedHash(s.remote.hash);
+          setGhMsg("loaded a newer CV from GitHub");
+        } else if (s.state === "ahead") {
+          setGhMsg("this device has changes not yet pushed");
+        } else if (s.state === "diverged") {
+          setGhConflict("this device and GitHub have both changed since the last sync");
+          setGhMsg("out of sync with GitHub");
+        }
+      })
+      .catch((err) => setGhMsg(err.message));
+    return () => { cancelled = true; };
+  }, []);
+
+  // Whether there is anything worth pushing.
+  useEffect(() => {
+    if (!cloudReady) return;
+    let cancelled = false;
+    cvSerialize.digest(cv)
+      .then((h) => { if (!cancelled) setGhDirty(h !== cvGhSync.syncedHash()); })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [cv]);
+
+  const pushCloud = async ({ force = false } = {}) => {
+    if (!ghToken) { setCloudErr(""); setShowCloud(true); return; }
+    setGhBusy(true);
+    setGhMsg("pushing…");
+    try {
+      const r = await cvGhSync.push(cv, ghToken, { force });
+      setGhConflict("");
+      setGhDirty(false);
+      setGhMsg(r.upToDate ? "already up to date" : `pushed ${r.commit} · public pages update in ~1 min`);
+    } catch (err) {
+      if (err.conflict) setGhConflict(err.message);
+      setGhMsg(err.message);
+    } finally {
+      setGhBusy(false);
+    }
+  };
+
+  const pullCloud = async () => {
+    setGhBusy(true);
+    try {
+      const remote = await cvGhSync.pull(ghToken);
+      if (!remote) { setGhMsg("nothing stored in the cloud yet — push first"); return; }
+      setCV(remote.cv);
+      cvGhSync.setSyncedHash(remote.hash);
+      setGhConflict("");
+      setGhDirty(false);
+      setGhMsg("loaded the cloud version");
+    } catch (err) {
+      setGhMsg(err.message);
+    } finally {
+      setGhBusy(false);
+    }
+  };
+
+  const connectCloud = async (cfg, token) => {
+    setCloudErr("");
+    setGhBusy(true);
+    try {
+      const full = await cvGhSync.connect(token, cfg);
+      cvGhSync.setConfig(full);
+      if (authKeyRef.current) await cvGhSync.saveToken(token, authKeyRef.current);
+      setGhToken(token);
+      setShowCloud(false);
+      setGhMsg(`connected to ${full.owner}/${full.repo}`);
+    } catch (err) {
+      setCloudErr(err.message);
+    } finally {
+      setGhBusy(false);
+    }
+  };
+
+  const disconnectCloud = () => {
+    cvGhSync.clearToken();
+    setGhToken(null);
+    setShowCloud(false);
+    setGhMsg("disconnected — the token was removed from this device");
+  };
 
   // Re-link silently on load if the folder permission is still granted.
   useEffect(() => {
@@ -175,17 +355,28 @@ function App() {
     setShowAuth(true);
   };
 
+  // The stored token is encrypted with the edit password, so it only becomes
+  // usable once that password has been entered.
+  const unlockToken = async (key) => {
+    if (!window.cvGhSync?.supported() || !cvGhSync.hasToken()) return;
+    const t = await cvGhSync.loadToken(key);
+    if (t) setGhToken(t);
+    else setGhMsg("the stored GitHub token could not be read — reconnect cloud sync");
+  };
+
   const handleAuthSubmit = async (password) => {
     setAuthPending(true);
     setAuthError("");
     try {
       if (!cvAuth.isSetup()) {
-        await cvAuth.setup(password);
+        authKeyRef.current = await cvAuth.setup(password);
         setShowAuth(false);
         setMode("edit");
       } else {
         const key = await cvAuth.verify(password);
         if (key) {
+          authKeyRef.current = key;
+          await unlockToken(key);
           setShowAuth(false);
           setMode("edit");
         } else {
@@ -269,6 +460,19 @@ function App() {
         />
       )}
 
+      {showCloud && (
+        <CloudModal
+          config={cvGhSync.config()}
+          connected={!!ghToken}
+          canStore={!!authKeyRef.current}
+          onConnect={connectCloud}
+          onDisconnect={disconnectCloud}
+          onCancel={() => { setShowCloud(false); setCloudErr(""); }}
+          error={cloudErr}
+          pending={ghBusy}
+        />
+      )}
+
       <nav className="toolbar">
         <div className="brand"><b>MyCV</b> — <i>{cv.meta.name.split(" ")[0]}'s curriculum vitae</i></div>
 
@@ -301,6 +505,31 @@ function App() {
               ⚠ Save anyway
             </button>
           )}
+          {window.cvGhSync?.supported() && (
+            <button
+              className={`tb-btn ${ghDirty ? "" : "is-on"}`}
+              onClick={() => pushCloud()}
+              disabled={ghBusy}
+              title={ghToken ? "Commit the CV to GitHub" : "Set up GitHub sync"}
+            >
+              {ghBusy ? "☁ …" : !ghToken ? "☁ Set up sync" : ghDirty ? "☁ Push •" : "☁ Push"}
+            </button>
+          )}
+          {ghToken && (
+            <button className="tb-btn" onClick={() => { setCloudErr(""); setShowCloud(true); }}
+              title="Cloud sync settings">⚙</button>
+          )}
+          {ghMsg && <span className="tb-note">{ghMsg}</span>}
+          {ghConflict && <>
+            <button className="tb-btn" onClick={pullCloud} disabled={ghBusy}
+              title="Discard this device's version and take the cloud copy">
+              ↓ Load cloud
+            </button>
+            <button className="tb-btn" onClick={() => pushCloud({ force: true })} disabled={ghBusy}
+              title="Overwrite the cloud copy with this device's version">
+              ⚠ Push anyway
+            </button>
+          </>}
           <button className="tb-btn" onClick={exportJSON} title="Download JSON">↓ Export</button>
           <button className="tb-btn" onClick={() => fileRef.current?.click()} title="Upload JSON">↑ Import</button>
         </>}
@@ -324,7 +553,19 @@ function App() {
             <span style={{marginLeft: "auto", display: "flex", gap: 8}}>
               <button className="tb-btn" onClick={resetData} style={{fontSize: 11}}>↺ Reset to default</button>
               <button className="tb-btn" title="Remove stored password token (you will set a new one next time)"
-                onClick={() => { if (confirm("Remove the stored password token? You will be prompted to set a new password next time you enter edit mode.")) { cvAuth.reset(); setMode("display"); } }}
+                onClick={() => {
+                  // The GitHub token is encrypted with the old password, so it
+                  // becomes unreadable — drop it rather than leave a dead blob.
+                  const alsoToken = window.cvGhSync?.hasToken()
+                    ? " The stored GitHub token will be removed too, and cloud sync will need reconnecting."
+                    : "";
+                  if (confirm("Remove the stored password token? You will be prompted to set a new password next time you enter edit mode." + alsoToken)) {
+                    cvAuth.reset();
+                    if (window.cvGhSync?.hasToken()) { cvGhSync.clearToken(); setGhToken(null); }
+                    authKeyRef.current = null;
+                    setMode("display");
+                  }
+                }}
                 style={{fontSize: 11}}>
                 🔑 Change password
               </button>

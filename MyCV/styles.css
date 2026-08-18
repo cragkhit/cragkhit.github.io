@@ -671,4 +671,17 @@ button { font-family: inherit; cursor: pointer; }
   display: flex; gap: 10px; justify-content: flex-end;
   margin-top: 18px;
 }
+
+/* Cloud sync modal — same shell as the password modal, but it has to fit
+   owner / repository / branch on one line. */
+.auth-modal:has(.cloud-row) { width: 460px; }
+.cloud-row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 0.9fr;
+  gap: 8px;
+}
+.cloud-row .auth-input { font-size: 12.5px; padding: 9px 10px; }
+@media (max-width: 560px) {
+  .cloud-row { grid-template-columns: 1fr; }
+}
 @media print { .auth-overlay { display: none; } }
