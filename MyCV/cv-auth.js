@@ -77,7 +77,38 @@ const _AUTH = (() => {
     [SALT_KEY, IV_KEY, TOKEN_KEY].forEach(k => localStorage.removeItem(k));
   }
 
-  return { setup, verify, isSetup, reset };
+  // A small AES-GCM box around a string, keyed by the derived key above: how
+  // the GitHub token (gh-sync.js) and the Elsevier API key (cv-stats.js) sit
+  // in localStorage without sitting there in the clear. Losing the password
+  // makes them unreadable, which is why resetting it drops them too.
+  async function encrypt(value, key) {
+    const iv = crypto.getRandomValues(new Uint8Array(12));
+    const ct = await crypto.subtle.encrypt(
+      { name: "AES-GCM", iv },
+      key,
+      new TextEncoder().encode(value)
+    );
+    return JSON.stringify({ iv: enc64(iv), ct: enc64(ct) });
+  }
+
+  // Null when the blob is absent, or when the key no longer matches it —
+  // which is what a password reset looks like from here.
+  async function decrypt(blob, key) {
+    if (!blob || !key) return null;
+    try {
+      const { iv, ct } = JSON.parse(blob);
+      const plain = await crypto.subtle.decrypt(
+        { name: "AES-GCM", iv: dec64(iv) },
+        key,
+        dec64(ct)
+      );
+      return new TextDecoder().decode(plain);
+    } catch {
+      return null;
+    }
+  }
+
+  return { setup, verify, isSetup, reset, encrypt, decrypt };
 })();
 
 window.cvAuth = _AUTH;

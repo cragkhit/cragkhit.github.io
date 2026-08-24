@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Display, cvAuth, cvFsSync, cvGhSync, cvSerialize */
+/* global React, ReactDOM, Display, cvAuth, cvFsSync, cvGhSync, cvSerialize, cvStats */
 const { useState, useEffect, useRef, useCallback } = React;
 
 /* ============================================================
@@ -147,6 +147,80 @@ function CloudModal({ config, connected, onConnect, onDisconnect, onCancel, erro
   );
 }
 
+/* ============================================================
+   Citation sources — profile IDs, the Scholar relay, the Elsevier key
+   ============================================================ */
+function StatsModal({ config, hasKey, canStore, onSave, onForgetKey, onCancel, error, pending }) {
+  const [scholarId, setScholarId] = useState(config.scholarId);
+  const [scopusId, setScopusId]   = useState(config.scopusId);
+  const [relay, setRelay]         = useState(config.relay);
+  const [apiKey, setApiKey]       = useState("");
+  const inputRef                  = useRef(null);
+
+  useEffect(() => { inputRef.current?.focus(); }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSave(
+      { scholarId: scholarId.trim(), scopusId: scopusId.trim(), relay: relay.trim() },
+      apiKey.trim()
+    );
+  };
+
+  return (
+    <div className="auth-overlay" onClick={(e) => { if (e.target === e.currentTarget) onCancel(); }}>
+      <div className="auth-modal">
+        <div className="auth-modal-header">
+          <span className="auth-icon">⟳</span>
+          <h3>Citation Sources</h3>
+        </div>
+        <p className="auth-note">
+          <b>Scopus</b> answers the browser directly — it needs a free API key from{" "}
+          <a href="https://dev.elsevier.com/apikey/manage" target="_blank" rel="noopener">dev.elsevier.com</a>,
+          registered to the site you are on.{" "}
+          <b>Google Scholar</b> has no API and blocks proxies, so it goes through a relay you
+          deploy yourself — <code>tools/scholar-worker.js</code>.
+        </p>
+        <form onSubmit={handleSubmit}>
+          <label className="field-lab">Google Scholar profile ID</label>
+          <input ref={inputRef} className="auth-input" value={scholarId} autoComplete="off"
+            onChange={(e) => setScholarId(e.target.value)} placeholder="VArdauUAAAAJ" disabled={pending} />
+
+          <label className="field-lab">Scholar relay URL</label>
+          <input className="auth-input" value={relay} autoComplete="off"
+            onChange={(e) => setRelay(e.target.value)} placeholder="https://cv-stats.you.workers.dev" disabled={pending} />
+
+          <label className="field-lab">Scopus author ID</label>
+          <input className="auth-input" value={scopusId} autoComplete="off"
+            onChange={(e) => setScopusId(e.target.value)} placeholder="56422351700" disabled={pending} />
+
+          <label className="field-lab">Elsevier API key {hasKey && <span style={{color: "var(--accent)"}}>· stored</span>}</label>
+          <input type="password" className="auth-input" value={apiKey} autoComplete="off"
+            onChange={(e) => setApiKey(e.target.value)}
+            placeholder={hasKey ? "Replace the stored key" : "API key"} disabled={pending} />
+
+          <p className="auth-note" style={{marginTop: 0}}>
+            {canStore
+              ? "The key is encrypted with your edit password before being stored on this device."
+              : "No edit password is set, so the key will be kept for this session only."}
+          </p>
+          {error && <p className="auth-error">{error}</p>}
+          <div className="auth-actions">
+            {hasKey && (
+              <button type="button" className="tb-btn" onClick={onForgetKey} disabled={pending}
+                title="Forget the stored Elsevier key on this device">
+                Forget key
+              </button>
+            )}
+            <button type="button" className="tb-btn" onClick={onCancel} disabled={pending}>Close</button>
+            <button type="submit" className="tb-btn primary" disabled={pending}>Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   const [cv, setCV]     = useState(() => loadCV());
   // Never restore edit mode from localStorage — always require password
@@ -175,8 +249,18 @@ function App() {
   const [ghConflict, setGhConflict] = useState("");
   const [showCloud, setShowCloud]   = useState(false);
   const [cloudErr, setCloudErr]     = useState("");
+  // Citation stats: two fetch buttons in the Publications section, one per
+  // source. The Elsevier key is unlocked alongside the GitHub token.
+  const [statsCfg, setStatsCfg]   = useState(() => window.cvStats?.config() || null);
+  const [elsKey, setElsKey]       = useState(null);
+  const [statsMsg, setStatsMsg]   = useState("");
+  const [statsBusy, setStatsBusy] = useState(false);
+  const [showStats, setShowStats] = useState(false);
+  const [statsErr, setStatsErr]   = useState("");
+
   // The edit password's derived key, kept for the session so the stored
-  // GitHub token can be decrypted — and re-encrypted — without re-prompting.
+  // GitHub token and Elsevier key can be decrypted — and re-encrypted —
+  // without re-prompting.
   const authKeyRef = useRef(null);
 
   const cloudReady = window.cvGhSync?.supported() && cvGhSync.configured();
@@ -276,6 +360,61 @@ function App() {
     setGhMsg("disconnected — the token was removed from this device");
   };
 
+  /* ---------- citation stats ---------- */
+
+  // Both sources land in pubStats as {source, count, h}: the same shape the
+  // fields already hold, so a fetch is only ever a faster way to type them.
+  const applyStats = (slot, r) => {
+    setCV(prev => stampDate(setIn(prev, ["pubStats", slot], {
+      ...prev.pubStats[slot], source: r.source, count: r.count, h: r.h,
+    })));
+  };
+
+  const fetchStats = async (which) => {
+    const scholar = which === "scholar";
+    // Nothing to fetch with yet — send them to the settings rather than fail.
+    if (scholar ? !statsCfg?.relay : !elsKey) { setStatsErr(""); setShowStats(true); return; }
+    setStatsBusy(true);
+    setStatsMsg(scholar ? "reading Google Scholar…" : "reading Scopus…");
+    try {
+      const r = scholar
+        ? await cvStats.fetchScholar(statsCfg)
+        : await cvStats.fetchScopus(elsKey, statsCfg);
+      applyStats(scholar ? "citations" : "citations2", r);
+      setStatsMsg(`${r.count} citations · h-index ${r.h} · ${r.source}`);
+    } catch (err) {
+      setStatsMsg(err.message);
+    } finally {
+      setStatsBusy(false);
+    }
+  };
+
+  const saveStats = async (cfg, apiKey) => {
+    setStatsErr("");
+    setStatsBusy(true);
+    try {
+      cvStats.setConfig(cfg);
+      setStatsCfg(cfg);
+      if (apiKey) {
+        if (authKeyRef.current) await cvStats.saveKey(apiKey, authKeyRef.current);
+        setElsKey(apiKey);
+      }
+      setShowStats(false);
+      setStatsMsg("citation sources saved");
+    } catch (err) {
+      setStatsErr(err.message);
+    } finally {
+      setStatsBusy(false);
+    }
+  };
+
+  const forgetStatsKey = () => {
+    cvStats.clearKey();
+    setElsKey(null);
+    setShowStats(false);
+    setStatsMsg("the Elsevier key was removed from this device");
+  };
+
   // Re-link silently on load if the folder permission is still granted.
   useEffect(() => {
     if (!window.cvFsSync?.supported()) return;
@@ -355,13 +494,19 @@ function App() {
     setShowAuth(true);
   };
 
-  // The stored token is encrypted with the edit password, so it only becomes
-  // usable once that password has been entered.
-  const unlockToken = async (key) => {
-    if (!window.cvGhSync?.supported() || !cvGhSync.hasToken()) return;
-    const t = await cvGhSync.loadToken(key);
-    if (t) setGhToken(t);
-    else setGhMsg("the stored GitHub token could not be read — reconnect cloud sync");
+  // The stored credentials are encrypted with the edit password, so they only
+  // become usable once that password has been entered.
+  const unlockSecrets = async (key) => {
+    if (window.cvGhSync?.supported() && cvGhSync.hasToken()) {
+      const t = await cvGhSync.loadToken(key);
+      if (t) setGhToken(t);
+      else setGhMsg("the stored GitHub token could not be read — reconnect cloud sync");
+    }
+    if (window.cvStats?.hasKey()) {
+      const k = await cvStats.loadKey(key);
+      if (k) setElsKey(k);
+      else setStatsMsg("the stored Elsevier key could not be read — add it again under ⚙");
+    }
   };
 
   const handleAuthSubmit = async (password) => {
@@ -376,7 +521,7 @@ function App() {
         const key = await cvAuth.verify(password);
         if (key) {
           authKeyRef.current = key;
-          await unlockToken(key);
+          await unlockSecrets(key);
           setShowAuth(false);
           setMode("edit");
         } else {
@@ -473,6 +618,19 @@ function App() {
         />
       )}
 
+      {showStats && (
+        <StatsModal
+          config={statsCfg || cvStats.defaults()}
+          hasKey={!!elsKey || !!window.cvStats?.hasKey()}
+          canStore={!!authKeyRef.current}
+          onSave={saveStats}
+          onForgetKey={forgetStatsKey}
+          onCancel={() => { setShowStats(false); setStatsErr(""); }}
+          error={statsErr}
+          pending={statsBusy}
+        />
+      )}
+
       <nav className="toolbar">
         <div className="brand"><b>MyCV</b> — <i>{cv.meta.name.split(" ")[0]}'s curriculum vitae</i></div>
 
@@ -556,12 +714,17 @@ function App() {
                 onClick={() => {
                   // The GitHub token is encrypted with the old password, so it
                   // becomes unreadable — drop it rather than leave a dead blob.
-                  const alsoToken = window.cvGhSync?.hasToken()
-                    ? " The stored GitHub token will be removed too, and cloud sync will need reconnecting."
+                  const stranded = [
+                    window.cvGhSync?.hasToken() && "the GitHub token",
+                    window.cvStats?.hasKey() && "the Elsevier API key",
+                  ].filter(Boolean);
+                  const alsoToken = stranded.length
+                    ? ` ${stranded.join(" and ")} will be removed too, and will need entering again.`
                     : "";
                   if (confirm("Remove the stored password token? You will be prompted to set a new password next time you enter edit mode." + alsoToken)) {
                     cvAuth.reset();
                     if (window.cvGhSync?.hasToken()) { cvGhSync.clearToken(); setGhToken(null); }
+                    if (window.cvStats?.hasKey()) { cvStats.clearKey(); setElsKey(null); }
                     authKeyRef.current = null;
                     setMode("display");
                   }
@@ -574,7 +737,16 @@ function App() {
         </div>
       )}
 
-      <Display cv={cv} onChange={onChange} onList={onList} mode={mode} query={query} />
+      <Display
+        cv={cv} onChange={onChange} onList={onList} mode={mode} query={query}
+        stats={window.cvStats?.supported() ? {
+          busy: statsBusy,
+          msg: statsMsg,
+          scholar: () => fetchStats("scholar"),
+          scopus: () => fetchStats("scopus"),
+          settings: () => { setStatsErr(""); setShowStats(true); },
+        } : null}
+      />
     </>
   );
 }

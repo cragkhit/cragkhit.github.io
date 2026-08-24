@@ -66,38 +66,16 @@
 
   /* ---------- token at rest ----------------------------------------------- */
 
-  const enc64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
-  const dec64 = (b64) => Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
-
+  // Encrypted with the edit password's derived key — see cvAuth.encrypt.
   const hasToken = () => !!localStorage.getItem(TOKEN_KEY);
 
   async function saveToken(token, key) {
-    const iv = crypto.getRandomValues(new Uint8Array(12));
-    const ct = await crypto.subtle.encrypt(
-      { name: "AES-GCM", iv },
-      key,
-      new TextEncoder().encode(token)
-    );
-    localStorage.setItem(TOKEN_KEY, JSON.stringify({ iv: enc64(iv), ct: enc64(ct) }));
+    localStorage.setItem(TOKEN_KEY, await cvAuth.encrypt(token, key));
   }
 
   // Returns null when the token is absent, or when the key no longer matches —
   // which is what a password reset looks like from here.
-  async function loadToken(key) {
-    const raw = localStorage.getItem(TOKEN_KEY);
-    if (!raw || !key) return null;
-    try {
-      const { iv, ct } = JSON.parse(raw);
-      const plain = await crypto.subtle.decrypt(
-        { name: "AES-GCM", iv: dec64(iv) },
-        key,
-        dec64(ct)
-      );
-      return new TextDecoder().decode(plain);
-    } catch (e) {
-      return null;
-    }
-  }
+  const loadToken = (key) => cvAuth.decrypt(localStorage.getItem(TOKEN_KEY), key);
 
   function clearToken() {
     localStorage.removeItem(TOKEN_KEY);

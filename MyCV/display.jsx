@@ -8,7 +8,7 @@ const { useState, useMemo } = React;
    mode: "display" | "edit"
    query: search filter string (display-only effect)
    ============================================================ */
-function Display({ cv, onChange, onList, mode, query }) {
+function Display({ cv, onChange, onList, mode, query, stats }) {
   const editing = mode === "edit";
   const Q = (query || "").toLowerCase().trim();
   const matches = (s) => !Q || (s || "").toLowerCase().includes(Q);
@@ -142,7 +142,7 @@ function Display({ cv, onChange, onList, mode, query }) {
       )}
 
       {!hidden.has("publications") && (
-        <PublicationsSection cv={cv} onChange={onChange} onList={onList} editing={editing} matches={matches} move={move} onRemove={rm("publications")} title={sectionTitle("publications", "Publications")} onTitleChange={titleChange("publications")} />
+        <PublicationsSection cv={cv} onChange={onChange} onList={onList} editing={editing} matches={matches} move={move} onRemove={rm("publications")} title={sectionTitle("publications", "Publications")} onTitleChange={titleChange("publications")} stats={stats} />
       )}
 
       {!hidden.has("supervision") && (
@@ -369,7 +369,7 @@ function Section({ num, title, id, children, meta, onRemove, onTitleChange }) {
 }
 
 /* ---------- Publications ---------- */
-function PublicationsSection({ cv, onChange, onList, editing, matches, move, onRemove, title, onTitleChange }) {
+function PublicationsSection({ cv, onChange, onList, editing, matches, move, onRemove, title, onTitleChange, stats }) {
   const setStat1 = (key, val) => onChange("pubStats", { ...cv.pubStats, citations:  { ...cv.pubStats.citations,  [key]: val } });
   const setStat2 = (key, val) => onChange("pubStats", { ...cv.pubStats, citations2: { ...cv.pubStats.citations2, [key]: val } });
   const pubCounts = useMemo(() => {
@@ -440,6 +440,21 @@ function PublicationsSection({ cv, onChange, onList, editing, matches, move, onR
           {")"}
         </span>
       </div>
+      {editing && stats && (
+        <div className="stats-fetch" contentEditable={false}>
+          <button className="pf-btn" onClick={stats.scholar} disabled={stats.busy}
+            title="Read the citation count and h-index from your Google Scholar profile">
+            ⟳ Google Scholar
+          </button>
+          <button className="pf-btn" onClick={stats.scopus} disabled={stats.busy}
+            title="Read the citation count and h-index from your Scopus author profile">
+            ⟳ Scopus
+          </button>
+          <button className="pf-btn" onClick={stats.settings} title="Citation source settings">⚙</button>
+          {stats.msg && <span className="tb-note">{stats.msg}</span>}
+        </div>
+      )}
+
       <div className="pub-filters">
         {types.map(t => (
           <button key={t.key} className={`pf-btn ${typeFilter === t.key ? "is-on" : ""}`} onClick={() => setTypeFilter(t.key)}>{t.label}</button>

@@ -98,6 +98,41 @@ Opening the editor on a device that is merely out of date pulls the newer
 version automatically; a device with its own unpushed edits is told instead of
 being overwritten.
 
+## Citation Figures
+
+The citation counts and h-indexes under *Publications* used to be retyped by
+hand from two profile pages. In edit mode the section now carries **⟳ Google
+Scholar** and **⟳ Scopus** buttons, which fetch them and stamp the source line
+with today's date. ⚙ next to them holds the settings.
+
+The two sources are reached very differently:
+
+- **Scopus** is a direct call to `api.elsevier.com`, which answers browsers —
+  it echoes the page's `Origin`. It needs a free API key from
+  [dev.elsevier.com](https://dev.elsevier.com/apikey/manage), registered to the
+  site the editor is served from: a key registered to `cragkhit.github.io` will
+  not work from a `file://` page or a different host. The key is stored
+  encrypted with the edit password, exactly like the GitHub token.
+- **Google Scholar** has no API, sends no CORS headers, and answers shared
+  proxies with *"your computer or network may be sending automated queries"*.
+  The button therefore calls a relay you deploy yourself:
+  `tools/scholar-worker.js`, a Cloudflare Worker that reads the profile
+  server-side and returns the two figures as JSON. Deploy it free at
+  dash.cloudflare.com (Workers & Pages → Create → paste the file over the
+  template), or with
+  `npx wrangler deploy tools/scholar-worker.js --name cv-stats`, then paste the
+  worker URL under ⚙. Add any extra origin you serve MyCV from to `ALLOWED` at
+  the top of the file. The worker caches for half an hour, only accepts profile
+  IDs, and reports a Google block rather than writing a wrong number.
+
+Both buttons write into `pubStats` like any other edit, so the result still has
+to be pushed — nothing is committed behind your back — and either figure can be
+typed over by hand if a fetch is unavailable.
+
+Profile IDs default to the ones linked from the public site
+(Scholar `VArdauUAAAAJ`, Scopus `56422351700`), so a new device needs only the
+relay URL and the API key.
+
 ## Regenerating the Faculty CV
 
 The ICT Faculty CV was kept as a Word document by hand, alongside `cv-data.json`,

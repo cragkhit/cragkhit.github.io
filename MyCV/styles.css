@@ -302,6 +302,15 @@ button { font-family: inherit; cursor: pointer; }
 }
 .cite-row b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 16px; color: var(--accent); }
 
+/* edit-mode only: pull the citation figures instead of retyping them */
+.stats-fetch {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  margin: -6px 0 18px;
+  padding-bottom: 14px; border-bottom: 1px dotted var(--rule);
+}
+.stats-fetch .pf-btn[disabled] { opacity: .5; }
+.stats-fetch .tb-note { white-space: normal; }
+
 .pub-filters {
   display: flex; flex-wrap: wrap; gap: 6px;
   margin-bottom: 18px;
@@ -514,7 +523,7 @@ button { font-family: inherit; cursor: pointer; }
 
 /* ---------- print ---------- */
 @media print {
-  .toolbar, .edit-banner, [data-mode="edit"] .row-actions, [data-mode="edit"] .add-section-btn, .pub-filters, .row-actions, .add-section-btn { display: none !important; }
+  .toolbar, .edit-banner, [data-mode="edit"] .row-actions, [data-mode="edit"] .add-section-btn, .pub-filters, .stats-fetch, .row-actions, .add-section-btn { display: none !important; }
   @page { size: A4; margin: 12mm 14mm; }
   html, body { background: #fff !important; color: #000 !important; }
   body { font-size: 9.5pt; line-height: 1.32; }
@@ -684,4 +693,16 @@ button { font-family: inherit; cursor: pointer; }
 @media (max-width: 560px) {
   .cloud-row { grid-template-columns: 1fr; }
 }
+/* field labels — the sources modal has four inputs that need naming */
+.field-lab {
+  display: block;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-mute);
+  margin: 12px 0 4px;
+}
+.auth-modal code {
+  font-family: var(--mono); font-size: 11px;
+  background: var(--bg-2); padding: 1px 4px; border-radius: 3px;
+}
+
 @media print { .auth-overlay { display: none; } }
