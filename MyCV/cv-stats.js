@@ -57,7 +57,15 @@
 
   const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   const stamp = (d = new Date()) => `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
-  const label = (name) => `${name} (${stamp()})`;
+  const label = (name, when) => `${name} (${stamp(when instanceof Date && !isNaN(when) ? when : new Date())})`;
+
+  // When the figures were read, which is not always when the button was
+  // pressed: the relay caches, so it reports the read time and the CV carries
+  // that. Anything unparseable falls back to now.
+  const readAt = (iso) => {
+    const t = Date.parse(iso || "");
+    return Number.isFinite(t) ? new Date(t) : new Date();
+  };
 
   // Both APIs report counts as strings, sometimes with separators.
   function int(v) {
@@ -91,7 +99,11 @@
     const h = int(body?.h);
     if (count === null || h === null)
       throw new Error("The relay answered without citation figures — is the profile public?");
-    return { count, h, i10: int(body?.i10), source: label("Google Scholar") };
+    return {
+      count, h, i10: int(body?.i10),
+      fetchedAt: readAt(body?.fetchedAt),
+      source: label("Google Scholar", readAt(body?.fetchedAt)),
+    };
   }
 
   /* ---------- Scopus, straight from Elsevier ------------------------------ */
@@ -124,7 +136,8 @@
     const h = int(rec?.["h-index"]);
     if (count === null || h === null)
       throw new Error("Scopus answered without the figures — check the author ID.");
-    return { count, h, docs: int(core["document-count"]), source: label("Scopus") };
+    const now = new Date();
+    return { count, h, docs: int(core["document-count"]), fetchedAt: now, source: label("Scopus", now) };
   }
 
   function explain(status, els) {
@@ -142,6 +155,6 @@
   window.cvStats = {
     supported, config, setConfig, defaults: () => ({ ...DEFAULTS }),
     hasKey, saveKey, loadKey, clearKey,
-    stamp, label, fetchScholar, fetchScopus,
+    stamp, label, readAt, fetchScholar, fetchScopus,
   };
 })();

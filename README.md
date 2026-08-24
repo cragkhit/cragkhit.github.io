@@ -123,7 +123,10 @@ The two sources are reached very differently:
   `npx wrangler deploy tools/scholar-worker.js --name cv-stats`, then paste the
   worker URL under ⚙. Add any extra origin you serve MyCV from to `ALLOWED` at
   the top of the file. The worker caches for half an hour, only accepts profile
-  IDs, and reports a Google block rather than writing a wrong number.
+  IDs, and reports a Google block rather than writing a wrong number. Because
+  of that cache a click can be served figures read up to half an hour earlier,
+  so the worker reports when the profile was *actually* read and the source
+  line is stamped with that, not with the time of the click.
 
 Both buttons write into `pubStats` like any other edit, so the result still has
 to be pushed — nothing is committed behind your back — and either figure can be

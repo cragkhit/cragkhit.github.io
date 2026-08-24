@@ -9,7 +9,10 @@
  *   GET /scholar?id=VArdauUAAAAJ
  *   → { "id": "…", "count": 1204, "h": 17, "i10": 25,
  *       "since": { "count": 612, "h": 14, "i10": 18 },
- *       "fetchedAt": "2026-08-24T…Z" }
+ *       "fetchedAt": "2026-08-24T…Z", "cached": false }
+ *
+ * fetchedAt is when the profile was really read — on a cache hit that is
+ * older than the request, and it is what MyCV stamps the source line with.
  *
  * Deploy (dashboard route, no tooling needed):
  *   1. dash.cloudflare.com → Workers & Pages → Create → Start with Hello World
@@ -90,10 +93,20 @@ export default {
         cors
       );
 
-    return json({ id, ...stats, fetchedAt: new Date().toISOString() }, 200, {
-      ...cors,
-      "Cache-Control": `public, max-age=${CACHE_SECONDS}`,
-    });
+    // On a cache hit the profile HTML can be up to CACHE_SECONDS old, so the
+    // read time is upstream's Date header rather than this moment — that is
+    // the timestamp the CV ends up carrying.
+    const read = Date.parse(res.headers.get("Date") || "");
+    return json(
+      {
+        id,
+        ...stats,
+        fetchedAt: new Date(Number.isFinite(read) ? read : Date.now()).toISOString(),
+        cached: res.headers.get("CF-Cache-Status") === "HIT",
+      },
+      200,
+      { ...cors, "Cache-Control": `public, max-age=${CACHE_SECONDS}` }
+    );
   },
 };
 
