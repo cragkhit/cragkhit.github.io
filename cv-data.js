@@ -25,13 +25,9 @@ window.DEFAULT_CV = {
       "Phayathai Road, Wang Mai, Pathumwan",
       "Bangkok 10330, Thailand"
     ],
-    tel: "+66 2 441 0909",
+    tel: "(+66) 0-2218-6956-7",
     mobile: "+66 89 176 3372",
-    emails: [
-      "chaiyong.rag@mahidol.ac.th",
-      "chaiyong.rag@mahidol.edu",
-      "cragkhit@gmail.com"
-    ],
+    emails: ["chaiyong@cp.eng.chula.ac.th", "cragkhit@gmail.com"],
     links: [
       { label: "Publications", url: "https://cragkhit.github.io/research.html" },
       { label: "SE Corner Podcast", url: "https://creators.spotify.com/pod/profile/se-corner" }
