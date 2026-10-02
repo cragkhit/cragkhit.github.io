@@ -42,7 +42,8 @@ window.DEFAULT_CV = {
     "Code Proficiency"
   ],
   experience: [
-    { role: "Assistant Professor", org: "Faculty of ICT, Mahidol University", location: "Thailand", start: "May 2022", end: "Present" },
+    { role: "Lecturer", org: "Department of Computer Engineering, Faculty of Engineering, Chulalongkorn University", location: "Thailand", start: "October 2026", end: "Present" },
+    { role: "Assistant Professor", org: "Faculty of ICT, Mahidol University", location: "Thailand", start: "May 2022", end: "September 2026" },
     { role: "Lecturer", org: "Faculty of ICT, Mahidol University", location: "Thailand", start: "December 2012", end: "April 2022" },
     { role: "Assistant Dean of the Academic Administration", org: "Faculty of ICT, Mahidol University", location: "Thailand", start: "October 2018", end: "October 2020" },
     { role: "Adjunct Lecturer", org: "CMKL University", location: "Thailand", start: "January 2026", end: "Present" },
