@@ -6,22 +6,24 @@
 window.DEFAULT_CV = {
   meta: {
     name: "Chaiyong Ragkhitwetsagul",
-    title: "Assistant Professor — Software Engineering",
+    title: "Lecturer — Department of Computer Engineering, Faculty of Engineering, Chulalongkorn University",
     tagline: [
       "Software Engineering",
       "Static Analysis",
       "Code Similarity & Clone Detection",
       "Mining Software Repositories"
     ],
-    lastUpdate: "11 August 2026",
+    lastUpdate: "2 October 2026",
     photo: "assets/headshot.jpg",
     sectionTitles: { teaching: "Teaching at Mahidol University" }
   },
   contact: {
     address: [
-      "Faculty of ICT, Mahidol University",
-      "999 Puttamonthon 4 Rd., Salaya",
-      "Puttamonthon, Nakhon Pathom 73170, Thailand"
+      "Department of Computer Engineering",
+      "Faculty of Engineering, Chulalongkorn University",
+      "17th floor, Engineering 4 Building (Charoenvidsavakham)",
+      "Phayathai Road, Wang Mai, Pathumwan",
+      "Bangkok 10330, Thailand"
     ],
     tel: "+66 2 441 0909",
     mobile: "+66 89 176 3372",
