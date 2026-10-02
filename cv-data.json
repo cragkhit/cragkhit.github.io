@@ -49,11 +49,18 @@
   ],
   "experience": [
     {
+      "role": "Lecturer",
+      "org": "Department of Computer Engineering, Faculty of Engineering, Chulalongkorn University",
+      "location": "Thailand",
+      "start": "October 2026",
+      "end": "Present"
+    },
+    {
       "role": "Assistant Professor",
       "org": "Faculty of ICT, Mahidol University",
       "location": "Thailand",
       "start": "May 2022",
-      "end": "Present"
+      "end": "September 2026"
     },
     {
       "role": "Lecturer",
