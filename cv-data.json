@@ -272,6 +272,15 @@
     {
       "type": "journal",
       "year": 2026,
+      "authors": "I. Uchoa, D. Sousa, P. Maia, A. Uchôa, C. Ragkhitwetsagul, S. Freire, M. Paixao",
+      "title": "A Mixed-Methods Study on the Lifecycle of Code Clones in Code Review",
+      "venue": "Journal of Software Engineering Research and Development, 6:1",
+      "venueAcronym": "JSERD",
+      "venueFullName": "Journal of Software Engineering Research and Development"
+    },
+    {
+      "type": "journal",
+      "year": 2026,
       "authors": "A. Della Porta , S. Lambiase , V. Pontillo , J. F. Ferreira , A. A. Rahman , C. Ragkhitwetsagul , F. Palomba",
       "title": "Understanding Prompt Quality and Its Relation to LLM-based Code Generation",
       "venue": "IEEE Transactions on Software Engineering",
