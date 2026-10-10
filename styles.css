@@ -826,6 +826,20 @@ section + section { border-top: 1px solid var(--line); }
   border-radius: 8px;
   filter: grayscale(0.4) contrast(0.95);
 }
+.office-photo {
+  margin: 2rem 0 0;
+}
+.office-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.office-photo figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--fg-subtle);
+}
 
 /* --- Footer --------------------------------------------------------------- */
 .footer {
