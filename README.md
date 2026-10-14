@@ -63,78 +63,50 @@ new_website/
 
 ## CV Data and Sync
 
-The CV lives in one place and is published from there:
+The CV is edited in one file and flows one way from there:
 
 ```
-cv-data.json     canonical — the only file to edit by hand
-cv-data.js       generated — `window.DEFAULT_CV = …`, loaded with a plain
-                 script tag by research.html, projects.html, teaching.html
-                 and the MyCV editor
+cv-data.json   canonical — the only file to edit
+   │  push to master → .github/workflows/cv-sync.yml
+   ├─► cv-data.js        static fallback, committed back by the Action
+   └─► Firestore cv/main live copy
+          │  cv-live.js (onSnapshot)
+          ▼
+research.html · projects.html · teaching.html · MyCV
 ```
 
-`cv-data.js` is regenerated from `cv-data.json` on every save and should never
-be edited directly. The MyCV editor (`MyCV/index.html`) writes both files
-through whichever sync path is available:
+Every page renders straight away from `cv-data.js`, then `cv-live.js`
+replaces `window.DEFAULT_CV` with the Firestore copy and fires a `cv:update`
+event that each page re-renders on. Pages that are already open update within
+seconds of the Action finishing, with no reload. If Firebase can't be reached,
+the static render simply stays. MyCV is read-only: it shows, prints and
+exports the CV, but has no editor.
 
-- **Cloud sync (`MyCV/gh-sync.js`)** — commits both files to this repository
-  through the GitHub API, in a single commit, then GitHub Pages republishes.
-  Works in any browser, including phones and tablets, which makes it the way
-  to keep several devices in step. Needs a fine-grained personal access token
-  scoped to this repository with **Contents: read and write**; it is entered
-  once per device in the editor's ☁ dialog and stored encrypted with the edit
-  password.
-- **Disk sync (`MyCV/fs-sync.js`)** — writes straight into a local checkout
-  via the File System Access API. Chromium only, and needs the repo cloned.
-- **Export / Import** — a JSON download and upload, as a fallback.
+`tools/firebase-sync.mjs` does the work (`npm run cv:build-js`,
+`npm run cv:push`, `push --dry-run`). It builds `cv-data.js` with the
+serializer in `MyCV/cv-serialize.js` and stores the CV in Firestore as one
+JSON string, which keeps field order intact (Firestore maps come back with
+their keys sorted). `firestore.rules` makes `cv/main` world-readable, and no
+browser can write to it. Only the Action can, through the Admin SDK.
 
-Both sync paths share `MyCV/cv-serialize.js`, which generates the two files
-and refuses a save that would drop publications, publication links or venue
-acronyms compared to the copy it is about to overwrite. Cloud sync adds a
-staleness check: if the copy on GitHub changed since this device last synced,
-the push is blocked and the editor offers **Load cloud** or **Push anyway**
-rather than silently overwriting.
+### One-time Firebase setup
 
-Opening the editor on a device that is merely out of date pulls the newer
-version automatically; a device with its own unpushed edits is told instead of
-being overwritten.
+1. Create a Firebase project and enable Firestore (production mode).
+2. Register a Web app and paste its config into `FIREBASE_CONFIG` in
+   `cv-live.js`. Until you do, pages use `cv-data.js` only.
+3. Deploy the rules, either by pasting `firestore.rules` into the console's
+   Rules tab or with `npx firebase-tools deploy --only firestore:rules`.
+4. Under Project settings → Service accounts, generate a private key. Add the
+   file's contents as the repository secret `FIREBASE_SERVICE_ACCOUNT`. Never
+   commit the key (`.gitignore` covers the default file name).
+5. Run **CV sync** once from the Actions tab to seed `cv/main`.
 
 ## Citation Figures
 
-The citation counts and h-indexes under *Publications* used to be retyped by
-hand from two profile pages. In edit mode the section now carries **⟳ Google
-Scholar** and **⟳ Scopus** buttons, which fetch them and stamp the source line
-with today's date. ⚙ next to them holds the settings.
-
-The two sources are reached very differently:
-
-- **Scopus** is a direct call to `api.elsevier.com`, which answers browsers —
-  it echoes the page's `Origin`. It needs a free API key from
-  [dev.elsevier.com](https://dev.elsevier.com/apikey/manage), registered to the
-  site the editor is served from: a key registered to `cragkhit.github.io` will
-  not work from a `file://` page or a different host. The key is stored
-  encrypted with the edit password, exactly like the GitHub token.
-- **Google Scholar** has no API, sends no CORS headers, and answers shared
-  proxies with *"your computer or network may be sending automated queries"*.
-  The button therefore calls a relay you deploy yourself:
-  `tools/scholar-worker.js`, a Cloudflare Worker that reads the profile
-  server-side and returns the two figures as JSON. Deploy it free at
-  dash.cloudflare.com (Workers & Pages → Create → paste the file over the
-  template), or with
-  `npx wrangler deploy tools/scholar-worker.js --name cv-stats`, then paste the
-  worker URL under ⚙. Add any extra origin you serve MyCV from to `ALLOWED` at
-  the top of the file. The worker caches for half an hour, only accepts profile
-  IDs, and reports a Google block rather than writing a wrong number. Because
-  of that cache a click can be served figures read up to half an hour earlier,
-  so the worker reports when the profile was *actually* read and the source
-  line is stamped with that, not with the time of the click.
-
-Both buttons write into `pubStats` like any other edit, so the result still has
-to be pushed — nothing is committed behind your back — and either figure can be
-typed over by hand if a fetch is unavailable.
-
-Profile IDs default to the ones linked from the public site
-(Scholar `VArdauUAAAAJ`, Scopus `56422351700`), so a new device needs only the
-relay URL and the API key.
+The citation counts and h-indexes in `pubStats` are edited in `cv-data.json`
+like everything else. `tools/scholar-worker.js` (a Cloudflare Worker that reads
+a Google Scholar profile server-side) is kept for a future scheduled job that
+updates them. MyCV's fetch buttons went away with its editor.
 
 ## Regenerating the Faculty CV
 

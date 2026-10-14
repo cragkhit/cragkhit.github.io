@@ -294,8 +294,9 @@
     </footer>
 
     <script src="cv-data.js"></script>
+    <script type="module" src="cv-live.js"></script>
     <script>
-      (function renderSoftwareTools() {
+      function renderSoftwareTools() {
         const pubs = (window.DEFAULT_CV && window.DEFAULT_CV.publications) || [];
         const tools = pubs
           .filter(p => /tool dem/i.test(p.venue || ""))
@@ -339,7 +340,9 @@
               </div>
             </li>`;
         }).join("");
-      })();
+      }
+      renderSoftwareTools();
+      window.addEventListener("cv:update", renderSoftwareTools);
     </script>
     <script src="script.js"></script>
 </body>

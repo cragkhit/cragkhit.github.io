@@ -18,8 +18,8 @@
  *   1. dash.cloudflare.com → Workers & Pages → Create → Start with Hello World
  *   2. Name it e.g. cv-stats, Deploy, then Edit code and paste this file over
  *      the template. Deploy again.
- *   3. Paste the worker URL (https://cv-stats.<subdomain>.workers.dev) into
- *      MyCV → edit mode → Publications → ⚙.
+ *   3. Note the worker URL (https://cv-stats.<subdomain>.workers.dev). MyCV
+ *      no longer calls it; it is kept for a scheduled pubStats update.
  * Or with wrangler: `npx wrangler deploy tools/scholar-worker.js --name cv-stats`.
  *
  * Scholar rate-limits repeat readers, so responses are cached for half an hour

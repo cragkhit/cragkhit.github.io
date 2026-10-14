@@ -3,3 +3,5 @@
 .DS_Store
 dist/
 tools/__pycache__/gen-cv.cpython-314.pyc
+node_modules/
+*-firebase-adminsdk-*.json

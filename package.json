@@ -1,0 +1,13 @@
+{
+  "name": "cragkhit-website",
+  "private": true,
+  "description": "Tooling only — the site itself is static. See tools/firebase-sync.mjs.",
+  "type": "module",
+  "scripts": {
+    "cv:build-js": "node tools/firebase-sync.mjs build-js",
+    "cv:push": "node tools/firebase-sync.mjs push"
+  },
+  "dependencies": {
+    "firebase-admin": "12.7.0"
+  }
+}

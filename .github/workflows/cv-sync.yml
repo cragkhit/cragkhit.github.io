@@ -1,0 +1,54 @@
+# Publishes cv-data.json whenever it changes on master: regenerates the static
+# fallback cv-data.js (committed back here) and writes the live copy to
+# Firestore, which open pages pick up within seconds. See tools/firebase-sync.mjs.
+name: CV sync
+
+on:
+  push:
+    branches: [master]
+    paths: [cv-data.json]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cv-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci --no-fund --no-audit
+
+      - name: Regenerate cv-data.js
+        run: node tools/firebase-sync.mjs build-js
+
+      # Commits made with GITHUB_TOKEN do not trigger workflows, so this
+      # cannot loop.
+      - name: Commit cv-data.js if it changed
+        run: |
+          if git diff --quiet -- cv-data.js; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cv-data.js
+          git commit -m "Regenerate cv-data.js from cv-data.json"
+          git push
+
+      - name: Push to Firestore
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+        run: |
+          if [ -z "$FIREBASE_SERVICE_ACCOUNT" ]; then
+            echo "::warning::FIREBASE_SERVICE_ACCOUNT is not set — skipped the Firestore push"
+            exit 0
+          fi
+          node tools/firebase-sync.mjs push

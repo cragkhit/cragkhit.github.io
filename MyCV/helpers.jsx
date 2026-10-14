@@ -6,76 +6,22 @@ const { useState, useEffect, useMemo, useRef, useCallback, createContext, useCon
 const EditContext = createContext(false);
 
 /* ============================================================
-   Storage
+   Storage — only the theme. The CV itself comes from cv-data.js
+   and cv-live.js; nothing about it is kept in the browser.
    ============================================================ */
-const STORAGE_KEY = "mycv:data:v1";
 const THEME_KEY = "mycv:theme";
-const MODE_KEY = "mycv:mode";
-// Fingerprint of the cv-data.js the local copy was taken from. Without it a
-// stored copy shadows cv-data.js forever, so papers committed to the repo
-// directly never reach this page.
-const BASE_KEY = "mycv:base:v1";
 
-// FNV-1a over the JSON text — only compared for equality, never trusted.
-function fingerprint(cv) {
-  const s = JSON.stringify(cv);
-  let h = 0x811c9dc5;
-  for (let i = 0; i < s.length; i++) {
-    h ^= s.charCodeAt(i);
-    h = Math.imul(h, 0x01000193);
-  }
-  return (h >>> 0).toString(16);
-}
-
-// Set when the local copy has edits and cv-data.js has since changed too:
-// the edits are kept, but the page says the file has moved on.
-let cvLocalStale = false;
-
-function loadCV() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const data = JSON.parse(raw);
-      const current = fingerprint(window.DEFAULT_CV);
-      const base = localStorage.getItem(BASE_KEY);
-      const local = fingerprint(data);
-      // Unedited copy of an older cv-data.js — the file wins.
-      if (base && base !== current && local === base) {
-        localStorage.setItem(BASE_KEY, current);
-        return JSON.parse(JSON.stringify(window.DEFAULT_CV));
-      }
-      // Edited copy (or one predating BASE_KEY) of an older file — keep it.
-      if (base !== current && local !== current) cvLocalStale = true;
-      // migrate: tagline used to be a string
-      if (data?.meta && typeof data.meta.tagline === "string") {
-        data.meta.tagline = data.meta.tagline.split(/\s*·\s*/).filter(Boolean);
-      }
-      // migrate: honors/grants used to be arrays of plain strings;
-      // re-seed from DEFAULT_CV since the year can't be reliably split out of old text
-      if (Array.isArray(data?.honors) && data.honors.some(h => typeof h === "string")) {
-        data.honors = JSON.parse(JSON.stringify(window.DEFAULT_CV.honors));
-      }
-      if (Array.isArray(data?.grants) && data.grants.some(g => typeof g === "string")) {
-        data.grants = JSON.parse(JSON.stringify(window.DEFAULT_CV.grants));
-      }
-      return data;
-    }
-  } catch (e) {}
-  try { localStorage.setItem(BASE_KEY, fingerprint(window.DEFAULT_CV)); } catch (e) {}
-  return JSON.parse(JSON.stringify(window.DEFAULT_CV));
-}
-function saveCV(data) {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-    // Back in step with cv-data.js (a reset, or a pull of the same content):
-    // re-anchor, so the next change to the file is picked up again.
-    const current = fingerprint(window.DEFAULT_CV);
-    if (fingerprint(data) === current) {
-      localStorage.setItem(BASE_KEY, current);
-      cvLocalStale = false;
-    }
-  } catch (e) {}
-}
+// Left behind by the editor MyCV used to be: the CV copy, the edit password
+// token, and the encrypted GitHub token and Elsevier key. Clear them so no
+// credential lingers on a device that once had edit mode.
+try {
+  ["mycv:data:v1", "mycv:base:v1", "mycv:mode",
+   "mycv:auth:salt", "mycv:auth:token", "mycv:auth:iv",
+   "mycv:gh:config", "mycv:gh:token", "mycv:gh:synced-hash",
+   "mycv:stats:config", "mycv:stats:elsevier",
+  ].forEach((k) => localStorage.removeItem(k));
+  indexedDB.deleteDatabase("mycv-fs");
+} catch (e) {}
 
 /* ============================================================
    Editable text — contentEditable that emits string updates
@@ -151,7 +97,7 @@ function AddRowButton({ onClick, label }) {
   );
 }
 
-Object.assign(window, { useState, useEffect, useMemo, useRef, useCallback, useContext, Editable, EditContext, setIn, RowActions, AddRowButton, loadCV, saveCV, STORAGE_KEY, THEME_KEY, MODE_KEY });
+Object.assign(window, { useState, useEffect, useMemo, useRef, useCallback, useContext, Editable, EditContext, setIn, RowActions, AddRowButton, THEME_KEY });
 
 /* ============================================================
    MonthYearPicker — display "May 2022" / "Present"; edit via

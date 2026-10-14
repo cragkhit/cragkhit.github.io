@@ -170,15 +170,7 @@
   function buildYearFilters() {
     const wrap = document.getElementById("pubYearFilters");
     if (!wrap) return;
-    const years = [...new Set((window.DEFAULT_CV?.publications || []).map((p) => p.year))].sort((a, b) => b - a);
-    const opts = ["all", ...years];
-    wrap.innerHTML = opts
-      .map(
-        (y) =>
-          `<button type="button" class="pf-btn" data-key="${y}">${y === "all" ? "All years" : y}</button>`
-      )
-      .join("");
-    syncActive(wrap, state.yearFilter);
+    renderYearButtons();
     wrap.addEventListener("click", (e) => {
       const btn = e.target.closest(".pf-btn");
       if (!btn) return;
@@ -189,6 +181,35 @@
   }
 
   function buildVenueFilters() {
+    const wrap = document.getElementById("pubVenueFilters");
+    if (!wrap) return;
+    renderVenueButtons();
+    wrap.addEventListener("click", (e) => {
+      const btn = e.target.closest(".pf-btn");
+      if (!btn) return;
+      state.venueFilter = btn.dataset.key;
+      syncActive(wrap, state.venueFilter);
+      renderResults();
+    });
+  }
+
+  // The year and venue buttons come from the data, so they are redrawn on
+  // every cv:update; their click handlers are attached once, above.
+  function renderYearButtons() {
+    const wrap = document.getElementById("pubYearFilters");
+    if (!wrap) return;
+    const years = [...new Set((window.DEFAULT_CV?.publications || []).map((p) => p.year))].sort((a, b) => b - a);
+    const opts = ["all", ...years];
+    wrap.innerHTML = opts
+      .map(
+        (y) =>
+          `<button type="button" class="pf-btn" data-key="${y}">${y === "all" ? "All years" : y}</button>`
+      )
+      .join("");
+    syncActive(wrap, state.yearFilter);
+  }
+
+  function renderVenueButtons() {
     const wrap = document.getElementById("pubVenueFilters");
     if (!wrap) return;
     const all = window.DEFAULT_CV?.publications || [];
@@ -214,13 +235,6 @@
     ].join("");
 
     syncActive(wrap, state.venueFilter);
-    wrap.addEventListener("click", (e) => {
-      const btn = e.target.closest(".pf-btn");
-      if (!btn) return;
-      state.venueFilter = btn.dataset.key;
-      syncActive(wrap, state.venueFilter);
-      renderResults();
-    });
   }
 
   function buildSearch() {
@@ -253,6 +267,14 @@
     // Hide legacy load-more button — replaced by filters.
     const btn = document.getElementById("loadMoreBtn");
     if (btn) btn.hidden = true;
+
+    // cv-live.js swapped in a newer CV from Firestore.
+    window.addEventListener("cv:update", () => {
+      renderYearButtons();
+      renderVenueButtons();
+      renderResults();
+      renderServices();
+    });
   }
 
   // ---------- Academic services -----------------------------------------

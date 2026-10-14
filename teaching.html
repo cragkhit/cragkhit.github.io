@@ -367,8 +367,9 @@
     </footer>
 
     <script src="cv-data.js"></script>
+    <script type="module" src="cv-live.js"></script>
     <script>
-      (function renderEvaluations() {
+      function renderEvaluations() {
         const data = window.DEFAULT_CV && window.DEFAULT_CV.evaluations;
         if (!data) return;
 
@@ -425,7 +426,9 @@
           </tbody>`;
 
         document.getElementById("evalsTable").innerHTML = head + body;
-      })();
+      }
+      renderEvaluations();
+      window.addEventListener("cv:update", renderEvaluations);
     </script>
     <script src="script.js"></script>
 </body>

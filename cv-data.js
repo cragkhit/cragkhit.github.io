@@ -1,5 +1,5 @@
 // Generated from cv-data.json — do not edit by hand.
-// Rewritten in full by MyCV on every save (MyCV/cv-serialize.js);
+// Rewritten in full by tools/firebase-sync.mjs on every change;
 // edits made here, including comments, are overwritten.
 // pubStats holds only citation figures; the journal/conference/workshop/
 // chapter counts are derived from `publications` at render time.
