@@ -13,9 +13,16 @@
 
 const FIREBASE_SDK = "https://www.gstatic.com/firebasejs/10.14.1";
 
-// Paste the config from Firebase console → Project settings → Your apps.
-// Left null, pages use the static cv-data.js only.
-const FIREBASE_CONFIG = null;
+// From Firebase console → Project settings → Your apps. Set to null to make
+// pages use the static cv-data.js only.
+const FIREBASE_CONFIG = {
+  apiKey: "AIzaSyDckiXNe1TzUamo0b2gKRiu9gQ5memOtO8",
+  authDomain: "cragkhit-cv.firebaseapp.com",
+  projectId: "cragkhit-cv",
+  storageBucket: "cragkhit-cv.firebasestorage.app",
+  messagingSenderId: "959158317054",
+  appId: "1:959158317054:web:3ea6cafa2ff5c2b9d3daaf",
+};
 
 async function start() {
   if (!FIREBASE_CONFIG) return;
