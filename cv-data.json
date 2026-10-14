@@ -989,6 +989,21 @@
     {
       "type": "conference",
       "year": 2022,
+      "authors": "G. Robles, R. G. Kula, C. Ragkhitwetsagul, T. Sakulniwat, K. Matsumoto, J. M. Gonzalez-Barahona",
+      "title": "pycefr: Python Competency Level through Code Analysis",
+      "venue": "ICPC '22, Pittsburgh, PA, USA (Virtual), pp. 173–177",
+      "links": [
+        {
+          "label": "DOI",
+          "url": "https://doi.org/10.1145/3524610.3527878"
+        }
+      ],
+      "venueAcronym": "ICPC",
+      "venueFullName": "International Conference on Program Comprehension"
+    },
+    {
+      "type": "conference",
+      "year": 2022,
       "authors": "C. Ragkhitwetsagul, M. Paixao",
       "title": "Recommending Code Improvements Based on Stack Overflow Answer Edits",
       "venue": "MSR '22 — Registered Report, Pittsburgh, PA, USA (Virtual)",
