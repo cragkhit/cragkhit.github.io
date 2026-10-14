@@ -82,6 +82,10 @@ seconds of the Action finishing, with no reload. If Firebase can't be reached,
 the static render simply stays. MyCV is read-only: it shows, prints and
 exports the CV, but has no editor.
 
+The Firebase app is set up once in `firebase.js`, which also starts Google
+Analytics (`measurementId`). Every main page loads it, either directly or
+through `cv-live.js`.
+
 `tools/firebase-sync.mjs` does the work (`npm run cv:build-js`,
 `npm run cv:push`, `push --dry-run`). It builds `cv-data.js` with the
 serializer in `MyCV/cv-serialize.js` and stores the CV in Firestore as one
@@ -93,7 +97,7 @@ browser can write to it. Only the Action can, through the Admin SDK.
 
 1. Create a Firebase project and enable Firestore (production mode).
 2. Register a Web app and paste its config into `FIREBASE_CONFIG` in
-   `cv-live.js`. Until you do, pages use `cv-data.js` only.
+   `firebase.js`.
 3. Deploy the rules, either by pasting `firestore.rules` into the console's
    Rules tab or with `npx firebase-tools deploy --only firestore:rules`.
 4. Under Project settings → Service accounts, generate a private key. Add the

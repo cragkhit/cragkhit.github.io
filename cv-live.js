@@ -7,29 +7,14 @@
  *
  * Firestore holds cv/main.json, written by tools/firebase-sync.mjs from
  * cv-data.json. If Firebase is unreachable the static render simply stays.
- * The web config below is public by design — firestore.rules make the CV
- * read-only to browsers.
+ * The Firebase app itself (config, Analytics) lives in firebase.js.
  */
 
-const FIREBASE_SDK = "https://www.gstatic.com/firebasejs/10.14.1";
-
-// From Firebase console → Project settings → Your apps. Set to null to make
-// pages use the static cv-data.js only.
-const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyDckiXNe1TzUamo0b2gKRiu9gQ5memOtO8",
-  authDomain: "cragkhit-cv.firebaseapp.com",
-  projectId: "cragkhit-cv",
-  storageBucket: "cragkhit-cv.firebasestorage.app",
-  messagingSenderId: "959158317054",
-  appId: "1:959158317054:web:3ea6cafa2ff5c2b9d3daaf",
-};
-
 async function start() {
-  if (!FIREBASE_CONFIG) return;
-  const { initializeApp } = await import(`${FIREBASE_SDK}/firebase-app.js`);
+  const { app, FIREBASE_SDK } = await import("./firebase.js");
   const { getFirestore, doc, onSnapshot } = await import(`${FIREBASE_SDK}/firebase-firestore.js`);
 
-  const db = getFirestore(initializeApp(FIREBASE_CONFIG));
+  const db = getFirestore(app);
   // Same text firebase-sync.mjs stores, so an unchanged CV causes no re-render.
   let shown = window.DEFAULT_CV ? JSON.stringify(window.DEFAULT_CV, null, 2) + "\n" : "";
 
