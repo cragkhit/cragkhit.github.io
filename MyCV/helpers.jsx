@@ -11,12 +11,41 @@ const EditContext = createContext(false);
 const STORAGE_KEY = "mycv:data:v1";
 const THEME_KEY = "mycv:theme";
 const MODE_KEY = "mycv:mode";
+// Fingerprint of the cv-data.js the local copy was taken from. Without it a
+// stored copy shadows cv-data.js forever, so papers committed to the repo
+// directly never reach this page.
+const BASE_KEY = "mycv:base:v1";
+
+// FNV-1a over the JSON text — only compared for equality, never trusted.
+function fingerprint(cv) {
+  const s = JSON.stringify(cv);
+  let h = 0x811c9dc5;
+  for (let i = 0; i < s.length; i++) {
+    h ^= s.charCodeAt(i);
+    h = Math.imul(h, 0x01000193);
+  }
+  return (h >>> 0).toString(16);
+}
+
+// Set when the local copy has edits and cv-data.js has since changed too:
+// the edits are kept, but the page says the file has moved on.
+let cvLocalStale = false;
 
 function loadCV() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const data = JSON.parse(raw);
+      const current = fingerprint(window.DEFAULT_CV);
+      const base = localStorage.getItem(BASE_KEY);
+      const local = fingerprint(data);
+      // Unedited copy of an older cv-data.js — the file wins.
+      if (base && base !== current && local === base) {
+        localStorage.setItem(BASE_KEY, current);
+        return JSON.parse(JSON.stringify(window.DEFAULT_CV));
+      }
+      // Edited copy (or one predating BASE_KEY) of an older file — keep it.
+      if (base !== current && local !== current) cvLocalStale = true;
       // migrate: tagline used to be a string
       if (data?.meta && typeof data.meta.tagline === "string") {
         data.meta.tagline = data.meta.tagline.split(/\s*·\s*/).filter(Boolean);
@@ -32,10 +61,20 @@ function loadCV() {
       return data;
     }
   } catch (e) {}
+  try { localStorage.setItem(BASE_KEY, fingerprint(window.DEFAULT_CV)); } catch (e) {}
   return JSON.parse(JSON.stringify(window.DEFAULT_CV));
 }
 function saveCV(data) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    // Back in step with cv-data.js (a reset, or a pull of the same content):
+    // re-anchor, so the next change to the file is picked up again.
+    const current = fingerprint(window.DEFAULT_CV);
+    if (fingerprint(data) === current) {
+      localStorage.setItem(BASE_KEY, current);
+      cvLocalStale = false;
+    }
+  } catch (e) {}
 }
 
 /* ============================================================

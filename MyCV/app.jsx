@@ -708,6 +708,9 @@ function App() {
           <div className="edit-banner">
             <span className="lab">Edit mode</span>
             <span style={{color: "var(--ink-soft)"}}>Click any text to edit. Hover rows to reorder or remove. Changes save automatically to this device.</span>
+            {cvLocalStale && fingerprint(cv) !== fingerprint(window.DEFAULT_CV) && (
+              <span style={{color: "var(--ink-soft)"}}>This device's copy has edits made before cv-data.js last changed — newer entries in the file are not shown. Push or export your edits, then reset to default to pick them up.</span>
+            )}
             <span style={{marginLeft: "auto", display: "flex", gap: 8}}>
               <button className="tb-btn" onClick={resetData} style={{fontSize: 11}}>↺ Reset to default</button>
               <button className="tb-btn" title="Remove stored password token (you will set a new one next time)"
