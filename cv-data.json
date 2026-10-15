@@ -517,6 +517,15 @@
     {
       "type": "conference",
       "year": 2026,
+      "authors": "N. Maneewan, O. Nourry, M. Choetkiertikul, C. Ragkhitwetsagul, R. G. Kula, Y. Higo",
+      "title": "Generative Coding in the Wild: Exploring the Diversity of GenAI on GitHub",
+      "venue": "APSEC 2026 — Posters Track",
+      "venueAcronym": "APSEC",
+      "venueFullName": "Asia-Pacific Software Engineering Conference"
+    },
+    {
+      "type": "conference",
+      "year": 2026,
       "authors": "Y. Takei, T. Aoki, C. Ragkhitwetsagul",
       "title": "Quantifying Competitive Relationships Among Open-Source Software Projects",
       "venue": "MSR '26 — Research Track, Rio de Janeiro, Brazil (FOSS Award Runner-up)",
