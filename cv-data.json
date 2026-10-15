@@ -508,6 +508,15 @@
     {
       "type": "conference",
       "year": 2026,
+      "authors": "T. Inthongsuk, P. Balee, J. Pongthawechai, C. Ragkhitwetsagul, P. Sangaroonsilp, S. Palakvangsa-Na-Ayudhya, T. Sunetnanta",
+      "title": "ImReq: An LLM-Powered Tool for Assessing and Improving Software Requirements Quality",
+      "venue": "APSEC 2026 — Tool Demo Track",
+      "venueAcronym": "APSEC",
+      "venueFullName": "Asia-Pacific Software Engineering Conference"
+    },
+    {
+      "type": "conference",
+      "year": 2026,
       "authors": "Y. Takei, T. Aoki, C. Ragkhitwetsagul",
       "title": "Quantifying Competitive Relationships Among Open-Source Software Projects",
       "venue": "MSR '26 — Research Track, Rio de Janeiro, Brazil (FOSS Award Runner-up)",
