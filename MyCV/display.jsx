@@ -400,9 +400,9 @@ function PublicationsSection({ cv, onChange, onList, editing, matches, move, onR
   });
 
   const groups = [
-    { key: "chapter", label: "Book Chapters" },
     { key: "journal", label: "Journal Articles" },
     { key: "conference", label: "Conference Papers" },
+    { key: "chapter", label: "Book Chapters" },
     { key: "workshop", label: "Workshop Papers" }
   ];
 
