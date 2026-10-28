@@ -113,6 +113,12 @@ function Display({ cv, onChange, onList, mode, query, stats }) {
               </div>
               <div className="honors-honor">
                 <Editable value={h.honor} onChange={(v) => onList("honors", "set", { i, v: { ...h, honor: v } })} multiline />
+                {h.url && (
+                  <>
+                    {" · "}
+                    <a href={/^https?:/.test(h.url) ? h.url : "../" + h.url} target="_blank" rel="noopener" style={{fontSize: 12.5, color: "var(--ink-mute)"}}>Certificate</a>
+                  </>
+                )}
               </div>
               {editing && <RowActions onRemove={() => onList("honors", "remove", { i })} {...move("honors", i, cv.honors.length)} />}
             </div>

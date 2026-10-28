@@ -57,6 +57,7 @@ window.DEFAULT_CV = {
     { degree: "Bachelor of Computer Engineering (Magna cum Laude)", school: "Kasetsart University", department: "Department of Computer Engineering, Faculty of Engineering", location: "Bangkok, Thailand", year: "March 2006" }
   ],
   honors: [
+    { year: "2026", honor: "Top1000 Scholar 2026 (Scholarly Index) — World Rank #921 and Thailand Rank #2 in Software System Performance and Reliability (2021–2025 impact window)", url: "files/2026-Top1000-Scholars.pdf" },
     { year: "2023", honor: "Distinguished Reviewer Awards, the 31st IEEE/ACM International Conference on Program Comprehension (ICPC '23)" },
     { year: "2022", honor: "Best Reviewer Awards, Journal of Systems and Software" },
     { year: "2022", honor: "Best Paper Award, 29th Asia-Pacific Software Engineering Conference (APSEC '22) Software Engineering Education Track, Virtual Event" },
